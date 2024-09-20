@@ -1,1 +1,71 @@
-node_modules
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+lerna-debug.log*
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+lerna-debug.log*
+.pnpm-debug.log*
+.pnpm-store/
+
+# Dependency directories
+**/node_modules
+**/dist
+**/.cache
+
+# Build output
+dist/
+build/
+lib/
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+*.swp
+*.swo
+*.pid
+
+# TypeScript
+*.tsbuildinfo
+
+# Compiled source
+*.d.ts
+*.js
+*.jsx
+*.map
+*.log
+
+# Storybook
+.out/
+.storybook-static/
+storybook-static/
+node_modules/.cache/storybook/
+
+# Coverage files
+coverage/
+.nyc_output/
+.vscode-test/
+
+# Lerna
+lerna-debug.log
+
+# VSCode
+.vscode/
+.idea/
+
+# OS specific
+.DS_Store
+Thumbs.db
+*.iml
+
+# JetBrains IDEs
+.idea/
+*.iml
