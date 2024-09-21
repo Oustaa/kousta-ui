@@ -1,4 +1,7 @@
 {
   "packages": ["packages/*"],
-  "version": "independent"
+  "version": "independent",
+  "changelog": {
+    "message": "chore(release): publish %s"
+  }
 }
