@@ -1067,15 +1067,15 @@
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
 "@kousta-ui/components@file:/media/ousta/1CD25521D25501062/projects/kousta-ui/packages/components":
-  version "0.0.3"
+  version "0.0.4"
   resolved "file:packages/components"
 
 "@kousta-ui/helpers@file:/media/ousta/1CD25521D25501062/projects/kousta-ui/packages/helpers":
-  version "0.0.3"
+  version "0.0.4"
   resolved "file:packages/helpers"
 
 "@kousta-ui/hooks@file:/media/ousta/1CD25521D25501062/projects/kousta-ui/packages/hooks":
-  version "0.0.3"
+  version "0.0.4"
   resolved "file:packages/hooks"
 
 "@lerna/create@8.1.8":
