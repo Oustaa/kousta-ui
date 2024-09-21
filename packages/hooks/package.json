@@ -1,6 +1,6 @@
 {
   "name": "@kousta-ui/hooks",
-  "version": "0.0.3",
+  "version": "0.0.4-alpha.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
