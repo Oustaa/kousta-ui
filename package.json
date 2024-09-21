@@ -1,12 +1,12 @@
 {
   "name": "kousta-ui",
-  "version": "0.0.1",
+  "version": "0.0.7",
   "main": "index.js",
   "type": "module",
   "directories": {
     "doc": "docs"
   },
-  "private": true,
+  "private": false,
   "workspaces": [
     "packages/*"
   ],
@@ -17,7 +17,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "prepare": "husky install",
+    "prepare": "husky",
     "build": "lerna run build",
     "publish": "npx lerna publish",
     "lint": "eslint 'packages/**/*.{js,jsx,ts,tsx}'",
@@ -48,7 +48,7 @@
     "eslint-plugin-react": "^7.36.1",
     "husky": "^9.1.6",
     "jest": "^29.7.0",
-    "lerna": "^7.0.0",
+    "lerna": "^8.1.8",
     "prettier": "^3.3.3",
     "prop-types": "^15.8.1",
     "storybook": "^8.3.2",
