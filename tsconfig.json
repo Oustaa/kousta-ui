@@ -1,18 +1,15 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
+    "composite": true,
     "paths": {
-      "@components/*": ["packages/components/src/*"],
-      "@hooks/*": ["packages/hooks/src/*"],
-      "@helpers/*": ["packages/helpers/src/*"]
-    },
-    "outDir": "./dist",
-    "module": "ESNext",
-    "target": "ES6",
-    "jsx": "react",
-    "moduleResolution": "Node",
-    "esModuleInterop": true,
-    "skipLibCheck": true
+      "@kousta-ui/*": ["packages/*/src"]
+    }
   },
-  "include": ["packages/**/*"]
+  "include": [],
+  "references": [
+    { "path": "packages/components" },
+    { "path": "packages/hooks" },
+    { "path": "packages/helpers" }
+  ]
 }

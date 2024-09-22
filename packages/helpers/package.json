@@ -3,11 +3,12 @@
   "version": "0.0.5-alpha.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "license": "MIT",
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "build": "rollup -c"
   },
   "files": [
     "dist"
   ],
-  "gitHead": "f7abd8af0e51f5490a46ff0f35d42b4863b936a1"
+  "gitHead": "e16b21dcc95871dc25fa49523aca54847c7bd4d6"
 }
