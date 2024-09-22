@@ -1,14 +1,18 @@
 {
   "name": "@kousta-ui/components",
-  "version": "0.0.5-alpha.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "0.0.6-alpha.0",
+  "main": "./cjs/index.cjs",
+  "module": "./esm/index.mjs",
+  "types": "dist/lib/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c"
+    "build": "tsc --emitDeclarationOnly && rollup -c"
   },
   "files": [
-    "dist"
+    "dist/cjs",
+    "dist/esm",
+    "dist/lib",
+    "dist/styles"
   ],
   "gitHead": "e16b21dcc95871dc25fa49523aca54847c7bd4d6"
 }

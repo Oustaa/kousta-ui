@@ -13,19 +13,18 @@ const packages = readdirSync(packagesDir).filter(
 
 export default packages.map((pkg) => {
   const pkgPath = `${packagesDir}/${pkg}`;
-  const packageJson = require(path.resolve(pkgPath, "package.json"));
 
   return [
     {
       input: `${pkgPath}/src/index.ts`,
       output: [
         {
-          file: `${pkgPath}/dist/index.cjs.js`,
+          file: `${pkgPath}/dist/cjs/index.cjs.js`,
           format: "cjs",
           sourcemap: true,
         },
         {
-          file: `${pkgPath}/dist/index.esm.js`,
+          file: `${pkgPath}/dist/esm/index.esm.js`,
           format: "esm",
           sourcemap: true,
         },
@@ -40,13 +39,17 @@ export default packages.map((pkg) => {
           tsconfig: `${pkgPath}/tsconfig.json`,
           exclude: ["**/*.test.tsx", "**/*.test.ts", "**/*.stories.ts"],
         }),
-        postcss({ extensions: [".css"], inject: true, extract: false }),
+        postcss({
+          extensions: [".css"],
+          inject: true,
+          extract: `${pkgPath}/dist/styles/styles.css`,
+        }),
       ],
       external: ["react", "react-dom", "react/jsx-runtime"],
     },
     {
-      input: `${pkgPath}/dist/esm/types/index.d.ts`,
-      output: [{ file: `${pkgPath}/dist/index.d.ts`, format: "esm" }],
+      input: `${pkgPath}/dist/types/index.d.ts`,
+      output: [{ file: `${pkgPath}/dist/lib/index.d.ts`, format: "esm" }],
       plugins: [dts()],
       external: [/\.css$/],
     },

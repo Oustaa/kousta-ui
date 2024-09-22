@@ -1,14 +1,17 @@
 {
   "name": "@kousta-ui/hooks",
-  "version": "0.0.5-alpha.0",
-  "main": "dist/index.js",
+  "version": "0.0.6-alpha.0",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c"
+    "build": "tsc --emitDeclarationOnly && rollup -c"
   },
   "files": [
-    "dist"
+    "dist/cjs",
+    "dist/esm",
+    "dist/lib"
   ],
   "gitHead": "e16b21dcc95871dc25fa49523aca54847c7bd4d6"
 }

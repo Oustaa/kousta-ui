@@ -1,7 +1,6 @@
-import { ReactNode } from "react"
+import { ReactNode } from "react";
 
 export type ButtonProps = {
-    label: string
-    icon: ReactNode
-    
-}
+  label: string;
+  icon?: ReactNode;
+};
