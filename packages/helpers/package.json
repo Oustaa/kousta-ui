@@ -1,9 +1,9 @@
 {
   "name": "@kousta-ui/helpers",
   "version": "0.0.6-alpha.0",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.mjs",
+  "types": "dist/lib/index.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "tsc --emitDeclarationOnly && rollup -c"
