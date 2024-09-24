@@ -1,8 +1,13 @@
-import React from "react";
 import "./table.scss";
-import "./test.scss"; // Make sure this is imported so Rollup processes it
+import "./test.scss";
 
-const Table = ({ data }: { data: any[] }) => (
+type dataInterface = {
+  id: number;
+  name: string;
+};
+
+// eslint-skip-next-line
+const Table = ({ data }: { data: dataInterface[] }) => (
   <table className="table">
     <thead>
       <tr className="header">
