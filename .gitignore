@@ -69,3 +69,5 @@ Thumbs.db
 # JetBrains IDEs
 .idea/
 *.iml
+
+!eslint.config.js
