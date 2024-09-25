@@ -1,7 +1,15 @@
 {
   "packages": ["packages/*"],
+  "command": {
+    "publish": {
+      "access": "public"
+    }
+  },
   "version": "independent",
   "changelog": {
     "message": "chore(release): publish %s"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -14,5 +14,8 @@
     "dist/lib",
     "dist/styles"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "gitHead": "e16b21dcc95871dc25fa49523aca54847c7bd4d6"
 }
