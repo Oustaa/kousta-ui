@@ -1,5 +1,5 @@
-import "./table.scss";
-import "./test.scss";
+import "../styles/table.scss";
+import "../styles/test.scss";
 
 type dataInterface = {
   id: number;

@@ -8,6 +8,14 @@
     "esModuleInterop": true
   },
   "include": [],
+  "exclude": [
+    "src/**/*.stories.ts",
+    "src/**/*.stories.tsx",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.ts",
+    "src/**/*.spec.tsx"
+  ],
   "references": [
     { "path": "packages/components" },
     { "path": "packages/hooks" },

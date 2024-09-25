@@ -1,4 +1,4 @@
-import { render, getByText } from "@testing-library/react";
+// import { render, getByText } from "@testing-library/react";
 
 describe("Button test", () => {
   it.todo("should render props");

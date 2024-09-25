@@ -71,3 +71,5 @@ Thumbs.db
 *.iml
 
 !eslint.config.js
+
+*storybook.log

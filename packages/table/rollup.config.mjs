@@ -8,12 +8,12 @@ export default [
     input: "src/index.ts",
     output: [
       {
-        file: "dist/cjs/index.cjs.js",
+        file: "cjs/index.cjs.js",
         format: "cjs",
         sourcemap: true,
       },
       {
-        file: "dist/esm/index.esm.js",
+        file: "esm/index.esm.js",
         format: "esm",
         sourcemap: true,
       },
@@ -27,8 +27,8 @@ export default [
       }),
       postcss({
         extensions: [".css"],
-        inject: true,
-        extract: "dist/styles/styles.css",
+        inject: false,
+        extract: "styles/styles.css",
       }),
     ],
     external: ["react", "react-dom", "react/jsx-runtime"],

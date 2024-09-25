@@ -1,18 +1,18 @@
 {
   "name": "@kousta-ui/table",
   "version": "0.0.1-alpha.1",
-  "main": "./dist/cjs/index.cjs.js",
-  "module": "./dist/esm/index.esm.js",
-  "types": "dist/lib/index.d.ts",
+  "main": "./cjs/index.cjs.js",
+  "module": "./esm/index.esm.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "tsc --emitDeclarationOnly && rollup -c"
   },
   "files": [
-    "dist/cjs",
-    "dist/esm",
-    "dist/lib",
-    "dist/styles"
+    "cjs",
+    "esm",
+    "lib",
+    "styles"
   ],
   "publishConfig": {
     "access": "public"
