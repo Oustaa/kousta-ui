@@ -14,6 +14,9 @@
     "lib",
     "styles"
   ],
+  "devDependencies": {
+    "sass": "^1.79.3"
+  },
   "publishConfig": {
     "access": "public"
   },
