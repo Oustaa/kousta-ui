@@ -1,18 +1,18 @@
-.table {
+.kui-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.header {
-  background-color: #f4f4f4;
-  font-weight: bold;
-
-  & h2{
-    background-color: red;
-  }
+.kui-th {
+  padding: 8px;
+  border: 1px solid rgb(92, 92, 92);
 }
 
-.cell {
+.kui-td {
   padding: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid rgb(92, 92, 92);
+}
+
+.kui-thead {
+  background-color: rgb(197, 197, 197);
 }
