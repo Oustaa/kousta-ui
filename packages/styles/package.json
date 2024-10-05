@@ -1,6 +1,9 @@
 {
   "name": "@kousta-ui/styles",
-  "version": "0.1.0",
+  "version": "0.0.1-alpha.2",
   "main": "index.scss",
-  "license": "MIT"
+  "license": "MIT",
+  "files": [
+    "src"
+  ]
 }

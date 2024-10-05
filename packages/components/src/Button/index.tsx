@@ -1,6 +1,8 @@
 import React from "react";
 import { ButtonProps } from "./type";
 
+import "@kousta-ui/styles/index.scss";
+
 const Button: React.FC<ButtonProps> = ({
   content,
   disabled,
@@ -9,7 +11,12 @@ const Button: React.FC<ButtonProps> = ({
   type = "button",
 }) => {
   return (
-    <button disabled={disabled || loading} onClick={onClick} type={type}>
+    <button
+      className="btn-primary"
+      disabled={disabled || loading}
+      onClick={onClick}
+      type={type}
+    >
       {loading ? (
         <div className="flex items-center justify-center gap-2">Loading...</div>
       ) : (

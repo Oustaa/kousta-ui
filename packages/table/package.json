@@ -5,10 +5,6 @@
   "module": "./esm/index.mjs",
   "types": "lib/index.d.ts",
   "license": "MIT",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "build": "tsc --emitDeclarationOnly && rollup -c"
   },
@@ -19,7 +15,7 @@
     "styles"
   ],
   "dependencies": {
-    "@kousta-ui/styles": "*"
+    "@kousta-ui/styles": "workspace:*"
   },
   "devDependencies": {
     "sass": "^1.79.3"

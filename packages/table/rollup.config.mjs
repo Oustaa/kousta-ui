@@ -1,10 +1,15 @@
 import path from "node:path";
+import { fileURLToPath } from "url";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import esbuild from "rollup-plugin-esbuild";
 import postcss from "rollup-plugin-postcss";
 import replace from "@rollup/plugin-replace";
+import copy from "rollup-plugin-copy";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default [
   {
@@ -13,14 +18,14 @@ export default [
       {
         format: "es",
         entryFileNames: "[name].mjs.js",
-        dir: path.resolve("./esm"),
+        dir: path.resolve(__dirname, "esm"),
         preserveModules: true,
         sourcemap: true,
       },
       {
         format: "cjs",
         entryFileNames: "[name].cjs.js",
-        dir: path.resolve("./cjs"),
+        dir: path.resolve(__dirname, "cjs"),
         preserveModules: true,
         sourcemap: true,
         interop: "auto",
@@ -40,13 +45,28 @@ export default [
         declarationDir: undefined,
       }),
       postcss({
-        extensions: [".css"],
-        inject: false,
-        extract: (output) => {
-          return output.format === "cjs"
-            ? "cjs/styles/styles.css"
-            : "esm/styles/styles.css";
-        },
+        extensions: [".scss", ".css"],
+        extract: true,
+        modules: false,
+        use: [
+          [
+            "sass",
+            {
+              includePaths: [
+                path.resolve(__dirname, "node_modules"),
+                path.resolve(__dirname, "../styles/src"),
+              ],
+            },
+          ],
+        ],
+      }),
+      copy({
+        targets: [
+          {
+            src: path.resolve(__dirname, "../styles/src/**/*"),
+            dest: path.resolve(__dirname, "dist/styles"),
+          },
+        ],
       }),
     ],
     external: ["react", "react-dom", "react/jsx-runtime"],
