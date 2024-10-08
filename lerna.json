@@ -1,5 +1,5 @@
 {
-  "packages": ["packages/*"],
+  "workspaces": ["packages/*"],
   "command": {
     "publish": {
       "access": "public"

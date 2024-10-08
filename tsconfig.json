@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "composite": true,
     "paths": {
-      "@kousta-ui/*": ["packages/*/src"]
+      "@kousta-ui/styles/*": ["../styles"]
     },
     "esModuleInterop": true
   },

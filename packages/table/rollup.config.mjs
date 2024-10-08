@@ -64,7 +64,7 @@ export default [
         targets: [
           {
             src: path.resolve(__dirname, "../styles/src/**/*"),
-            dest: path.resolve(__dirname, "dist/styles"),
+            dest: path.resolve(__dirname, "styles"),
           },
         ],
       }),

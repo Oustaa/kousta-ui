@@ -14,6 +14,9 @@
     "lib",
     "styles"
   ],
+  "dependencies": {
+    "@kousta-ui/styles": "^0.0.1"
+  },
   "devDependencies": {
     "sass": "^1.79.3"
   },
