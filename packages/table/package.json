@@ -1,6 +1,6 @@
 {
   "name": "@kousta-ui/table",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.1-alpha.3",
   "main": "./cjs/index.cjs",
   "module": "./esm/index.mjs",
   "types": "lib/index.d.ts",
@@ -15,7 +15,7 @@
     "styles"
   ],
   "dependencies": {
-    "@kousta-ui/styles": "workspace:*"
+    "@kousta-ui/styles": "^0.0.1-alpha.1"
   },
   "devDependencies": {
     "sass": "^1.79.3"

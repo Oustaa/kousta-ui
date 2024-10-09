@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "composite": true,
     "paths": {
-      "@kousta-ui/styles/*": ["../styles"]
+      "@kousta-ui/*": ["packages/*/src"]
     },
     "esModuleInterop": true
   },
@@ -16,6 +16,7 @@
     "src/**/*.spec.ts",
     "src/**/*.spec.tsx"
   ],
+
   "references": [
     { "path": "packages/components" },
     { "path": "packages/hooks" },
