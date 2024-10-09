@@ -4,4 +4,20 @@
 
 .btn-primary {
   background-color: $ku-primary-color;
+  border: 0px;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    background-color: rgba($ku-primary-color, 0.5);
+
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
 }

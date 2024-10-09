@@ -1,5 +1,4 @@
 import postcss from "rollup-plugin-postcss";
-import autoprefixer from "autoprefixer";
 
 export default {
   input: "src/index.scss",
@@ -10,8 +9,8 @@ export default {
   plugins: [
     postcss({
       extract: true,
-      plugins: [autoprefixer()],
-      sourceMap: true,
+      modules: false,
+      use: ["sass"],
       extensions: [".scss", ".css"],
     }),
   ],
