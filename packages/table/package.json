@@ -15,7 +15,7 @@
     "styles"
   ],
   "dependencies": {
-    "@kousta-ui/styles": "^0.0.1-alpha.1"
+    "@kousta-ui/styles": "workspace:*"
   },
   "devDependencies": {
     "sass": "^1.79.3"
