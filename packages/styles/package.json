@@ -4,8 +4,10 @@
   "main": "dist/index.css",
   "style": "dist/index.css",
   "scripts": {
-    "build": "rollup -c",
-    "prepare": "sass src/index.scss dist/index.css"
+    "lint": "stylelint './**/*.scss'",
+    "lint:fix": "yarn lint --fix",
+    "build": "node src/scripts/build.cjs",
+    "dev": "nodemon --watch src --exec yarn build -e scss"
   },
   "files": [
     "dist"
@@ -13,7 +15,19 @@
   "publishConfig": {
     "access": "public"
   },
+  "dependencies": {
+    "normalize-scss": "^8.0.0"
+  },
   "devDependencies": {
-    "sass": "^1.79.4"
+    "nodemon": "^3.1.7",
+    "sass": "^1.80.3",
+    "prettier": "^3.3.3",
+    "stylelint": "^16.10.0",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-sass-guidelines": "^12.1.0",
+    "stylelint-prettier": "^5.0.2"
+  },
+  "lint-staged": {
+    "*.scss": "yarn lint:fix"
   }
 }

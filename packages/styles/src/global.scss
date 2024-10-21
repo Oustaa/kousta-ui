@@ -1,0 +1,32 @@
+/*------------------------------------*\
+    TABLE OF CONTENTS
+\*------------------------------------*/
+
+/**
+ *
+ * FOUNDATIONS................................................
+ * BASE.......................................................
+ */
+
+/*=============================================
+ =                   Foundations               =
+ =============================================*/
+
+@use "./foundation/typography" as *;
+@use "./foundation/mixins" as *;
+
+/*==============================================
+   =                   Base                      =
+   =============================================*/
+
+@use "base/reset";
+@use "base/root";
+
+body {
+  font-family: $body-font-family;
+  font-size: $body-font-size;
+  font-weight: $body-font-weight;
+  // font-family: "Courier New", Courier, monospace;
+  // font-size: 16px;
+  // font-weight: 500;
+}
