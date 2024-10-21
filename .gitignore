@@ -75,3 +75,7 @@ Thumbs.db
 !eslint.config.js
 
 *storybook.log
+
+
+.parcel-cache
+*.gz

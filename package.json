@@ -9,9 +9,12 @@
     "doc": "docs"
   },
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "playgrounds/*"
+    ]
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -23,7 +26,8 @@
     "lint": "eslint '**/src/*.{js,ts,tsx}'",
     "format": "prettier --write 'packages/**/*.{ts,tsx,json,css,md}'",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "dev": "yarn lerna run dev"
   },
   "keywords": [],
   "author": "",
@@ -90,5 +94,9 @@
       "plugin:storybook/recommended"
     ]
   },
-  "packageManager": "yarn@4.5.0"
+  "packageManager": "yarn@4.5.0",
+  "dependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "normalize-scss": "^8.0.0"
+  }
 }
