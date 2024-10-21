@@ -6,7 +6,8 @@
   "types": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "tsc --emitDeclarationOnly && rollup -c"
+    "build": "tsc --emitDeclarationOnly && rollup -c",
+    "dev": "yarn build --watch"
   },
   "files": [
     "cjs",
@@ -14,9 +15,6 @@
     "lib",
     "styles"
   ],
-  "dependencies": {
-    "@kousta-ui/styles": "^0.0.1-alpha.1"
-  },
   "devDependencies": {
     "sass": "^1.79.3"
   },

@@ -6,7 +6,8 @@
   "types": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "tsc --emitDeclarationOnly && rollup -c"
+    "build": "tsc --emitDeclarationOnly && rollup -c",
+    "dev": "yarn build --watch"
   },
   "files": [
     "cjs",

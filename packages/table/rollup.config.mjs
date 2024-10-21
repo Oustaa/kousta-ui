@@ -60,14 +60,6 @@ export default [
           ],
         ],
       }),
-      copy({
-        targets: [
-          {
-            src: path.resolve(__dirname, "../styles/src/**/*"),
-            dest: path.resolve(__dirname, "styles"),
-          },
-        ],
-      }),
     ],
     external: ["react", "react-dom", "react/jsx-runtime"],
   },

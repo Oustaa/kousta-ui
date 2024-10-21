@@ -1,6 +1,4 @@
-import React from "react";
-
-import "@kousta-ui/styles/index.scss";
+import "@kousta-ui/styles";
 import "./table.scss";
 
 // Interface for table data
