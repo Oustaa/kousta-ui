@@ -3,10 +3,11 @@
   "version": "0.0.2-alpha.0",
   "main": "dist/index.css",
   "style": "dist/index.css",
+  "type": "module",
   "scripts": {
     "lint": "stylelint './**/*.scss'",
     "lint:fix": "yarn lint --fix",
-    "build": "node src/scripts/build.cjs",
+    "build": "node src/scripts/build.js",
     "dev": "nodemon --watch src --exec yarn build -e scss"
   },
   "files": [
@@ -20,8 +21,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.7",
-    "sass": "^1.80.3",
     "prettier": "^3.3.3",
+    "sass": "^1.80.3",
     "stylelint": "^16.10.0",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-sass-guidelines": "^12.1.0",

@@ -1,0 +1,11 @@
+.btn-primary {
+  border: unset;
+  padding: 6px 12px;
+  background-color: #34fe00;
+  color: #222;
+  font-weight: 700;
+}
+.btn-primary:hover {
+  background-color: rgba(52, 254, 0, 0.5647058824);
+  cursor: pointer;
+}

@@ -1,3 +1,3 @@
-import "@kousta-ui/styles/dist/index.css";
+import "./styles.css";
 
 export { default as Button } from "./Button/index";

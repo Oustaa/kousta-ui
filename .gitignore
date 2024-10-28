@@ -78,4 +78,4 @@ Thumbs.db
 
 
 .parcel-cache
-*.gz
+**/*.gz

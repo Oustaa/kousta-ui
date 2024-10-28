@@ -1524,7 +1524,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@kousta-ui/styles@workspace:packages/styles":
+"@kousta-ui/styles@workspace:*, @kousta-ui/styles@workspace:packages/styles":
   version: 0.0.0-use.local
   resolution: "@kousta-ui/styles@workspace:packages/styles"
   dependencies:
@@ -5700,6 +5700,7 @@ __metadata:
     "@kousta-ui/components": "workspace:*"
     "@kousta-ui/helpers": "workspace:*"
     "@kousta-ui/hooks": "workspace:*"
+    "@kousta-ui/styles": "workspace:*"
     "@types/react": "npm:^18.3.10"
     "@types/react-dom": "npm:^18.3.0"
     "@vitejs/plugin-react": "npm:^4.3.2"

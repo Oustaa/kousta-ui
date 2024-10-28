@@ -37,9 +37,9 @@ export default {
     postcss({
       extract: true,
       modules: false,
-      use: ["sass"],
       extensions: [".scss", ".css"],
       minimize: true,
+      output: "styles.css",
     }),
   ],
   external: ["react", "react-dom", "react/jsx-runtime"],

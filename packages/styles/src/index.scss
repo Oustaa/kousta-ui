@@ -12,13 +12,14 @@
  =                   Foundations               =
  =============================================*/
 
+@use "./foundation/variables" as *;
+@use "./foundation/colors" as *;
 @use "./foundation/typography" as *;
 @use "./foundation/mixins" as *;
 
 /*==============================================
-   =                   Base                      =
-   =============================================*/
-
+=                   Base                       =
+==============================================*/
 @use "base/reset";
 @use "base/root";
 
@@ -26,7 +27,5 @@ body {
   font-family: $body-font-family;
   font-size: $body-font-size;
   font-weight: $body-font-weight;
-  // font-family: "Courier New", Courier, monospace;
-  // font-size: 16px;
-  // font-weight: 500;
+  background-color: $red-light;
 }

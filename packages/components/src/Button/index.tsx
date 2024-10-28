@@ -1,6 +1,8 @@
 import React from "react";
 import { ButtonProps } from "./type";
 
+import "@kousta-ui/styles/lib/button";
+
 const Button: React.FC<ButtonProps> = ({
   content,
   disabled,
