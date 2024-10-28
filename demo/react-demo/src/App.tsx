@@ -3,6 +3,7 @@ import { Button } from "@kousta-ui/components";
 import { useSayHello } from "@kousta-ui/hooks";
 
 import "./App.css";
+import "@kousta-ui/styles/lib/buttton.css";
 
 function App() {
   const sayHello = useSayHello("Oussama Is the goat");
