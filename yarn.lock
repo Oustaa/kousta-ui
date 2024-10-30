@@ -4820,9 +4820,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cjs-demo@workspace:playgrounds/cjs-demo":
+"cjs-demo@workspace:demo/cjs-demo":
   version: 0.0.0-use.local
-  resolution: "cjs-demo@workspace:playgrounds/cjs-demo"
+  resolution: "cjs-demo@workspace:demo/cjs-demo"
   dependencies:
     "@kousta-ui/helpers": "workspace:*"
   languageName: unknown
@@ -5692,9 +5692,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"demo@workspace:playgrounds/react":
+"demo@workspace:demo/react-demo":
   version: 0.0.0-use.local
-  resolution: "demo@workspace:playgrounds/react"
+  resolution: "demo@workspace:demo/react-demo"
   dependencies:
     "@eslint/js": "npm:^9.11.1"
     "@kousta-ui/components": "workspace:*"

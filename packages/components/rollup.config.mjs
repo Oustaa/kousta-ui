@@ -2,7 +2,6 @@ import path from "path";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
-import postcss from "rollup-plugin-postcss";
 
 export default {
   input: "src/index.ts",
@@ -33,13 +32,6 @@ export default {
       tsconfig: "./tsconfig.json",
       declaration: false,
       declarationDir: undefined,
-    }),
-    postcss({
-      extract: true,
-      modules: false,
-      extensions: [".scss", ".css"],
-      minimize: true,
-      output: "styles.css",
     }),
   ],
   external: ["react", "react-dom", "react/jsx-runtime"],

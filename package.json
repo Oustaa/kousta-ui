@@ -27,9 +27,13 @@
     "format": "prettier --write 'packages/**/*.{ts,tsx,json,css,md}'",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "dev": "yarn lerna run dev"
+    "dev": "yarn lerna run dev",
+    "react:demo": "cd ./demo/react-demo && yarn run dev"
   },
-  "keywords": [],
+  "keywords": [
+    "ui-library",
+    "react"
+  ],
   "author": "",
   "license": "ISC",
   "description": "",
