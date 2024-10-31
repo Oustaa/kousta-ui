@@ -1,15 +1,17 @@
 {
-  "workspaces": ["packages/*"],
-  "command": {
-    "publish": {
-      "access": "public"
-    }
-  },
+  "packages": ["packages/*"],
   "version": "independent",
-  "changelog": {
-    "message": "chore(release): publish %s"
-  },
-  "publishConfig": {
-    "access": "public"
+  "npmClient": "yarn",
+  "command": {
+    "version": {
+      "conventionalCommits": true,
+      "changelogPreset": "conventionalcommits",
+      "message": "chore(release): publish"
+    },
+    "publish": {
+      "conventionalCommits": true,
+      "changelogPreset": "conventionalcommits",
+      "createRelease": "github"
+    }
   }
 }

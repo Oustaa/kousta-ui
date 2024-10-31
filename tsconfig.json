@@ -3,11 +3,11 @@
     "baseUrl": ".",
     "composite": true,
     "paths": {
-      "@kousta-ui/*": ["packages/*/src"]
+      "@kousta-ui/styles/*": ["../styles"]
     },
     "esModuleInterop": true
   },
-  "include": [],
+  "include": ["packages/**/*"],
   "exclude": [
     "src/**/*.stories.ts",
     "src/**/*.stories.tsx",
@@ -16,7 +16,6 @@
     "src/**/*.spec.ts",
     "src/**/*.spec.tsx"
   ],
-
   "references": [
     { "path": "packages/components" },
     { "path": "packages/hooks" },

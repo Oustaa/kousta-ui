@@ -9,23 +9,32 @@
     "doc": "docs"
   },
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "demo/*"
+    ]
+  },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "test": "jest",
+    "test:watch": "jest --watchAll",
     "prepare": "husky",
     "build": "lerna run build",
     "publish": "npx lerna publish",
     "lint": "eslint '**/src/*.{js,ts,tsx}'",
     "format": "prettier --write 'packages/**/*.{ts,tsx,json,css,md}'",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "dev": "yarn lerna run dev",
+    "react:demo": "cd ./demo/react-demo && yarn run dev"
   },
-  "keywords": [],
+  "keywords": [
+    "ui-library",
+    "react"
+  ],
   "author": "",
   "license": "ISC",
   "description": "",
@@ -90,5 +99,9 @@
       "plugin:storybook/recommended"
     ]
   },
-  "packageManager": "yarn@4.5.0"
+  "packageManager": "yarn@4.5.0",
+  "dependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "normalize-scss": "^8.0.0"
+  }
 }

@@ -1,0 +1,8 @@
+{
+  "name": "cjs-demo",
+  "main": "index.cjs",
+  "packageManager": "yarn@4.5.0",
+  "dependencies": {
+    "@kousta-ui/helpers": "workspace:*"
+  }
+}

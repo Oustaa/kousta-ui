@@ -1,7 +1,31 @@
-@import "./variables";
-@import "./mixins";
-@import "./base";
+/*------------------------------------*\
+    TABLE OF CONTENTS
+\*------------------------------------*/
 
-.btn-primary {
-  background-color: $ku-primary-color;
+/**
+ *
+ * FOUNDATIONS................................................
+ * BASE.......................................................
+ */
+
+/*=============================================
+ =                   Foundations               =
+ =============================================*/
+
+@use "foundation/variables" as *;
+@use "foundation/colors" as *;
+@use "foundation/typography" as *;
+@use "foundation/mixins" as *;
+
+/*==============================================
+=                   Base                       =
+==============================================*/
+@use "base/reset";
+@use "base/root";
+
+body {
+  font-family: $body-font-family;
+  font-size: $body-font-size;
+  font-weight: $body-font-weight;
+  background-color: $red-light;
 }

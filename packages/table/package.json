@@ -1,12 +1,13 @@
 {
   "name": "@kousta-ui/table",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.2-alpha.0",
   "main": "./cjs/index.cjs",
   "module": "./esm/index.mjs",
   "types": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "tsc --emitDeclarationOnly && rollup -c"
+    "build": "tsc --emitDeclarationOnly && rollup -c",
+    "dev": "yarn build --watch"
   },
   "files": [
     "cjs",
@@ -14,9 +15,6 @@
     "lib",
     "styles"
   ],
-  "dependencies": {
-    "@kousta-ui/styles": "workspace:*"
-  },
   "devDependencies": {
     "sass": "^1.79.3"
   },
