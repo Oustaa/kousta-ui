@@ -79,3 +79,4 @@ Thumbs.db
 
 .parcel-cache
 **/*.gz
+!packages/styles/src/scripts/build.js

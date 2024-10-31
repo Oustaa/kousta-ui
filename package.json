@@ -20,6 +20,7 @@
   },
   "scripts": {
     "test": "jest",
+    "test:watch": "jest --watchAll",
     "prepare": "husky",
     "build": "lerna run build",
     "publish": "npx lerna publish",
