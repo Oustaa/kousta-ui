@@ -2,6 +2,7 @@
 @use "foundation/colors" as *;
 
 .btn-primary {
+  display: block;
   border: unset;
   padding: 6px 12px;
   background-color: $green;
@@ -13,3 +14,38 @@
     cursor: pointer;
   }
 }
+
+/*=============================================
+=                 Context Menu                =
+=============================================*/
+
+.kui-contextMenu-Container {
+  background-color: $white;
+}
+
+.kui-contextMenu-Menu {
+  position: absolute;
+  background-color: $white;
+  box-shadow: 1px 1px 5px $dark;
+  padding: 4px;
+}
+
+.kui-contextMenu-MenuItem {
+  border: unset;
+  background-color: unset;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-inline: 6px;
+
+  color: $dark;
+  font-size: 14px;
+  font-weight: 400;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+/*=====        End of Context Menu      ======*/

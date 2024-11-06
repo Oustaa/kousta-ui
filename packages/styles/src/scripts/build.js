@@ -33,9 +33,9 @@ const compile = (path, fileName, expanded) => {
 };
 
 try {
-  Fs.mkdirSync(Path.resolve("lib"));
-  // eslint-disable-next-line
-} catch (e) {}
+  Fs.mkdirSync("lib");
+  // eslint-desible-next-line
+} catch (error) {}
 
 compile("src/index.scss", "lib/index.css");
 

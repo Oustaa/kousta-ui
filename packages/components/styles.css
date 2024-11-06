@@ -72,6 +72,7 @@
 =                 Forms                       =
 =============================================*/
 .btn-primary {
+  display: block;
   border: unset;
   padding: 6px 12px;
   background-color: #5ece7b;
@@ -82,3 +83,34 @@
   background-color: #9ee2b0;
   cursor: pointer;
 }
+
+/*=============================================
+=                 Context Menu                =
+=============================================*/
+.kui-contextMenu-Container {
+  background-color: #fff;
+}
+
+.kui-contextMenu-Menu {
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 1px 1px 5px #1d1f22;
+  padding: 4px;
+}
+
+.kui-contextMenu-MenuItem {
+  border: unset;
+  background-color: unset;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-inline: 6px;
+  color: #1d1f22;
+  font-size: 14px;
+  font-weight: 400;
+}
+.kui-contextMenu-MenuItem:hover {
+  cursor: pointer;
+}
+
+/*=====        End of Context Menu      ======*/
