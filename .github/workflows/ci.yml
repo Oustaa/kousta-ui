@@ -23,7 +23,7 @@ jobs:
           registry-url: "https://registry.npmjs.org/"
 
       - name: Install Dependencies
-        run: yarn install
+        run: yarn install --immutable
 
       - name: Lint Code
         run: yarn lint
@@ -36,6 +36,6 @@ jobs:
 
       - name: Publish to npm
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: npx lerna publish from-package --yes --npm-client-args="--access public"
+        run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

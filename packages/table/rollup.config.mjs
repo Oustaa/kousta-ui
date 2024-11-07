@@ -6,7 +6,6 @@ import typescript from "@rollup/plugin-typescript";
 import esbuild from "rollup-plugin-esbuild";
 import postcss from "rollup-plugin-postcss";
 import replace from "@rollup/plugin-replace";
-import copy from "rollup-plugin-copy";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
