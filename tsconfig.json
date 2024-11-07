@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "jsx": "react-jsx",
     "composite": true,
     "paths": {
       "@kousta-ui/styles/*": ["../styles"]
     },
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": ["@testing-library/jest-dom"]
   },
-  "include": ["packages/**/*"],
+  "include": ["packages/**/*", "jest.setup.js"],
   "exclude": [
     "src/**/*.stories.ts",
     "src/**/*.stories.tsx",
@@ -15,10 +17,5 @@
     "src/**/*.test.tsx",
     "src/**/*.spec.ts",
     "src/**/*.spec.tsx"
-  ],
-  "references": [
-    { "path": "packages/components" },
-    { "path": "packages/hooks" },
-    { "path": "packages/helpers" }
   ]
 }

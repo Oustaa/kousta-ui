@@ -14,17 +14,18 @@ export const ContextMenuMenu = forwardRef<HTMLDivElement, ContextMenuMenuProps>(
     return (
       <div
         style={{ top: `${y}px`, left: `${x}px` }}
-        // className="p-2 shadow bg-white absolute rounded z-50"
-        className="kui-contextMenu-Menu"
+        className="kui-contextMenu"
         ref={ref}
       >
-        {options.map((option, index) => (
-          <ContextMenuItem
-            {...option}
-            key={index + option?.key}
-            setMenuVisible={setMenuVisible}
-          />
-        ))}
+        {options.map((option, index) => {
+          return (
+            <ContextMenuItem
+              {...option}
+              key={index}
+              setMenuVisible={setMenuVisible}
+            />
+          );
+        })}
       </div>
     );
   },

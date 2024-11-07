@@ -1,4 +1,10 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import {
+  FC,
+  useEffect,
+  useRef,
+  useState,
+  MouseEvent as ReactMouseEvent,
+} from "react";
 import { ContextmenuProviderProps } from "./_props";
 import { ContextMenuMenu } from "./components/ContextMenu";
 
@@ -7,57 +13,53 @@ const ContextmenuProvider: FC<ContextmenuProviderProps> = ({
   onClose,
   onOpen,
   options,
-  As = "dev",
-  ...extarProps
+  As = "div",
+  ...extraProps
 }) => {
   const [menuVisible, setMenuVisible] = useState(false);
-  const [cordinations, setCordinations] = useState<{ x: number; y: number }>({
+  const [coordinates, setCoordinates] = useState<{ x: number; y: number }>({
     x: 0,
     y: 0,
   });
-  const menuRef = useRef<null | HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (menuVisible) {
-      const handleClickOutside = (e: MouseEvent) => {
-        // @ts-expect-error dfdf
-        if (!menuRef?.current?.contains(e.target)) {
-          onClose?.();
-          setMenuVisible(false);
-        }
-      };
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        onClose?.();
+        setMenuVisible(false);
+      }
+    };
 
+    if (menuVisible) {
       document.addEventListener("mousedown", handleClickOutside);
       return () => {
         document.removeEventListener("mousedown", handleClickOutside);
       };
     }
-  }, [menuVisible]);
+  }, [menuVisible, onClose]);
+
+  const handleContextMenu = (e: ReactMouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setCoordinates({ x: e.pageX, y: e.pageY });
+    setMenuVisible(true);
+    onOpen?.();
+  };
 
   return (
-    // @ts-expect-error dfdf
-    <As
-      as
-      HtmlElement
-      {...extarProps}
-      onContextMenu={(e: MouseEvent) => {
-        e.preventDefault();
-        e.stopPropagation();
-        setCordinations({ x: e.pageX, y: e.pageY });
-        setMenuVisible(true);
-        onOpen?.();
-      }}
-    >
+    // @ts-expect-error this is not an error
+    <As {...extraProps} onContextMenu={handleContextMenu}>
       {children}
-      <div className="kui-contextMenu-Container" style={{ background: "red" }}>
-        {menuVisible && options.length ? (
+      <div className="kui-contextMenu-Container">
+        {menuVisible && options.length > 0 && (
           <ContextMenuMenu
             ref={menuRef}
-            {...cordinations}
+            x={coordinates.x}
+            y={coordinates.y}
             options={options}
             setMenuVisible={setMenuVisible}
           />
-        ) : null}
+        )}
       </div>
     </As>
   );

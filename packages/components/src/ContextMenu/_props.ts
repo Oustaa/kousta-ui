@@ -1,25 +1,29 @@
 import { PropsWithChildren, ReactNode } from "react";
 
 export type ContextMenuOptionType = {
-  key: string;
   icon?: ReactNode;
   title: string;
-  onClick: () => void;
   active?: boolean;
-};
+  hidden?: boolean;
+  deactiveMessage?: string;
+} & (
+  | {
+      onClick: () => void;
+      subOptions?: never;
+    }
+  | {
+      subOptions: (ContextMenuOptionType & { type?: "click" | "hover" })[];
+      onClick?: never;
+    }
+);
 
-export interface ContextmenuProviderProps extends PropsWithChildren {
+export type ContextmenuProviderProps = {
   options: ContextMenuOptionType[];
   As?: string;
-  draggable?: boolean;
-  onDragEnter?: () => void;
-  onDragOver?: (e: React.DragEvent<HTMLDivElement>) => void;
-  onDragEnd?: () => void;
-  onClick?: () => void;
   onOpen?: () => void;
   onClose?: () => void;
-}
+} & PropsWithChildren;
 
-export interface ContextMenuItemProps extends ContextMenuOptionType {
+export type ContextMenuItemProps = {
   setMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}
+} & ContextMenuOptionType;

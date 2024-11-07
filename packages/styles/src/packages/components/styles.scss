@@ -23,21 +23,21 @@
   background-color: $white;
 }
 
-.kui-contextMenu-Menu {
+.kui-contextMenu {
   position: absolute;
   background-color: $white;
-  box-shadow: 1px 1px 5px $dark;
-  padding: 4px;
 }
 
-.kui-contextMenu-MenuItem {
+.kui-contextMenu-Item {
+  position: relative;
   border: unset;
   background-color: unset;
+  width: 100%;
 
   display: flex;
   align-items: center;
   gap: 8px;
-  padding-inline: 6px;
+  padding: 4px 8px;
 
   color: $dark;
   font-size: 14px;
@@ -46,6 +46,24 @@
   &:hover {
     cursor: pointer;
   }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.kui-contextMenu-ItemIcon {
+  display: flex;
+  align-items: center;
+}
+
+.kui-contextMenu-Item_WithSubs {
+  width: max-content;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  transform: translateX(4px);
 }
 
 /*=====        End of Context Menu      ======*/

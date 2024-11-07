@@ -12,6 +12,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "types": ["@testing-library/jest-dom"],
     "paths": {
       "@kousta-ui/styles": ["../styles/src/index.scss"]
     }
