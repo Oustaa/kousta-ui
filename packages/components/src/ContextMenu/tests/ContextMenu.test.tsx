@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import ContextMenu from "../index";
 import { ContextMenuOptionType } from "../_props";
@@ -33,8 +34,6 @@ beforeEach(() => {
 
 describe("ContextMenu test", () => {
   it("should render menu content correctly", () => {
-    screen.logTestingPlaygroundURL(); // Optional: Useful for debugging
-
     const contentEl = screen.getByText(/context menu/i);
     expect(contentEl).toBeTruthy();
   });

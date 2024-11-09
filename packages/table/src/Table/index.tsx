@@ -1,7 +1,3 @@
-import "@kousta-ui/styles";
-import "./table.scss";
-
-// Interface for table data
 type DataInterface = {
   id: number;
   name: string;

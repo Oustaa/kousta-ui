@@ -29,7 +29,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "dev": "yarn lerna run dev",
-    "components:demo": "cd ./demos/components-demo && yarn run dev"
+    "components:demo": "cd ./demos/components-demo && yarn run dev",
+    "table:demo": "cd ./demos/table-demo && yarn run dev"
   },
   "keywords": [
     "ui-library",
