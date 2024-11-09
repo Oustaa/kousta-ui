@@ -7,7 +7,8 @@
       "@kousta-ui/styles/*": ["../styles"]
     },
     "esModuleInterop": true,
-    "types": ["@testing-library/jest-dom"]
+    "types": ["@testing-library/jest-dom"],
+    "lib": ["es2021", "dom"]
   },
   "include": ["packages/**/*", "jest.setup.js"],
   "exclude": [
