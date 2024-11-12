@@ -22,10 +22,66 @@ function App() {
         }}
       />
 
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <ContextMenu
         options={[
           {
-            title: "Option number 1",
+            title:
+              "Option number 1 long long long long long long long long long long long long long long long long ",
             subOptions: [
               {
                 title: "Option 1 sub 1",
@@ -51,9 +107,7 @@ function App() {
                 subOptions: [
                   {
                     title: "Option 1 sub 3 sub 1",
-                    onClick() {
-                      console.log("Option 1 sub 3 sub 1");
-                    },
+                    subOptions: [{ title: "Hello words ", onClick() {} }],
                   },
                 ],
               },
@@ -76,6 +130,7 @@ function App() {
             onClick() {
               console.log("Option number 2");
             },
+            closeOnClick: false,
           },
           {
             title: "Option number 3",
@@ -90,7 +145,11 @@ function App() {
           },
         ]}
       >
-        Hello there
+        Hello there sdfgdjh fdbkj hreghdf hjkghre oyuigdsfg khrklg dfhbgjkfd
+        hkjgh jkldsfagkhja fghjhldsfg ewyufghjddhjafg dsjhkfghds jfagsdhjf
+        gew8fg dsyfage hjkfgsdhjkf agweufy ds gew8fg dsyfage hjkfgsdhjkf agweufy
+        ds gew8fg dsyfage hjkfgsdhjkf agweufy ds gew8fg dsyfage hjkfgsdhjkf
+        agweufy ds gew8fg dsyfage hjkfgsdhjkf agweufy ds
       </ContextMenu>
     </>
   );

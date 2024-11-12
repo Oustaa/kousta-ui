@@ -6,6 +6,7 @@ export type ContextMenuOptionType = {
   active?: boolean;
   hidden?: boolean;
   deactiveMessage?: string;
+  closeOnClick?: boolean;
 } & (
   | {
       onClick: () => void;

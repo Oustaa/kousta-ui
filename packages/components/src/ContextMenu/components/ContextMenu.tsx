@@ -5,15 +5,20 @@ import { ContextMenuItem } from "./ContextMenuItem";
 interface ContextMenuMenuProps {
   x: number;
   y: number;
+  offsetY: number;
+  offsetX: number;
   options: ContextMenuOptionType[];
   setMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const ContextMenuMenu = forwardRef<HTMLDivElement, ContextMenuMenuProps>(
-  ({ x, y, options, setMenuVisible }, ref) => {
+  ({ x, y, options, setMenuVisible, offsetX, offsetY }, ref) => {
     return (
       <div
-        style={{ top: `${y}px`, left: `${x}px` }}
+        style={{
+          top: `${y - offsetY}px`,
+          left: `${x - offsetX}px`,
+        }}
         className="kui-contextMenu"
         ref={ref}
       >
@@ -23,6 +28,8 @@ export const ContextMenuMenu = forwardRef<HTMLDivElement, ContextMenuMenuProps>(
               {...option}
               key={index}
               setMenuVisible={setMenuVisible}
+              offsetX={offsetX}
+              offsetY={offsetY}
             />
           );
         })}

@@ -14,6 +14,8 @@ describe("Context menu item tests", () => {
           onClick: optionfunction,
         }}
         setMenuVisible={setMenuVisible}
+        offsetX={0}
+        offsetY={0}
       />,
     );
 
@@ -32,6 +34,8 @@ describe("Context menu item tests", () => {
           hidden: true,
         }}
         setMenuVisible={setMenuVisible}
+        offsetX={0}
+        offsetY={0}
       />,
     );
     const menuItem = screen.queryByText(/hello option/i);
@@ -49,6 +53,8 @@ describe("Context menu item tests", () => {
           active: false,
         }}
         setMenuVisible={setMenuVisible}
+        offsetX={0}
+        offsetY={0}
       />,
     );
 

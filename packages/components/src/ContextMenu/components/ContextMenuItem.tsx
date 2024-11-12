@@ -2,7 +2,12 @@ import { FC } from "react";
 import { ContextMenuItemProps } from "../_props";
 import { ContextMenuItemWithSubs } from "./ContextMenuItemWithSubs";
 
-export const ContextMenuItem: FC<ContextMenuItemProps> = (props) => {
+export const ContextMenuItem: FC<
+  ContextMenuItemProps & {
+    offsetY: number;
+    offsetX: number;
+  }
+> = (props) => {
   const {
     icon,
     onClick,
@@ -11,6 +16,7 @@ export const ContextMenuItem: FC<ContextMenuItemProps> = (props) => {
     active = true,
     hidden,
     subOptions,
+    closeOnClick = true,
   } = props;
   if (hidden) return;
 
@@ -24,7 +30,9 @@ export const ContextMenuItem: FC<ContextMenuItemProps> = (props) => {
       onClick={(e) => {
         e.stopPropagation();
         onClick?.();
-        setMenuVisible(false);
+        if (closeOnClick) {
+          setMenuVisible(false);
+        }
       }}
       className="kui-contextMenu-Item"
       disabled={!active}

@@ -94,6 +94,8 @@
 .kui-contextMenu {
   position: absolute;
   background-color: #fff;
+  width: max-content;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 .kui-contextMenu-Item {
@@ -125,9 +127,6 @@
 .kui-contextMenu-Item_WithSubs {
   width: max-content;
   position: absolute;
-  left: 100%;
-  top: 0;
-  transform: translateX(4px);
 }
 
 /*=====        End of Context Menu      ======*/
