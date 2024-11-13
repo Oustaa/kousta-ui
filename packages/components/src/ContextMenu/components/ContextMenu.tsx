@@ -8,11 +8,15 @@ interface ContextMenuMenuProps {
   offsetY: number;
   offsetX: number;
   options: ContextMenuOptionType[];
+  itemCloseOnClick: boolean;
   setMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const ContextMenuMenu = forwardRef<HTMLDivElement, ContextMenuMenuProps>(
-  ({ x, y, options, setMenuVisible, offsetX, offsetY }, ref) => {
+  (
+    { x, y, options, setMenuVisible, offsetX, offsetY, itemCloseOnClick },
+    ref,
+  ) => {
     return (
       <div
         style={{
@@ -30,6 +34,7 @@ export const ContextMenuMenu = forwardRef<HTMLDivElement, ContextMenuMenuProps>(
               setMenuVisible={setMenuVisible}
               offsetX={offsetX}
               offsetY={offsetY}
+              itemCloseOnClick={itemCloseOnClick}
             />
           );
         })}

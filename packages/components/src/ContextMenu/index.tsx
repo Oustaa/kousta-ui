@@ -14,6 +14,7 @@ const ContextmenuProvider: FC<ContextmenuProviderProps> = ({
   onOpen,
   options,
   As = "div",
+  itemCloseOnClick = true,
   ...extraProps
 }) => {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -82,6 +83,7 @@ const ContextmenuProvider: FC<ContextmenuProviderProps> = ({
             offsetX={offsetsX}
             options={options}
             setMenuVisible={setMenuVisible}
+            itemCloseOnClick={itemCloseOnClick}
           />
         )}
       </div>

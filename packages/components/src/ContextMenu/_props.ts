@@ -23,6 +23,7 @@ export type ContextmenuProviderProps = {
   As?: string;
   onOpen?: () => void;
   onClose?: () => void;
+  itemCloseOnClick?: boolean;
 } & PropsWithChildren;
 
 export type ContextMenuItemProps = {

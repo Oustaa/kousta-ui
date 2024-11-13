@@ -97,6 +97,11 @@
   width: max-content;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
+@media (prefers-color-scheme: dark) {
+  .kui-contextMenu {
+    background-color: #1d1f22;
+  }
+}
 
 .kui-contextMenu-Item {
   position: relative;
@@ -117,6 +122,14 @@
 .kui-contextMenu-Item:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+@media (prefers-color-scheme: dark) {
+  .kui-contextMenu-Item {
+    color: #fff;
+  }
+  .kui-contextMenu-Item:hover {
+    background-color: #737680;
+  }
 }
 
 .kui-contextMenu-ItemIcon {

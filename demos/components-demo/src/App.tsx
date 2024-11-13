@@ -43,45 +43,11 @@ function App() {
       <br />
       <br />
       <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
       <ContextMenu
+        itemCloseOnClick={false}
         options={[
           {
-            title:
-              "Option number 1 long long long long long long long long long long long long long long long long ",
+            title: "Option number 1",
             subOptions: [
               {
                 title: "Option 1 sub 1",
@@ -103,7 +69,6 @@ function App() {
               },
               {
                 title: "Option 1 sub 3",
-                active: true,
                 subOptions: [
                   {
                     title: "Option 1 sub 3 sub 1",
@@ -116,6 +81,7 @@ function App() {
                 onClick() {
                   console.log("Option 1 sub 4");
                 },
+                closeOnClick: false,
               },
               {
                 title: "Option 1 sub 5",
@@ -130,7 +96,6 @@ function App() {
             onClick() {
               console.log("Option number 2");
             },
-            closeOnClick: false,
           },
           {
             title: "Option number 3",

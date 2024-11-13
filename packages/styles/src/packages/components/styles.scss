@@ -28,6 +28,12 @@
   background-color: $white;
   width: max-content;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+
+  @media (prefers-color-scheme: dark) {
+    & {
+      background-color: $dark;
+    }
+  }
 }
 
 .kui-contextMenu-Item {
@@ -52,6 +58,16 @@
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    & {
+      color: $white;
+    }
+
+    &:hover {
+      background-color: $dark-light;
+    }
   }
 }
 

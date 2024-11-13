@@ -6,6 +6,7 @@ export const ContextMenuItemWithSubs: FC<
   ContextMenuItemProps & {
     offsetY: number;
     offsetX: number;
+    itemCloseOnClick?: boolean;
   }
 > = ({
   icon,
@@ -15,6 +16,7 @@ export const ContextMenuItemWithSubs: FC<
   subOptions,
   offsetX,
   offsetY,
+  itemCloseOnClick,
 }) => {
   const menuSubRef = useRef<HTMLButtonElement | null>(null);
   const [subsOpened, setSubsOpened] = useState<boolean>(false);
@@ -79,6 +81,7 @@ export const ContextMenuItemWithSubs: FC<
                   setMenuVisible={setMenuVisible}
                   offsetX={offsetX}
                   offsetY={offsetY}
+                  itemCloseOnClick={itemCloseOnClick}
                 />
               );
             })}

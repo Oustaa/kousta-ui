@@ -6,6 +6,7 @@ export const ContextMenuItem: FC<
   ContextMenuItemProps & {
     offsetY: number;
     offsetX: number;
+    itemCloseOnClick?: boolean;
   }
 > = (props) => {
   const {
@@ -16,13 +17,18 @@ export const ContextMenuItem: FC<
     active = true,
     hidden,
     subOptions,
-    closeOnClick = true,
+    closeOnClick,
+    itemCloseOnClick,
   } = props;
   if (hidden) return;
 
   if (subOptions)
     return (
-      <ContextMenuItemWithSubs {...props} setMenuVisible={setMenuVisible} />
+      <ContextMenuItemWithSubs
+        itemCloseOnClick={itemCloseOnClick}
+        {...props}
+        setMenuVisible={setMenuVisible}
+      />
     );
 
   return (
@@ -30,7 +36,11 @@ export const ContextMenuItem: FC<
       onClick={(e) => {
         e.stopPropagation();
         onClick?.();
-        if (closeOnClick) {
+
+        if (
+          itemCloseOnClick === true &&
+          (closeOnClick === true || closeOnClick === undefined)
+        ) {
           setMenuVisible(false);
         }
       }}
