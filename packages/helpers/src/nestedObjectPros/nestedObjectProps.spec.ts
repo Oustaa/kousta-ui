@@ -40,11 +40,27 @@ describe("nestedObjectPros tests", () => {
 
   describe("updateNestedProperties tests", () => {
     it("should update a props (Level 1)", () => {
+      const objUbdated = updateNestedProperties(obj, "name", "@kousta-ui");
+
+      const objName = getNestedProperty(objUbdated, "name");
+
+      expect(objName).toBe("@kousta-ui");
+    });
+
+    it("should update a props (Level 2)", () => {
+      const objUbdated = updateNestedProperties(obj, "versions.name", "@LTS");
+
+      const objName = getNestedProperty(objUbdated, "versions.name");
+
+      expect(objName).toBe("@LTS");
+    });
+
+    it("should not update the original object", () => {
       updateNestedProperties(obj, "name", "@kousta-ui");
 
       const objName = getNestedProperty(obj, "name");
 
-      expect(objName).toBe("@kousta-ui");
+      expect(objName).toBe("Kousta ui");
     });
   });
 });

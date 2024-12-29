@@ -27,28 +27,68 @@
 =                  Colors                     =
 =============================================*/
 
-/* Brand Colors */
-$green: #5ece7b;
-$green-light: #9ee2b0;
+/* Primary color */
+$primary-color-50: #fbf6fd;
+$primary-color-100: #f6ecfb;
+$primary-color-200: #ecd8f6;
+$primary-color-300: #deb9ee;
+$primary-color-400: #cc8fe3;
+$primary-color-500: #b364d1;
+$primary-color-600: #9141ac;
+$primary-color-700: #7f3695;
+$primary-color-800: #692e7a;
+$primary-color-900: #5a2a65;
 
-$dark: #1d1f22;
-$dark-light: #737680;
+/* Neutral color */
+$neutral-color-50: #ffffff;
+$neutral-color-100: #efefef;
+$neutral-color-200: #dcdcdc;
+$neutral-color-300: #bdbdbd;
+$neutral-color-400: #989898;
+$neutral-color-500: #7c7c7c;
+$neutral-color-600: #656565;
+$neutral-color-700: #525252;
+$neutral-color-800: #464646;
+$neutral-color-900: #3d3d3d;
 
-/* Neutral Colors */
+/* Success color */
+$success-color-50: #eafee7;
+$success-color-100: #d1fbcc;
+$success-color-200: #a6f89e;
+$success-color-300: #6ff066;
+$success-color-400: #2ae120;
+$success-color-500: #1fca18;
+$success-color-600: #12a10f;
+$success-color-700: #107b10;
+$success-color-800: #136113;
+$success-color-900: #155217;
 
-$gray: #a3a5ad;
-$gray-light: #bebfc4;
+/* Danger color */
+$danger-color-50: #fff0f0;
+$danger-color-100: #ffdddd;
+$danger-color-200: #ffc0c0;
+$danger-color-300: #ff9494;
+$danger-color-400: #ff5757;
+$danger-color-500: #ff2323;
+$danger-color-600: #ff0000;
+$danger-color-700: #d70000;
+$danger-color-800: #b10303;
+$danger-color-900: #920a0a;
 
+/* Warning color */
+$warning-color-50: #fff9ec;
+$warning-color-100: #fff0d3;
+$warning-color-200: #ffdea5;
+$warning-color-300: #ffc66d;
+$warning-color-400: #ffa132;
+$warning-color-500: #ff840a;
+$warning-color-600: #e66100;
+$warning-color-700: #cc4d02;
+$warning-color-800: #a13c0b;
+$warning-color-900: #82330c;
+
+$black: #000000;
 $white: #fff;
-$white-dark: #f1f2f3;
-
-/* Utility colors */
-
-$red: #d12727;
-$red-light: #f8dedf;
-
-$blue: #0468db;
-$blue-light: #b4d2f4;
 
 /*=====  End of Colors  ======*/
 
@@ -67,7 +107,7 @@ $blue-light: #b4d2f4;
 
 /* Font families */
 
-$playfair: "Playfair Display", serif; /* 1 */
+$spaceGrotesk: "Space Grotesk", serif; /* 1 */
 $raleway: "Raleway", "HelveticaNeue", "Helvetica", sans-serif; /* 2 */
 
 /* Font sizes */

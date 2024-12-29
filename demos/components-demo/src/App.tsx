@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { Button, ContextMenu } from "@kousta-ui/components";
 import { useSayHello } from "@kousta-ui/hooks";
+import { BsAirplane } from "react-icons/bs";
 
 import "./App.css";
+import "./index.css";
 import "@kousta-ui/components/styles.css";
+import { RiFileExcel2Line } from "react-icons/ri";
 
 function App() {
   const sayHello = useSayHello("Oussama Is the goat");
@@ -47,7 +50,8 @@ function App() {
         itemCloseOnClick={false}
         options={[
           {
-            title: "Option number 1",
+            title: "Export to excel",
+            icon: <RiFileExcel2Line />,
             subOptions: [
               {
                 title: "Option 1 sub 1",
@@ -96,11 +100,16 @@ function App() {
             onClick() {
               console.log("Option number 2");
             },
+            icon: <BsAirplane />,
           },
+          // {
+          //   type: "separator",
+          // },
           {
-            title: "Option number 3",
+            title: "Option number 3d sdfsdf",
             subOptions: [
               {
+                closeOnClick: true,
                 title: "Option 3 Sub 1",
                 onClick() {
                   console.log("Option 3 sub 1");

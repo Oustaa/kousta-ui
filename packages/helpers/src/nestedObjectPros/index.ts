@@ -17,8 +17,6 @@ function extractSkipKeys(
     return [key, (value) => value];
   }
 
-  console.log({ prefix, suffix, key });
-
   return [key, (value) => `${prefix}${value}${suffix}`];
 }
 
@@ -62,7 +60,7 @@ export const updateNestedProperties = <T extends Record<string, unknown>>(
   key: string,
   newValue: unknown,
 ): T => {
-  const newObj = obj;
+  const newObj = { ...obj };
 
   const keys = key.split(".");
   let value: Record<string, unknown> | undefined = newObj;

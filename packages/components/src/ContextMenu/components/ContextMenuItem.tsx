@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { ContextMenuItemProps } from "../_props";
 import { ContextMenuItemWithSubs } from "./ContextMenuItemWithSubs";
+import { renderIcon } from "../utils/renderIcon";
 
 export const ContextMenuItem: FC<
   ContextMenuItemProps & {
@@ -47,7 +48,7 @@ export const ContextMenuItem: FC<
       className="kui-contextMenu-Item"
       disabled={!active}
     >
-      <div className="kui-contextMenu-Item_Icon">{icon && icon}</div>
+      <div className="kui-contextMenu-ItemIcon">{renderIcon(icon)}</div>
       {title}
     </button>
   );

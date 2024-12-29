@@ -1,8 +1,9 @@
 import { PropsWithChildren, ReactNode } from "react";
 
 export type ContextMenuOptionType = {
+  type?: "separator";
   icon?: ReactNode;
-  title: string;
+  title?: string;
   active?: boolean;
   hidden?: boolean;
   deactiveMessage?: string;

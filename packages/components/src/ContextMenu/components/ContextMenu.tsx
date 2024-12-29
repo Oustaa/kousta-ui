@@ -26,6 +26,7 @@ export const ContextMenuMenu = forwardRef<HTMLDivElement, ContextMenuMenuProps>(
         className="kui-contextMenu"
         ref={ref}
       >
+        <div className="kui-iconsContainer"></div>
         {options.map((option, index) => {
           return (
             <ContextMenuItem

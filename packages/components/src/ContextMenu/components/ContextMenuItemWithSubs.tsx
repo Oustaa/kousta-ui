@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { ContextMenuItemProps } from "../_props";
 import { ContextMenuItem } from "./ContextMenuItem";
+import { renderIcon } from "../utils/renderIcon";
 
 export const ContextMenuItemWithSubs: FC<
   ContextMenuItemProps & {
@@ -37,6 +38,8 @@ export const ContextMenuItemWithSubs: FC<
 
   return (
     <div>
+      <div className="kui-iconsContainer"></div>
+
       <button
         ref={menuSubRef}
         onClick={(e) => {
@@ -49,12 +52,12 @@ export const ContextMenuItemWithSubs: FC<
         className="kui-contextMenu-Item"
         disabled={!active}
       >
-        <div className="kui-contextMenu-ItemIcon">{icon && icon}</div>
+        <div className="kui-contextMenu-ItemIcon">{renderIcon(icon)}</div>
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
-            gap: "8px",
+            gap: "10px",
             width: "100%",
           }}
         >

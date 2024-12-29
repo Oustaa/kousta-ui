@@ -1,16 +1,16 @@
 /*------------------------------------*\
-    TABLE OF CONTENTS
+TABLE OF CONTENTS
 \*------------------------------------*/
 
 /**
- *
- * FOUNDATIONS................................................
- * BASE.......................................................
- */
+*
+* FOUNDATIONS................................................
+* BASE.......................................................
+*/
 
 /*=============================================
- =                   Foundations               =
- =============================================*/
+=                   Foundations               =
+=============================================*/
 
 @use "foundation/variables" as *;
 @use "foundation/colors" as *;
@@ -23,9 +23,11 @@
 @use "base/reset";
 @use "base/root";
 
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+
 body {
   font-family: $body-font-family;
   font-size: $body-font-size;
   font-weight: $body-font-weight;
-  background-color: $red-light;
+  background-color: $danger-color-500 !important;
 }

@@ -24,9 +24,11 @@
 /*=============================================
 =                  Colors                     =
 =============================================*/
-/* Brand Colors */
-/* Neutral Colors */
-/* Utility colors */
+/* Primary color */
+/* Neutral color */
+/* Success color */
+/* Danger color */
+/* Warning color */
 /*=====  End of Colors  ======*/
 /*=============================================
 =                Typography                   =
@@ -54,41 +56,32 @@
 =            Spacing                          =
 =============================================*/
 /*=====  End of Spacing  ======*/
-/*=============================================
-=            Foundation - colors              =
-=============================================*/
-/**
- * This file defines the actual colors that will be used for styling. They will default to the palette
- * we defined in the _variable.scss file. This is our default palette, and devs can override this
- * with their own variables.
- */
-/*=============================================
-=            Global text colors               =
-=============================================*/
-/*=============================================
-=                 Buttons                     =
-=============================================*/
-/*=============================================
-=                 Forms                       =
-=============================================*/
+* {
+  padding: unset;
+}
+
 .btn-primary {
   display: block;
   border: unset;
   padding: 6px 12px;
-  background-color: #5ece7b;
-  color: #222;
+  background-color: #9141ac;
+  color: #efefef;
   font-weight: 700;
 }
 .btn-primary:hover {
-  background-color: #9ee2b0;
+  background-color: #b364d1;
   cursor: pointer;
+}
+.btn-primary:disabled {
+  background-color: #cc8fe3;
+  cursor: progress;
 }
 
 /*=============================================
 =                 Context Menu                =
 =============================================*/
 .kui-contextMenu-Container {
-  background-color: #fff;
+  background-color: #d70000;
 }
 
 .kui-contextMenu {
@@ -99,7 +92,7 @@
 }
 @media (prefers-color-scheme: dark) {
   .kui-contextMenu {
-    background-color: #1d1f22;
+    background-color: #525252;
   }
 }
 
@@ -110,36 +103,45 @@
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 4px 8px;
-  color: #1d1f22;
-  font-size: 14px;
+  gap: 10px;
+  padding-inline-end: 10px;
+  color: #3d3d3d;
+  font-size: 0.9rem;
   font-weight: 400;
 }
 .kui-contextMenu-Item:hover {
   cursor: pointer;
-}
-.kui-contextMenu-Item:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+  background-color: #dcdcdc;
 }
 @media (prefers-color-scheme: dark) {
   .kui-contextMenu-Item {
-    color: #fff;
+    color: #efefef;
   }
-  .kui-contextMenu-Item:hover {
-    background-color: #737680;
+  .kui-contextMenu-Item:disabled {
+    background-color: #464646;
+    color: #656565;
+    cursor: not-allowed;
+  }
+  .kui-contextMenu-Item:not(:disabled):hover {
+    background-color: #656565;
   }
 }
 
 .kui-contextMenu-ItemIcon {
+  min-width: 40px;
+  height: 30px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  background-color: #464646;
 }
 
-.kui-contextMenu-Item_WithSubs {
-  width: max-content;
-  position: absolute;
+.kui-contextMenu_separator {
+  height: 0.5px;
+  margin-block: 8px;
+  width: calc(100% - 60px);
+  margin-inline: 50px 10px;
+  background-color: #dcdcdc;
 }
 
 /*=====        End of Context Menu      ======*/

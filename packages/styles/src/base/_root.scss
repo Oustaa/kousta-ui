@@ -1,21 +1,21 @@
 @use "../foundation/variables" as *;
 
 :root {
-  --dse-body-text-color: #{$dark};
+  --dse-body-text-color: #{$black};
   --dse-body-bg-color: #{$white};
 
-  --dse-btn-primary-color: #{$white};
-  --dse-btn-primary-bg: #{$green};
-  --dse-btn-primary-bg-hover: #{$green-light};
+  --dse-btn-primary-color: #{$primary-color-50};
+  --dse-btn-primary-bg: #{$primary-color-700};
+  --dse-btn-primary-bg-hover: #{$primary-color-600};
 
-  --dse-btn-secondary-color: #{$white};
-  --dse-btn-secondary-bg: #{$dark};
+  --dse-btn-secondary-color: #{$black};
+  --dse-btn-secondary-bg: #{$neutral-color-300};
 
-  --dse-form-color: #{$dark};
+  --dse-form-color: #{$black};
   --dse-form-bg: #{$white};
-  --dse-form-error-color: #{$red};
-  --dse-form-error-border: #{$red};
-  --dse-form-border-focus-color: #{$green};
+  --dse-form-error-color: #{$danger-color-200};
+  --dse-form-error-border: #{$danger-color-500};
+  --dse-form-border-focus-color: #{$primary-color-600};
 
   --dse-body-font-size: #{$fs-base};
   --dse-body-font-weight: #{$fw-normal};
