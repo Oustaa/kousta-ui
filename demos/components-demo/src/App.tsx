@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import { Button, ContextMenu } from "@kousta-ui/components";
 import { useSayHello } from "@kousta-ui/hooks";
-import { BsAirplane } from "react-icons/bs";
+import {
+  Bs123,
+  BsAirplane,
+  BsAlphabet,
+  BsAmazon,
+  BsArchive,
+  BsHouseLock,
+} from "react-icons/bs";
 
 import "./App.css";
 import "./index.css";
@@ -54,7 +61,8 @@ function App() {
             icon: <RiFileExcel2Line />,
             subOptions: [
               {
-                title: "Option 1 sub 1",
+                title: "Option 1 sub 1 er",
+                icon: <BsAlphabet />,
                 subOptions: [
                   {
                     title: "Option 1 sub 1 sub 1",
@@ -63,6 +71,9 @@ function App() {
                     },
                   },
                 ],
+              },
+              {
+                optionType: "Separator",
               },
               {
                 title: "Option 1 sub 2",
@@ -76,7 +87,16 @@ function App() {
                 subOptions: [
                   {
                     title: "Option 1 sub 3 sub 1",
-                    subOptions: [{ title: "Hello words ", onClick() {} }],
+                    subOptions: [
+                      {
+                        title: "Hello words ",
+                        icon: <BsHouseLock />,
+
+                        onClick() {
+                          console.log("Hello words ");
+                        },
+                      },
+                    ],
                   },
                 ],
               },
@@ -102,15 +122,51 @@ function App() {
             },
             icon: <BsAirplane />,
           },
-          // {
-          //   type: "separator",
-          // },
           {
-            title: "Option number 3d sdfsdf",
+            optionType: "Separator",
+          },
+          {
+            title: "Option number 3",
             subOptions: [
               {
                 closeOnClick: true,
                 title: "Option 3 Sub 1",
+                icon: <Bs123 />,
+                onClick() {
+                  console.log("Option 3 sub 1");
+                },
+              },
+            ],
+          },
+          {
+            title: "Option number 3",
+            icon: <BsAmazon />,
+            subOptions: [
+              {
+                closeOnClick: true,
+                title: "Option 3 Sub 1",
+                icon: <Bs123 />,
+                onClick() {
+                  console.log("Option 3 sub 1");
+                },
+              },
+            ],
+          },
+          {
+            optionType: "Separator",
+          },
+          {
+            optionType: "Group",
+            groupTitle: "Hello World",
+          },
+          {
+            title: "Option number 3",
+            icon: <BsArchive />,
+            subOptions: [
+              {
+                closeOnClick: true,
+                title: "Option 3 Sub 1",
+                icon: <Bs123 />,
                 onClick() {
                   console.log("Option 3 sub 1");
                 },

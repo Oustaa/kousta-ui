@@ -1,12 +1,12 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import ContextMenu from "../index";
-import { ContextMenuOptionType } from "../_props";
+import { ContextMenuTypeOption } from "../_props";
 
 const mockOption1Click = jest.fn();
 const mockOption1Sub1Click = jest.fn();
 
-const options: ContextMenuOptionType[] = [
+const options: ContextMenuTypeOption[] = [
   {
     title: "Option one",
     onClick: mockOption1Click,

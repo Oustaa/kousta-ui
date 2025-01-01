@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { ContextMenuItem } from "../components/ContextMenuItem";
+import ContextMenuItem from "../components/ContextMenuItem";
 
 const optionfunction = jest.fn();
 const setMenuVisible = jest.fn();

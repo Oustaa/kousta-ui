@@ -1,9 +1,10 @@
 import { FC } from "react";
 import { ContextMenuItemProps } from "../_props";
-import { ContextMenuItemWithSubs } from "./ContextMenuItemWithSubs";
 import { renderIcon } from "../utils/renderIcon";
+import ContextMenuSeparator from "./ContextMenuSeparator";
+import ContextMenuGroup from "./ContextMenuGroup";
 
-export const ContextMenuItem: FC<
+const ContextMenuItem: FC<
   ContextMenuItemProps & {
     offsetY: number;
     offsetX: number;
@@ -12,30 +13,28 @@ export const ContextMenuItem: FC<
 > = (props) => {
   const {
     icon,
+    // @ts-expect-error sdfwe fd
     onClick,
     title,
     setMenuVisible,
     active = true,
     hidden,
-    subOptions,
     closeOnClick,
     itemCloseOnClick,
   } = props;
+
   if (hidden) return;
 
-  if (subOptions)
-    return (
-      <ContextMenuItemWithSubs
-        itemCloseOnClick={itemCloseOnClick}
-        {...props}
-        setMenuVisible={setMenuVisible}
-      />
-    );
+  if (props.optionType === "Separator") return <ContextMenuSeparator />;
+
+  if (props.optionType === "Group")
+    return <ContextMenuGroup title={props.groupTitle} />;
 
   return (
     <button
       onClick={(e) => {
         e.stopPropagation();
+
         onClick?.();
 
         if (
@@ -53,3 +52,5 @@ export const ContextMenuItem: FC<
     </button>
   );
 };
+
+export default ContextMenuItem;

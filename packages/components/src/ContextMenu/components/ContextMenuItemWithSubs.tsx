@@ -1,10 +1,12 @@
 import { FC, useEffect, useRef, useState } from "react";
-import { ContextMenuItemProps } from "../_props";
-import { ContextMenuItem } from "./ContextMenuItem";
+import { ContextMenuItemWithSubsProps, ContextMenuOption } from "../_props";
 import { renderIcon } from "../utils/renderIcon";
 
-export const ContextMenuItemWithSubs: FC<
-  ContextMenuItemProps & {
+import ContextMenuItem from "./ContextMenuItem";
+import Separator from "./ContextMenuSeparator";
+
+const ContextMenuItemWithSubs: FC<
+  ContextMenuItemWithSubsProps & {
     offsetY: number;
     offsetX: number;
     itemCloseOnClick?: boolean;
@@ -39,7 +41,6 @@ export const ContextMenuItemWithSubs: FC<
   return (
     <div>
       <div className="kui-iconsContainer"></div>
-
       <button
         ref={menuSubRef}
         onClick={(e) => {
@@ -76,7 +77,26 @@ export const ContextMenuItemWithSubs: FC<
               transform: `translateX(${4 * (offsetX ? -1 : 1)}px)`,
             }}
           >
-            {subOptions?.map((option, index) => {
+            {subOptions?.map((option: ContextMenuOption, index: number) => {
+              if (option.optionType === "Separator") return <Separator />;
+
+              if (option.optionType === "Group") return "Group";
+
+              if (
+                option.optionType === "option" ||
+                (option.optionType === undefined && option.subOptions)
+              ) {
+                return (
+                  <ContextMenuItemWithSubs
+                    key={index}
+                    {...option}
+                    setMenuVisible={setMenuVisible}
+                    offsetX={offsetX}
+                    offsetY={offsetY}
+                    itemCloseOnClick={itemCloseOnClick}
+                  />
+                );
+              }
               return (
                 <ContextMenuItem
                   key={index}
@@ -94,3 +114,5 @@ export const ContextMenuItemWithSubs: FC<
     </div>
   );
 };
+
+export default ContextMenuItemWithSubs;

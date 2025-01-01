@@ -128,7 +128,7 @@
 }
 
 .kui-contextMenu-ItemIcon {
-  min-width: 40px;
+  min-width: 35px;
   height: 30px;
   display: flex;
   align-items: center;
@@ -136,12 +136,33 @@
   background-color: #464646;
 }
 
+.kui-contextMenu_separator_container {
+  position: relative;
+  display: flex;
+}
+
 .kui-contextMenu_separator {
   height: 0.5px;
   margin-block: 8px;
-  width: calc(100% - 60px);
-  margin-inline: 50px 10px;
+  width: 100%;
+  margin-inline: 10px;
+  margin-block: 0px;
   background-color: #dcdcdc;
+}
+
+.kui-contextMenu_separator_icon {
+  min-width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #464646;
+}
+
+.kui-contextMenu_group_title {
+  font-size: 0.75rem;
+  color: #7c7c7c;
+  padding-inline: 10px;
+  padding-top: 4px;
 }
 
 /*=====        End of Context Menu      ======*/
