@@ -30,13 +30,14 @@
     "build-storybook": "storybook build",
     "dev": "yarn lerna run dev",
     "components:demo": "cd ./demos/components-demo && yarn run dev",
-    "table:demo": "cd ./demos/table-demo && yarn run dev"
+    "table:demo": "cd ./demos/table-demo && yarn run dev",
+    "demos": "concurrently \"yarn run components:demo\" \"yarn run table:demo\""
   },
   "keywords": [
     "ui-library",
     "react"
   ],
-  "author": "",
+  "author": "Oussama Tailba",
   "license": "ISC",
   "description": "",
   "devDependencies": {
@@ -64,6 +65,7 @@
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",
     "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.2",
     "css-loader": "^7.1.2",
     "eslint": "^9.11.1",
     "eslint-config-prettier": "^9.1.0",

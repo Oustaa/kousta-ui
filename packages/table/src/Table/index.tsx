@@ -1,7 +1,5 @@
-type DataInterface = {
-  id: number;
-  name: string;
-};
+import { FC } from "react";
+import { TableProps } from "./@types/props";
 
 // Table Header component
 const TableHeader = ({ headers }: { headers: string[] }) => {
@@ -35,18 +33,15 @@ const TableCell = ({ value }: { value: string }) => {
 };
 
 // Main Table component
-const Table = ({ data }: { data: DataInterface[] }) => {
-  if (data.length === 0) return null;
-
-  // Get the keys of the first data object to use as headers
-  const headers = Object.keys(data[0]);
+const Table: FC<TableProps> = (props) => {
+  if (props.data.length === 0) return null;
 
   return (
     <table className="kui-table">
       {/* Render TableHeader with headers */}
-      <TableHeader headers={headers} />
+      {/* <TableHeader headers={headers} /> */}
       <tbody>
-        {data.map((row, rowIndex) => (
+        {props.data.map((row, rowIndex) => (
           <TableRow key={rowIndex} rowData={Object.values(row) as string[]} />
         ))}
       </tbody>
