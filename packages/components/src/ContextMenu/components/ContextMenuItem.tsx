@@ -25,9 +25,10 @@ const ContextMenuItem: FC<
 
   if (hidden) return;
 
-  if (props.optionType === "Separator") return <ContextMenuSeparator />;
+  if (props.optionType && props.optionType === "Separator")
+    return <ContextMenuSeparator />;
 
-  if (props.optionType === "Group")
+  if (props.optionType && props.optionType === "Group")
     return <ContextMenuGroup title={props.groupTitle} />;
 
   return (

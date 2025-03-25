@@ -1,52 +1,86 @@
-import { FC } from "react";
-import { TableProps } from "./@types/props";
+import React, { ComponentPropsWithRef, FC, PropsWithChildren } from "react";
 
-// Table Header component
-const TableHeader = ({ headers }: { headers: string[] }) => {
+const Table: FC<PropsWithChildren<ComponentPropsWithRef<"table">>> = ({
+  children,
+  ...rest
+}) => {
+  if (!children || (Array.isArray(children) && children.length === 0)) {
+    throw new Error("Table must have at least one child");
+  }
+
+  if (
+    !React.isValidElement(children) &&
+    !(Array.isArray(children) && children.every(React.isValidElement))
+  ) {
+    throw new Error("Invalid child component provided to Table");
+  }
   return (
-    <thead className="kui-thead">
-      <tr className="header kui-tr">
-        {headers.map((header) => (
-          <th className="kui-th" key={header}>
-            {header}
-          </th>
-        ))}
-      </tr>
-    </thead>
-  );
-};
-
-// Table Row component
-const TableRow = ({ rowData }: { rowData: string[] }) => {
-  return (
-    <tr className="kui-tr">
-      {rowData.map((cellData, index) => (
-        <TableCell key={index} value={cellData} />
-      ))}
-    </tr>
-  );
-};
-
-// Table Cell component
-const TableCell = ({ value }: { value: string }) => {
-  return <td className="kui-td">{value}</td>;
-};
-
-// Main Table component
-const Table: FC<TableProps> = (props) => {
-  if (props.data.length === 0) return null;
-
-  return (
-    <table className="kui-table">
-      {/* Render TableHeader with headers */}
-      {/* <TableHeader headers={headers} /> */}
-      <tbody>
-        {props.data.map((row, rowIndex) => (
-          <TableRow key={rowIndex} rowData={Object.values(row) as string[]} />
-        ))}
-      </tbody>
+    <table {...rest} className="kui-table">
+      {children}
     </table>
   );
 };
 
-export default Table;
+const Thead: FC<PropsWithChildren<ComponentPropsWithRef<"thead">>> = ({
+  children,
+  ...rest
+}) => {
+  return (
+    <thead {...rest} className="kui-thead">
+      {children}
+    </thead>
+  );
+};
+
+const Tbody: FC<PropsWithChildren<ComponentPropsWithRef<"tbody">>> = ({
+  children,
+  ...rest
+}) => {
+  return (
+    <tbody {...rest} className="kui-tbody">
+      {children}
+    </tbody>
+  );
+};
+
+const Tr: FC<PropsWithChildren<ComponentPropsWithRef<"tr">>> = ({
+  children,
+  ...rest
+}) => {
+  return (
+    <tr {...rest} className="kui-tr">
+      {children}
+    </tr>
+  );
+};
+
+const Th: FC<PropsWithChildren<ComponentPropsWithRef<"th">>> = ({
+  children,
+  ...rest
+}) => {
+  return (
+    <th {...rest} className="kui-th">
+      {children}
+    </th>
+  );
+};
+
+const Td: FC<PropsWithChildren<ComponentPropsWithRef<"td">>> = ({
+  children,
+  ...rest
+}) => {
+  return (
+    <td {...rest} className="kui-td">
+      {children}
+    </td>
+  );
+};
+
+export default {
+  Root: Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+};

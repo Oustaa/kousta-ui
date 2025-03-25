@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { PropsWithChildren, ReactNode } from "react";
 
 /**
  * change unknown to be a generic type | unknown
@@ -16,6 +16,10 @@ export type TableProps = {
     extraviews: TExtraViews[];
   };
 };
+
+export type TablePropsWithChildren =
+  | (PropsWithChildren<TableProps> & { children: ReactNode })
+  | (TableProps & { children?: never });
 
 export type TableHeaders = Record<
   string,
