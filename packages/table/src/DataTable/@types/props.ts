@@ -5,7 +5,8 @@ import { PropsWithChildren, ReactNode } from "react";
  */
 
 export type TableProps = {
-  data: unknown[];
+  // eslint-disable-next-line
+  data: any[];
   loading: boolean;
   title: string;
   headers: TableHeaders;
@@ -13,7 +14,7 @@ export type TableProps = {
     actions: TActions;
     extraActions: [];
     bulkActions: [];
-    extraviews: TExtraViews[];
+    extraviews: TExtraView[];
   };
 };
 
@@ -21,15 +22,19 @@ export type TablePropsWithChildren =
   | (PropsWithChildren<TableProps> & { children: ReactNode })
   | (TableProps & { children?: never });
 
-export type TableHeaders = Record<
-  string,
-  {
-    value: string;
-    exec?: (row: unknown) => string | ReactNode;
-  }
->;
+export type THeaderValue = {
+  value: string;
+  exec?: (row: unknown) => string | ReactNode;
+};
 
-type TExtraViews = { name: string };
+export type THeader = Record<string, THeaderValue>;
+
+export type TableHeaders = {
+  data: THeader;
+  setHeaders: React.Dispatch<React.SetStateAction<THeader>>;
+};
+
+type TExtraView = { name: string };
 
 type TActions = {
   get: unknown;

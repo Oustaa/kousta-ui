@@ -1,6 +1,8 @@
-import { Table } from "@kousta-ui/table";
+import { Table, DataTable } from "@kousta-ui/table";
+import { THeader } from "@kousta-ui/table/lib/DataTable/@types/props";
 
 import "@kousta-ui/table/styles.css";
+import { useState } from "react";
 
 const App = () => {
   const data = [
@@ -17,6 +19,21 @@ const App = () => {
       address: "Bab ghmat syba 37",
     },
   ];
+
+  const [headers, setHeaders] = useState<THeader>({
+    name: {
+      value: "name",
+    },
+    age: {
+      value: "age",
+    },
+    email: {
+      value: "email",
+    },
+    address: {
+      value: "address",
+    },
+  });
 
   return (
     <div style={{ width: "50%", marginInline: "auto", marginTop: "2rem" }}>
@@ -42,6 +59,19 @@ const App = () => {
           })}
         </Table.Tbody>
       </Table.Root>
+      <br />
+      <br />
+      <br />
+
+      <DataTable
+        data={data}
+        headers={{
+          data: headers,
+          setHeaders,
+        }}
+        loading={false}
+        title="this is a title"
+      />
     </div>
   );
 };
