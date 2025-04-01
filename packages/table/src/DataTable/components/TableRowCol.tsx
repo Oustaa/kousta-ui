@@ -5,16 +5,18 @@ import { THeaderValue } from "../@types/props";
 import { getNestedProperty } from "@kousta-ui/helpers";
 
 const TableRowCol: FC<{
-  row: Record<string, unknown>;
+  row: Record<string, any>;
   headerValue: THeaderValue;
 }> = ({ headerValue, row }) => {
-  const value = getNestedProperty?.(row, headerValue.value);
-  // const value = row[headerValue.value];
+  let content: any;
 
-  console.log({ value });
+  if (headerValue.exec && typeof headerValue.exec === "function") {
+    content = headerValue.exec(row);
+  } else {
+    content = getNestedProperty?.(row, headerValue.value);
+  }
 
-  // @ts-expect-error sdfdf
-  return <Table.Td>{value}</Table.Td>;
+  return <Table.Td>{content || "--"}</Table.Td>;
 };
 
 export default TableRowCol;

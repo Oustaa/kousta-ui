@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { PropsWithChildren, ReactNode } from "react";
 
 /**
@@ -5,7 +6,6 @@ import { PropsWithChildren, ReactNode } from "react";
  */
 
 export type TableProps = {
-  // eslint-disable-next-line
   data: any[];
   loading: boolean;
   title: string;
@@ -24,7 +24,7 @@ export type TablePropsWithChildren =
 
 export type THeaderValue = {
   value: string;
-  exec?: (row: unknown) => string | ReactNode;
+  exec?: (row: any) => string | ReactNode;
 };
 
 export type THeader = Record<string, THeaderValue>;
