@@ -1,21 +1,9 @@
 {
+  "extends": "../tsconfig.settings.json",
   "compilerOptions": {
-    "declaration": true,
     "declarationDir": "lib",
-    "emitDeclarationOnly": true,
     "jsx": "react-jsx",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "target": "ESNext",
-    "sourceMap": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "types": ["@testing-library/jest-dom"],
-    "paths": {
-      "@kousta-ui/styles": ["../styles/src/index.scss"]
-    }
+    "target": "ESNext"
   },
   "include": ["src/**/*"],
   "exclude": [

@@ -1,0 +1,9 @@
+{
+  "files": [],
+  "references": [
+    { "path": "table" },
+    { "path": "components" },
+    { "path": "helpers" },
+    { "path": "hooks" }
+  ]
+}

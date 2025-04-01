@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "target": "ESNext",
+    "sourceMap": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2021"],
+    "paths": {
+      "@kousta-ui/styles/*": ["../styles/src/*"],
+      "@kousta-ui/helpers/*": ["../helpers/src/*"],
+      "@kousta-ui/components/*": ["../components/src/*"],
+      "@kousta-ui/hooks/*": ["../hooks/src/*"]
+    }
+  }
+}
