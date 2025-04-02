@@ -4,8 +4,15 @@ import { THeader } from "@kousta-ui/table/lib/DataTable/@types/props";
 import "@kousta-ui/table/styles.css";
 import { useState } from "react";
 
+type UserType = {
+  name: string;
+  age: number;
+  email: string;
+  address?: string;
+};
+
 const App = () => {
-  const data = [
+  const data: Array<UserType> = [
     {
       name: "Oussama Tailba",
       age: 27,
@@ -16,13 +23,26 @@ const App = () => {
       name: "kaoutar Taki",
       age: 22,
       email: "ktaki@gmail.com",
-      address: "Bab ghmat syba 37",
     },
   ];
 
   const [headers, setHeaders] = useState<THeader>({
+    user: {
+      value: "email",
+      exec(user: UserType) {
+        return (
+          <div>
+            <h2>{user.name}</h2>
+            <h3>{user.email}</h3>
+          </div>
+        );
+      },
+    },
     name: {
       value: "name",
+      exec() {
+        return "WHAAAAAAAAAA";
+      },
     },
     age: {
       value: "age",
