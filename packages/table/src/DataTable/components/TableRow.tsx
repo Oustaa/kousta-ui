@@ -3,7 +3,10 @@ import Table from "../../Table";
 import { useTableContext } from "../tableContext";
 import TableRowCol from "./TableRowCol";
 
-const TableRow: FC<{ row: Record<string, unknown> }> = ({ row }) => {
+const TableRow: FC<{ row: Record<string, unknown>; index: number }> = ({
+  row,
+  index,
+}) => {
   const { headers } = useTableContext();
 
   return (
@@ -11,7 +14,7 @@ const TableRow: FC<{ row: Record<string, unknown> }> = ({ row }) => {
       {Object.values(headers.data).map((headerValue) => {
         return (
           <TableRowCol
-            key={`${headerValue.value} - table row`}
+            key={`${headerValue.value} - table row - ${index}`}
             headerValue={headerValue}
             row={row}
           />

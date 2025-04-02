@@ -15,7 +15,7 @@ const Table: FC<PropsWithChildren<ComponentPropsWithRef<"table">>> = ({
     throw new Error("Invalid child component provided to Table");
   }
   return (
-    <table {...rest} className="kui-table">
+    <table role="table" {...rest} className="kui-table">
       {children}
     </table>
   );

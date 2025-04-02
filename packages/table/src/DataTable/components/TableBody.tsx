@@ -8,7 +8,7 @@ const TableBody = () => {
   return (
     <Table.Tbody>
       {data.map((row, index) => {
-        return <TableRow key={index} row={row} />;
+        return <TableRow index={index} key={index} row={row} />;
       })}
     </Table.Tbody>
   );

@@ -11,7 +11,11 @@ const TableHead = () => {
       <Table.Tr>
         {Object.keys(headers.data).map((header, index) => {
           return (
-            <Table.Th key={`${header} - ${index}`}>
+            <Table.Th
+              aria-checked="true"
+              role="th"
+              key={`${header} - ${index}`}
+            >
               {header.toUpperCase()}
             </Table.Th>
           );
