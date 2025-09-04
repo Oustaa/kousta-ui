@@ -4,6 +4,10 @@
   border-collapse: collapse;
 }
 
+.kui-table-head {
+  margin-bottom: 8px;
+}
+
 .kui-thead {
   background-color: #464646;
   color: white;

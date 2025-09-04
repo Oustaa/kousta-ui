@@ -4,6 +4,7 @@ import tseslint from "typescript-eslint";
 
 export default [
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
+  { ignores: ["**/cjs/**", "**/dist/**", "**/build/**"] },
   { languageOptions: { globals: globals.browser } },
   {
     rules: {

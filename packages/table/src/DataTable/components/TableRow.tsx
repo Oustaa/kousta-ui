@@ -1,7 +1,7 @@
 import { FC } from "react";
-import Table from "../../Table";
 import { useTableContext } from "../tableContext";
 import TableRowCol from "./TableRowCol";
+import { ContextMenu } from "@kousta-ui/components";
 
 const TableRow: FC<{ row: Record<string, unknown>; index: number }> = ({
   row,
@@ -10,7 +10,14 @@ const TableRow: FC<{ row: Record<string, unknown>; index: number }> = ({
   const { headers } = useTableContext();
 
   return (
-    <Table.Tr>
+    <ContextMenu
+      itemCloseOnClick={true}
+      options={[
+        { title: "Delete", onClick: () => console.log("Delete") },
+        { title: "Edit", onClick: () => console.log("Edit") },
+      ]}
+      As="tr"
+    >
       {Object.values(headers.data).map((headerValue) => {
         return (
           <TableRowCol
@@ -20,7 +27,7 @@ const TableRow: FC<{ row: Record<string, unknown>; index: number }> = ({
           />
         );
       })}
-    </Table.Tr>
+    </ContextMenu>
   );
 };
 

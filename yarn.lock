@@ -1569,6 +1569,9 @@ __metadata:
   dependencies:
     "@kousta-ui/helpers": "workspace:*"
     sass: "npm:^1.79.3"
+  peerDependencies:
+    react: ^18.0.0
+    react-dom: ^18.0.0
   languageName: unknown
   linkType: soft
 

@@ -9,6 +9,7 @@ type UserType = {
   age: number;
   email: string;
   address?: string;
+  location: { name: string };
 };
 
 const App = () => {
@@ -18,11 +19,13 @@ const App = () => {
       age: 27,
       email: "otailaba98@gmail.com",
       address: "Bab ghmat syba 37",
+      location: { name: "Hello Location" },
     },
     {
       name: "kaoutar Taki",
       age: 22,
       email: "ktaki@gmail.com",
+      location: { name: "Hello Ny Fucking Location" },
     },
   ];
 
@@ -52,6 +55,9 @@ const App = () => {
     },
     address: {
       value: "address",
+    },
+    local: {
+      value: "locations.name",
     },
   });
 
@@ -91,6 +97,11 @@ const App = () => {
         }}
         loading={false}
         title="this is a title"
+        options={{
+          search: (q) => {
+            alert(q);
+          },
+        }}
       />
     </div>
   );

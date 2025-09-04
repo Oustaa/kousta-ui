@@ -11,7 +11,8 @@ export type TableProps = {
   title: string;
   headers: TableHeaders;
   options?: {
-    actions: TActions;
+    search?: TSearch;
+    actions: Partial<TActions>;
     extraActions: [];
     bulkActions: [];
     extraviews: TExtraView[];
@@ -36,11 +37,16 @@ export type TableHeaders = {
 
 type TExtraView = { name: string };
 
+type TSearch = (
+  q: string,
+  extrasProps?: Record<string, string | number | Array<String> | Array<number>>,
+) => void;
+
 type TActions = {
-  get: unknown;
-  search: unknown;
-  update: unknown;
-  delete: unknown;
+  get: () => void;
+  search: () => void;
+  update: (row: any) => void;
+  delete: (row: any) => void;
   // this action could be deleted
   restore: unknown;
 };

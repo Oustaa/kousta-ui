@@ -1,13 +1,13 @@
 {
   "name": "@kousta-ui/table",
   "version": "0.0.2-alpha.0",
-  "main": "./cjs/index.cjs",
-  "module": "./esm/index.mjs",
+  "main": "./cjs/table/src/index.cjs",
+  "module": "./esm/table/src/index.mjs",
   "types": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "tsc --emitDeclarationOnly && rollup -c",
-    "dev": "yarn build --watch",
+    "dev": "concurrently \"tsc --emitDeclarationOnly --watch\" \"rollup -c -w\"",
     "clean": "rimraf lib cjs esm .rollup.cache"
   },
   "files": [
@@ -21,6 +21,10 @@
   },
   "devDependencies": {
     "sass": "^1.79.3"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "publishConfig": {
     "access": "public"

@@ -1,27 +1,17 @@
-import Table from "../../Table";
 import { useTableContext } from "../tableContext";
 
-const TableHead = () => {
-  const tableProps = useTableContext();
+import TableSearch from "./TableSearch";
 
-  const { headers } = tableProps;
+const TableHead = () => {
+  const { options } = useTableContext();
+
+  // if (!options) return <></>;
 
   return (
-    <Table.Thead>
-      <Table.Tr>
-        {Object.keys(headers.data).map((header, index) => {
-          return (
-            <Table.Th
-              aria-checked="true"
-              role="th"
-              key={`${header} - ${index}`}
-            >
-              {header.toUpperCase()}
-            </Table.Th>
-          );
-        })}
-      </Table.Tr>
-    </Table.Thead>
+    <div className="kui-table-head">
+      {/* Hide Table Rows */}
+      <TableSearch />
+    </div>
   );
 };
 
