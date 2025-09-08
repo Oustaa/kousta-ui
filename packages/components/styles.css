@@ -1,4 +1,12 @@
 /*=============================================
+=               CSS RESETS                    =
+=============================================*/
+/**
+ *
+ * The normalize.css npm package improves browser rendering consistency.
+ * https://necolas.github.io/normalize.css/
+ */
+/*=============================================
     #Variables
 =============================================*/
 /**
@@ -56,6 +64,63 @@
 =            Spacing                          =
 =============================================*/
 /*=====  End of Spacing  ======*/
+:root {
+  --dse-body-text-color: #000000;
+  --dse-body-bg-color: #fff;
+  --dse-btn-primary-color: #fbf6fd;
+  --dse-btn-primary-bg: #7f3695;
+  --dse-btn-primary-bg-hover: #9141ac;
+  --dse-btn-secondary-color: #000000;
+  --dse-btn-secondary-bg: #bdbdbd;
+  --dse-form-color: #000000;
+  --dse-form-bg: #fff;
+  --dse-form-error-color: #ffc0c0;
+  --dse-form-error-border: #ff2323;
+  --dse-form-border-focus-color: #9141ac;
+  --dse-body-font-size: 1rem;
+  --dse-body-font-weight: 400;
+  --dse-h1-font-size: 1.375rem;
+  --dse-h2-font-size: 1.375rem;
+  --dse-h3-font-size: 1rem;
+  --dse-h4-font-size: 1.125rem;
+  --dse-h5-font-size: 0.75rem;
+  --dse-h6-font-size: 0.75rem;
+  --dse-h1-font-weight: 500;
+  --dse-h2-font-weight: 500;
+  --dse-h3-font-weight: 500;
+  --dse-h4-font-weight: 400;
+  --dse-h5-font-weight: 400;
+  --dse-h6-font-weight: 300;
+}
+
+/*=============================================
+=        Foundation - Typography              =
+=============================================*/
+/**
+ * This file defines the default font sizes to be used on headings and texts. The defaults come
+ * from the palette defined in _variables.scss.
+ */
+/*=============================================
+=            Body font family                  =
+=============================================*/
+/*=============================================
+=            Body font sizes                  =
+=============================================*/
+/*=============================================
+=            Heading font sizes               =
+=============================================*/
+/*=============================================
+=            Head font weights                =
+=============================================*/
+/*=============================================
+=            Mixins                           =
+=============================================*/
+/**
+ *
+ * Helpful reusable function-like things that will be used to implement
+ * styles for components.
+ *
+ */
 * {
   padding: unset;
 }
@@ -169,4 +234,31 @@
 /*=============================================
 =                     Menu                    =
 =============================================*/
+.kui-menu {
+  position: relative;
+  width: max-content;
+  text-align: left;
+}
+
+.kui-menu-target {
+  padding: 0.5rem 1rem;
+  border: unset;
+}
+
+.kui-menu-dropdown {
+  position: absolute;
+  background: #464646;
+  left: 0;
+  top: calc(100% + 0.25rem);
+  padding: 0.5rem;
+}
+
+.kui-menu-item {
+  font-size: 1rem;
+}
+
+.kui-menu-label {
+  font-size: 0.75rem;
+}
+
 /*=====            End of Menu         ======*/

@@ -50,8 +50,6 @@
   border: unset;
   background-color: unset;
   width: 100%;
-  // padding-block: 6px;
-  // min-height: 30px;
 
   display: flex;
   align-items: center;
@@ -128,15 +126,33 @@
 =                     Menu                    =
 =============================================*/
 .kui-menu {
+  position: relative;
+  width: max-content;
+  text-align: left;
 }
 
-.kui-menu-trigger {
+.kui-menu-target {
+  padding: .5rem 1rem;
+  border: unset;
 }
 
 .kui-menu-dropdown {
+  position: absolute;
+  background: $neutral-color-800;
+  left: 0;
+  top: calc(100% + .25rem);
+  padding: .5rem;
 }
 
 .kui-menu-item {
+  font-size: 1rem;
+}
+
+.kui-menu-label {
+  font-size: .75rem;
+}
+
+.kui-menu-divider{
 }
 
 /*=====            End of Menu         ======*/

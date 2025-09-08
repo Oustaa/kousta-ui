@@ -1,44 +1,39 @@
+// scripts/build.js
 import Fs from "fs";
 import Path from "path";
 import * as Sass from "sass";
 
-const getComponents = () => {
-  let allComponents = [];
+const CORE_MODULES = ["base/reset", "base/root", "foundation/all"];
 
-  const types = ["components", "table"];
+const PACKAGES = [
+  { type: "components", entry: "styles.scss", out: "styles.css" },
+  { type: "table", entry: "styles.scss", out: "styles.css" },
+];
 
-  types.forEach((type) => {
-    const outputFile = Path.resolve(`../${type}/styles.css`);
-    const allFiles = Fs.readdirSync(`src/packages/${type}`).map((file) => ({
-      input: `src/packages/${type}/${file}`,
-      output: outputFile,
-    }));
-
-    allComponents = [...allComponents, ...allFiles];
+function compileStringToFile(source, outFile, { expanded = false } = {}) {
+  const result = Sass.compileString(source, {
+    style: expanded ? "expanded" : "compressed",
+    loadPaths: [Path.resolve("src")],
   });
+  Fs.mkdirSync(Path.dirname(outFile), { recursive: true });
+  Fs.writeFileSync(outFile, result.css.toString());
+  console.log("✓", Path.relative(process.cwd(), outFile));
+}
 
-  return allComponents;
-};
+(function buildLibIndex() {
+  const src = Fs.readFileSync(Path.resolve("src/index.scss"), "utf8");
+  compileStringToFile(src, Path.resolve("lib/index.css"), { expanded: true });
+})();
 
-const compile = (path, fileName, expanded) => {
-  const result = Sass.compileString(
-    Fs.readFileSync(Path.resolve(path)).toString(),
-    {
-      style: expanded ? "expanded" : "compressed",
-      loadPaths: [Path.resolve("src")],
-    },
-  );
+(function buildPackages() {
+  PACKAGES.forEach(({ type, entry, out }) => {
+    const pkgEntryNoExt = `packages/${type}/${entry.replace(/\.scss$/, "")}`;
 
-  Fs.writeFileSync(Path.resolve(fileName), result.css.toString());
-};
+    const virtualEntry =
+      CORE_MODULES.map((m) => `@use "${m}";`).join("\n") +
+      `\n@use "${pkgEntryNoExt}";\n`;
 
-try {
-  Fs.mkdirSync("lib");
-  // eslint-desible-next-line
-} catch (error) {}
-
-compile("src/index.scss", "lib/index.css");
-
-getComponents().forEach((component) => {
-  compile(component.input, component.output, true);
-});
+    const outputFile = Path.resolve(`../${type}/${out}`);
+    compileStringToFile(virtualEntry, outputFile, { expanded: true });
+  });
+})();

@@ -1,8 +1,9 @@
-import { Table, DataTable } from "@kousta-ui/table";
+import { useState } from "react";
+import { DataTable } from "@kousta-ui/table";
 import { THeader } from "@kousta-ui/table/lib/DataTable/@types/props";
 
 import "@kousta-ui/table/styles.css";
-import { useState } from "react";
+// import "@kousta-ui/components/styles.css";
 
 type UserType = {
   name: string;
@@ -31,7 +32,7 @@ const App = () => {
 
   const [headers, setHeaders] = useState<THeader>({
     user: {
-      value: "email",
+      value: "ema",
       exec(user: UserType) {
         return (
           <div>
@@ -57,34 +58,34 @@ const App = () => {
       value: "address",
     },
     local: {
-      value: "locations.name",
+      value: "location.name",
     },
   });
 
   return (
     <div style={{ width: "50%", marginInline: "auto", marginTop: "2rem" }}>
-      <Table.Root>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>Full Name</Table.Th>
-            <Table.Th>Age</Table.Th>
-            <Table.Th>Email</Table.Th>
-            <Table.Th>Address</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>
-          {data.map((row, index) => {
-            return (
-              <Table.Tr key={index}>
-                <Table.Td>{row.name}</Table.Td>
-                <Table.Td>{row.age}</Table.Td>
-                <Table.Td>{row.email}</Table.Td>
-                <Table.Td>{row.address}</Table.Td>
-              </Table.Tr>
-            );
-          })}
-        </Table.Tbody>
-      </Table.Root>
+      {/* <Table.Root> */}
+      {/*   <Table.Thead> */}
+      {/*     <Table.Tr> */}
+      {/*       <Table.Th>Full Name</Table.Th> */}
+      {/*       <Table.Th>Age</Table.Th> */}
+      {/*       <Table.Th>Email</Table.Th> */}
+      {/*       <Table.Th>Address</Table.Th> */}
+      {/*     </Table.Tr> */}
+      {/*   </Table.Thead> */}
+      {/*   <Table.Tbody> */}
+      {/*     {data.map((row, index) => { */}
+      {/*       return ( */}
+      {/*         <Table.Tr key={index}> */}
+      {/*           <Table.Td>{row.name}</Table.Td> */}
+      {/*           <Table.Td>{row.age}</Table.Td> */}
+      {/*           <Table.Td>{row.email}</Table.Td> */}
+      {/*           <Table.Td>{row.address}</Table.Td> */}
+      {/*         </Table.Tr> */}
+      {/*       ); */}
+      {/*     })} */}
+      {/*   </Table.Tbody> */}
+      {/* </Table.Root> */}
       <br />
       <br />
       <br />

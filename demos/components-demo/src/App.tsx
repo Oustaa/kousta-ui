@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, ContextMenu } from "@kousta-ui/components";
+import { Button, ContextMenu, Menu } from "@kousta-ui/components";
 import { useSayHello } from "@kousta-ui/hooks";
 import {
   Bs123,
@@ -31,7 +31,6 @@ function App() {
           setLoading((prev) => !prev);
         }}
       />
-
       <br />
       <br />
       <br />
@@ -181,6 +180,49 @@ function App() {
         ds gew8fg dsyfage hjkfgsdhjkf agweufy ds gew8fg dsyfage hjkfgsdhjkf
         agweufy ds gew8fg dsyfage hjkfgsdhjkf agweufy ds
       </ContextMenu>
+
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <Menu.Menu type="click">
+        <Menu.Target>Hello there motherfucker</Menu.Target>
+        <Menu.DropDown>
+          <Menu.Label>Hello Application</Menu.Label>
+          <Menu.Item>Hello There 1</Menu.Item>
+          <Menu.Item>Hello There 2</Menu.Item>
+          <Menu.Item>Hello There 3</Menu.Item>
+          <Menu.Divider />
+          <Menu.Item>Hello There 4</Menu.Item>
+          <Menu.Item>Hello There 5</Menu.Item>
+        </Menu.DropDown>
+      </Menu.Menu>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   );
 }

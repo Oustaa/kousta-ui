@@ -1,6 +1,9 @@
+@use "foundation/variables" as *;
+@use "foundation/colors" as *;
+
 .kui-table {
   width: 100%;
-  border: 1px solid #525252;
+  border: 1px solid $primary-color-400;
   border-collapse: collapse;
 }
 
