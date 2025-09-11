@@ -5,6 +5,8 @@ import { renderIcon } from "../utils/renderIcon";
 import ContextMenuItem from "./ContextMenuItem";
 import Separator from "./ContextMenuSeparator";
 
+import classes from "../ContextMenu.module.css";
+
 const ContextMenuItemWithSubs: FC<
   ContextMenuItemWithSubsProps & {
     offsetY: number;
@@ -40,7 +42,7 @@ const ContextMenuItemWithSubs: FC<
 
   return (
     <div>
-      <div className="kui-iconsContainer"></div>
+      <div className={classes["kui-iconsContainer"]}></div>
       <button
         ref={menuSubRef}
         onClick={(e) => {
@@ -50,10 +52,12 @@ const ContextMenuItemWithSubs: FC<
           }
           setSubsOpened(true);
         }}
-        className="kui-contextMenu-Item"
+        className={classes["kui-contextMenu-Item"]}
         disabled={!active}
       >
-        <div className="kui-contextMenu-ItemIcon">{renderIcon(icon)}</div>
+        <div className={classes["kui-contextMenu-ItemIcon"]}>
+          {renderIcon(icon)}
+        </div>
         <div
           style={{
             display: "flex",
@@ -68,7 +72,7 @@ const ContextMenuItemWithSubs: FC<
 
         {subsOpened && (
           <div
-            className="kui-contextMenu kui-contextMenu-Item_WithSubs"
+            className={`${classes["kui-contextMenu"]} ${classes["kui-contextMenu-Item_WithSubs"]}`}
             style={{
               left: !offsetX ? "100%" : "unset",
               right: offsetX ? "100%" : "unset",

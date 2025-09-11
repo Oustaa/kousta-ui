@@ -234,31 +234,4 @@
 /*=============================================
 =                     Menu                    =
 =============================================*/
-.kui-menu {
-  position: relative;
-  width: max-content;
-  text-align: left;
-}
-
-.kui-menu-target {
-  padding: 0.5rem 1rem;
-  border: unset;
-}
-
-.kui-menu-dropdown {
-  position: absolute;
-  background: #464646;
-  left: 0;
-  top: calc(100% + 0.25rem);
-  padding: 0.5rem;
-}
-
-.kui-menu-item {
-  font-size: 1rem;
-}
-
-.kui-menu-label {
-  font-size: 0.75rem;
-}
-
 /*=====            End of Menu         ======*/

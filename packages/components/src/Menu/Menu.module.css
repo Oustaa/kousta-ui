@@ -1,0 +1,38 @@
+/*=============================================
+=                     Menu                    =
+=============================================*/
+
+.kui-menu {
+  position: relative;
+  width: max-content;
+  text-align: left;
+}
+
+.kui-menu_target {
+  padding: 0.5rem 1rem;
+  border: unset;
+  background-color: red;
+}
+
+.kui-menu_dropdown {
+  position: absolute;
+  background: red;
+  left: 0;
+  top: calc(100% + 0.25rem);
+  padding: 0.5rem;
+}
+
+.kui-menu_item {
+  font-size: 1rem;
+}
+
+.kui-menu_label {
+  font-size: 0.75rem;
+}
+
+.kui-menu_divider {
+  height: 0.5px;
+  background-color: red;
+}
+
+/*=====            End of Menu         ======*/

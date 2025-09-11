@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { DataTable } from "@kousta-ui/table";
 import { THeader } from "@kousta-ui/table/lib/DataTable/@types/props";
+import { Menu } from "@kousta-ui/components";
 
-import "@kousta-ui/table/styles.css";
-// import "@kousta-ui/components/styles.css";
+import "@kousta-ui/table/esm/index.css";
+import "@kousta-ui/components/esm/index.css";
 
 type UserType = {
   name: string;
@@ -89,7 +90,6 @@ const App = () => {
       <br />
       <br />
       <br />
-
       <DataTable
         data={data}
         headers={{
@@ -104,6 +104,23 @@ const App = () => {
           },
         }}
       />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <Menu.Menu type="click">
+        <Menu.Target>Hello there motherfucker</Menu.Target>
+        <Menu.DropDown>
+          <Menu.Label>Hello Application</Menu.Label>
+          <Menu.Item>Hello There 1</Menu.Item>
+          <Menu.Item>Hello There 2</Menu.Item>
+          <Menu.Item>Hello There 3</Menu.Item>
+          <Menu.Divider />
+          <Menu.Item>Hello There 4</Menu.Item>
+          <Menu.Item>Hello There 5</Menu.Item>
+        </Menu.DropDown>
+      </Menu.Menu>
     </div>
   );
 };

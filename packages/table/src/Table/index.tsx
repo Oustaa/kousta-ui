@@ -1,5 +1,7 @@
 import React, { ComponentPropsWithRef, FC, PropsWithChildren } from "react";
 
+import classes from "./Table.module.css";
+
 const Table: FC<PropsWithChildren<ComponentPropsWithRef<"table">>> = ({
   children,
   ...rest
@@ -15,7 +17,7 @@ const Table: FC<PropsWithChildren<ComponentPropsWithRef<"table">>> = ({
     throw new Error("Invalid child component provided to Table");
   }
   return (
-    <table role="table" {...rest} className="kui-table">
+    <table role="table" {...rest} className={classes["kui-table"]}>
       {children}
     </table>
   );
@@ -26,7 +28,7 @@ const Thead: FC<PropsWithChildren<ComponentPropsWithRef<"thead">>> = ({
   ...rest
 }) => {
   return (
-    <thead {...rest} className="kui-thead">
+    <thead {...rest} className={classes["kui-thead"]}>
       {children}
     </thead>
   );
@@ -37,7 +39,7 @@ const Tbody: FC<PropsWithChildren<ComponentPropsWithRef<"tbody">>> = ({
   ...rest
 }) => {
   return (
-    <tbody {...rest} className="kui-tbody">
+    <tbody {...rest} className={classes["kui-tbody"]}>
       {children}
     </tbody>
   );
@@ -48,7 +50,7 @@ const Tr: FC<PropsWithChildren<ComponentPropsWithRef<"tr">>> = ({
   ...rest
 }) => {
   return (
-    <tr {...rest} className="kui-tr">
+    <tr {...rest} className={classes["kui-tr"]}>
       {children}
     </tr>
   );
@@ -59,7 +61,7 @@ const Th: FC<PropsWithChildren<ComponentPropsWithRef<"th">>> = ({
   ...rest
 }) => {
   return (
-    <th {...rest} className="kui-th">
+    <th {...rest} className={classes["kui-th"]}>
       {children}
     </th>
   );
@@ -70,7 +72,7 @@ const Td: FC<PropsWithChildren<ComponentPropsWithRef<"td">>> = ({
   ...rest
 }) => {
   return (
-    <td {...rest} className="kui-td">
+    <td {...rest} className={classes["kui-td"]}>
       {children}
     </td>
   );

@@ -1644,6 +1644,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@kousta-ui/table@workspace:packages/table"
   dependencies:
+    "@kousta-ui/components": "workspace:*"
     "@kousta-ui/helpers": "workspace:*"
     sass: "npm:^1.79.3"
   peerDependencies:
@@ -2443,9 +2444,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-typescript@npm:^11.1.6":
-  version: 11.1.6
-  resolution: "@rollup/plugin-typescript@npm:11.1.6"
+"@rollup/plugin-typescript@npm:^12.1.4":
+  version: 12.1.4
+  resolution: "@rollup/plugin-typescript@npm:12.1.4"
   dependencies:
     "@rollup/pluginutils": "npm:^5.1.0"
     resolve: "npm:^1.22.1"
@@ -2458,7 +2459,7 @@ __metadata:
       optional: true
     tslib:
       optional: true
-  checksum: 10c0/5347cd73ac28d4cf2401a3e689864a1a0df8f3ae029abd9c38525cbc84bcfa16c3a32a0ac5698dac65ec531ba7cf8332e14f5fc7f8fa501193da23320a134c5c
+  checksum: 10c0/b5bf7f54794d0b33ae5441c5aa202a95beb7068c206f40102f94997e888756c06c2bfe00517eb74a58771078432f94e8a34e99f5c6dbf89a22b49431b83c4798
   languageName: node
   linkType: hard
 
@@ -4280,7 +4281,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^10.4.20":
+"autoprefixer@npm:^10.4.21":
   version: 10.4.21
   resolution: "autoprefixer@npm:10.4.21"
   dependencies:
@@ -9238,7 +9239,7 @@ __metadata:
     "@rollup/plugin-commonjs": "npm:^28.0.0"
     "@rollup/plugin-node-resolve": "npm:^15.3.0"
     "@rollup/plugin-replace": "npm:^6.0.1"
-    "@rollup/plugin-typescript": "npm:^11.1.6"
+    "@rollup/plugin-typescript": "npm:^12.1.4"
     "@storybook/addon-essentials": "npm:^8.3.3"
     "@storybook/addon-interactions": "npm:^8.3.3"
     "@storybook/addon-links": "npm:^8.3.3"
@@ -9254,7 +9255,7 @@ __metadata:
     "@types/react": "npm:^18.3.10"
     "@typescript-eslint/eslint-plugin": "npm:^8.7.0"
     "@typescript-eslint/parser": "npm:^8.7.0"
-    autoprefixer: "npm:^10.4.20"
+    autoprefixer: "npm:^10.4.21"
     concurrently: "npm:^9.1.2"
     css-loader: "npm:^7.1.2"
     eslint: "npm:^9.11.1"
@@ -9269,8 +9270,9 @@ __metadata:
     jest-environment-jsdom: "npm:^29.7.0"
     lerna: "npm:^8.1.8"
     normalize-scss: "npm:^8.0.0"
-    postcss: "npm:^8.4.47"
+    postcss: "npm:^8.5.6"
     postcss-loader: "npm:^8.1.1"
+    postcss-modules: "npm:^6.0.1"
     prettier: "npm:^3.3.3"
     prop-types: "npm:^15.8.1"
     react: "npm:^18.3.1"
@@ -11442,6 +11444,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-modules@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "postcss-modules@npm:6.0.1"
+  dependencies:
+    generic-names: "npm:^4.0.0"
+    icss-utils: "npm:^5.1.0"
+    lodash.camelcase: "npm:^4.3.0"
+    postcss-modules-extract-imports: "npm:^3.1.0"
+    postcss-modules-local-by-default: "npm:^4.0.5"
+    postcss-modules-scope: "npm:^3.2.0"
+    postcss-modules-values: "npm:^4.0.0"
+    string-hash: "npm:^1.1.3"
+  peerDependencies:
+    postcss: ^8.0.0
+  checksum: 10c0/b82230693cb257b69db486df8835626d96632481ec6a8777b51ae7a530a56fa0ed399cbc8c2c777525f31fefab5a2d12ea7331a748fdfddde9f16cf3fff3bc58
+  languageName: node
+  linkType: hard
+
 "postcss-normalize-charset@npm:^5.1.0":
   version: 5.1.0
   resolution: "postcss-normalize-charset@npm:5.1.0"
@@ -11651,7 +11671,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.33, postcss@npm:^8.4.41, postcss@npm:^8.4.43, postcss@npm:^8.4.47, postcss@npm:^8.5.6":
+"postcss@npm:^8.4.33, postcss@npm:^8.4.41, postcss@npm:^8.4.43, postcss@npm:^8.5.6":
   version: 8.5.6
   resolution: "postcss@npm:8.5.6"
   dependencies:
@@ -13014,7 +13034,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"string-hash@npm:^1.1.1":
+"string-hash@npm:^1.1.1, string-hash@npm:^1.1.3":
   version: 1.1.3
   resolution: "string-hash@npm:1.1.3"
   checksum: 10c0/179725d7706b49fbbc0a4901703a2d8abec244140879afd5a17908497e586a6b07d738f6775450aefd9f8dd729e4a0abd073fbc6fa3bd020b7a1d2369614af88

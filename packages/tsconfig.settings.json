@@ -12,6 +12,8 @@
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "lib": ["DOM", "DOM.Iterable", "ES2021"],
+    "typeRoots": ["./types", "./node_modules/@types"],
+    "baseUrl": ".",
     "paths": {
       "@kousta-ui/styles/*": ["../styles/src/*"],
       "@kousta-ui/helpers/*": ["../helpers/src/*"],

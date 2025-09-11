@@ -1,46 +1,20 @@
-@use "foundation/variables" as *;
-@use "foundation/colors" as *;
-
-* {
-  padding: unset;
-}
-
-.btn-primary {
-  display: block;
-  border: unset;
-  padding: 6px 12px;
-  background-color: $primary-color-600;
-  color: $neutral-color-100;
-  font-weight: 700;
-
-  &:hover {
-    background-color: $primary-color-500;
-    cursor: pointer;
-  }
-
-  &:disabled {
-    background-color: $primary-color-400;
-    cursor: progress;
-  }
-}
-
 /*=============================================
 =                 Context Menu                =
 =============================================*/
 
 .kui-contextMenu-Container {
-  background-color: $danger-color-700;
+  background-color: gray;
 }
 
 .kui-contextMenu {
   position: absolute;
-  background-color: $white;
+  background-color: #fff;
   width: max-content;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 
   @media (prefers-color-scheme: dark) {
     & {
-      background-color: $neutral-color-700;
+      background-color: red;
     }
   }
 }
@@ -56,40 +30,40 @@
   gap: 10px;
   padding-inline-end: 10px;
 
-  color: $neutral-color-900;
+  color: blue;
   font-size: 0.9rem;
   font-weight: 400;
 
   &:hover {
     cursor: pointer;
-    background-color: $neutral-color-200;
+    background-color: lightblue;
   }
 
   @media (prefers-color-scheme: dark) {
     & {
-      color: $neutral-color-100;
+      color: lightgray;
     }
 
     &:disabled {
-      background-color: $neutral-color-800;
-      color: $neutral-color-600;
+      background-color: cyan;
+      color: yellow;
       cursor: not-allowed;
     }
 
     &:not(:disabled):hover {
-      background-color: $neutral-color-600;
+      background-color: pink;
     }
   }
 }
 
 .kui-contextMenu-ItemIcon {
   min-width: 35px;
-  // aspect-ratio: 1/1;
+  /* aspect-ratio: 1/1; */
   height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $neutral-color-800;
+  background-color: green;
 }
 
 .kui-contextMenu_separator_container {
@@ -103,7 +77,7 @@
   width: 100%;
   margin-inline: 10px;
   margin-block: 0px;
-  background-color: $neutral-color-200;
+  background-color: aqua;
 }
 
 .kui-contextMenu_separator_icon {
@@ -111,19 +85,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $neutral-color-800;
+  background-color: navy;
 }
 
 .kui-contextMenu_group_title {
-  font-size: $fs-xs;
-  color: $neutral-color-500;
+  font-size: 0.5rem;
+  color: red;
   padding-inline: 10px;
   padding-top: 4px;
 }
 /*=====        End of Context Menu      ======*/
-
-/*=============================================
-=                     Menu                    =
-=============================================*/
-
-/*=====            End of Menu         ======*/

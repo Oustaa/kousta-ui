@@ -2,6 +2,8 @@ import { FC, PropsWithChildren, ReactNode, useState } from "react";
 import { MenuContextProvider, useMenuContext } from "./MenuContextProvider";
 import { MenuProps } from "./_props";
 
+import classes from "./Menu.module.css";
+
 const MenuContainer: FC<PropsWithChildren<MenuProps>> = ({
   children,
   ...props
@@ -16,7 +18,7 @@ const MenuContainer: FC<PropsWithChildren<MenuProps>> = ({
       toggle={() => setOpened((prev) => !prev)}
       {...props}
     >
-      <div className="kui-menu">{children}</div>
+      <div className={classes["kui-menu"]}>{children}</div>
     </MenuContextProvider>
   );
 };
@@ -32,7 +34,7 @@ const MenuTarget: FC<PropsWithChildren> = ({ children }) => {
 
         toggle();
       }}
-      className="kui-menu-target"
+      className="kui-menu_target"
     >
       {children}
     </button>
@@ -44,18 +46,18 @@ const MenuDropDown: FC<PropsWithChildren> = ({ children }) => {
 
   if (!opened) return null;
 
-  return <div className="kui-menu-dropdown">{children}</div>;
+  return <div className={classes["kui-menu_dropdown"]}>{children}</div>;
 };
 
 const MenuItem: FC<PropsWithChildren> = ({ children }) => {
-  return <div className="kui-menu-item">{children}</div>;
+  return <div className={classes["kui-menu_item"]}>{children}</div>;
 };
 
 const MenuLabel: FC<
   PropsWithChildren<{ leftSection?: ReactNode; rightSection?: ReactNode }>
 > = ({ children, leftSection, rightSection }) => {
   return (
-    <span className="kui-menu-label">
+    <span className={classes["kui-menu_label"]}>
       {leftSection && leftSection}
       {children}
       {rightSection && rightSection}
@@ -64,7 +66,7 @@ const MenuLabel: FC<
 };
 
 const MenuDivider = () => {
-  return <hr className="kui-menu-divider" />;
+  return <hr className={classes["kui-menu_divider"]} />;
 };
 
 export default {

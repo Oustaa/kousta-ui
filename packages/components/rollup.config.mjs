@@ -2,31 +2,16 @@ import path from "path";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
+import postcss from "rollup-plugin-postcss";
 
-export default {
+const extensions = [".js", ".jsx", ".ts", ".tsx"];
+
+const base = {
   input: "src/index.ts",
-  output: [
-    {
-      format: "es",
-      entryFileNames: "[name].mjs.js",
-      dir: path.resolve("./esm"),
-      preserveModules: true,
-      sourcemap: true,
-    },
-    {
-      format: "cjs",
-      entryFileNames: "[name].cjs.js",
-      dir: path.resolve("./cjs"),
-      preserveModules: true,
-      sourcemap: true,
-      interop: "auto",
-    },
-  ],
+  external: ["react", "react-dom", "react/jsx-runtime"],
+  treeshake: true,
   plugins: [
-    nodeResolve({
-      extensions: [".js", ".jsx", ".ts", ".tsx", ".scss"],
-      preferBuiltins: false,
-    }),
+    nodeResolve({ extensions, preferBuiltins: false }),
     commonjs(),
     typescript({
       tsconfig: "./tsconfig.json",
@@ -34,5 +19,35 @@ export default {
       declarationDir: undefined,
     }),
   ],
-  external: ["react", "react-dom", "react/jsx-runtime"],
 };
+
+const makeConfig = (format, outDir, cssFile) => ({
+  ...base,
+  output: {
+    format,
+    dir: path.resolve(outDir),
+    entryFileNames: "[name]." + (format === "es" ? "mjs.js" : "cjs.js"),
+    preserveModules: true,
+    sourcemap: true,
+    interop: "auto",
+    assetFileNames: (assetInfo) => {
+      const name = assetInfo.name || "";
+      if (name.endsWith(".css")) return "[name][extname]";
+      return "assets/[name]-[hash][extname]";
+    },
+  },
+  plugins: [
+    ...base.plugins,
+    postcss({
+      extract: path.resolve(outDir, cssFile),
+      modules: { generateScopedName: "[local]_[hash:base64:5]" },
+      sourceMap: true,
+      minimize: false,
+    }),
+  ],
+});
+
+export default [
+  makeConfig("es", "esm", "index.css"),
+  makeConfig("cjs", "cjs", "index.css"),
+];

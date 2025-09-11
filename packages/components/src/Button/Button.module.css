@@ -1,0 +1,24 @@
+/*=============================================
+=                    Button                   =
+=============================================*/
+
+.btn-primary {
+  display: block;
+  border: unset;
+  padding: 6px 12px;
+  background-color: blue;
+  color: white;
+  font-weight: 700;
+
+  &:hover {
+    background-color: cyan;
+    cursor: pointer;
+  }
+
+  &:disabled {
+    background-color: red;
+    cursor: progress;
+  }
+}
+
+/*=====           End of Button        ======*/

@@ -4,6 +4,8 @@ import { ContextMenuOption } from "../_props";
 import ContextMenuItem from "./ContextMenuItem";
 import ContextMenuItemWithSubs from "./ContextMenuItemWithSubs";
 
+import classes from "../ContextMenu.module.css";
+
 interface ContextMenuMenuProps {
   x: number;
   y: number;
@@ -25,10 +27,10 @@ export const ContextMenuMenu = forwardRef<HTMLDivElement, ContextMenuMenuProps>(
           top: `${y - offsetY}px`,
           left: `${x - offsetX}px`,
         }}
-        className="kui-contextMenu"
+        className={classes["kui-contextMenu"]}
         ref={ref}
       >
-        <div className="kui-iconsContainer"></div>
+        <div className={classes["kui-iconsContainer"]}></div>
 
         {options.map((option, index): React.ReactNode => {
           if (

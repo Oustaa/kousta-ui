@@ -1,6 +1,8 @@
 import React from "react";
 import { ButtonProps } from "./type";
 
+import classes from "./Button.module.css";
+
 const Button: React.FC<ButtonProps> = ({
   content,
   disabled,
@@ -10,16 +12,12 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className="btn-primary"
+      className={classes["btn-primary"]}
       disabled={disabled || loading}
       onClick={onClick}
       type={type}
     >
-      {loading ? (
-        <div className="flex items-center justify-center gap-2">Loading...</div>
-      ) : (
-        content
-      )}
+      {loading ? <div className="">Loading...</div> : content}
     </button>
   );
 };

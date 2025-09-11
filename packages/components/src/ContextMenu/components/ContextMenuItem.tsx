@@ -4,6 +4,8 @@ import { renderIcon } from "../utils/renderIcon";
 import ContextMenuSeparator from "./ContextMenuSeparator";
 import ContextMenuGroup from "./ContextMenuGroup";
 
+import classes from "../ContextMenu.module.css";
+
 const ContextMenuItem: FC<
   ContextMenuItemProps & {
     offsetY: number;
@@ -45,10 +47,12 @@ const ContextMenuItem: FC<
           setMenuVisible(false);
         }
       }}
-      className="kui-contextMenu-Item"
+      className={classes["kui-contextMenu-Item"]}
       disabled={!active}
     >
-      <div className="kui-contextMenu-ItemIcon">{renderIcon(icon)}</div>
+      <div className={classes["kui-contextMenu-ItemIcon"]}>
+        {renderIcon(icon)}
+      </div>
       {title}
     </button>
   );

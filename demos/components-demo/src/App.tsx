@@ -9,11 +9,12 @@ import {
   BsArchive,
   BsHouseLock,
 } from "react-icons/bs";
+import { RiFileExcel2Line } from "react-icons/ri";
 
 import "./App.css";
 import "./index.css";
-import "@kousta-ui/components/styles.css";
-import { RiFileExcel2Line } from "react-icons/ri";
+
+import "@kousta-ui/components/esm/index.css";
 
 function App() {
   const sayHello = useSayHello("Oussama Is the goat");
