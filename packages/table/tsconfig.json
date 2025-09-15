@@ -3,7 +3,7 @@
   "compilerOptions": {
     "declarationDir": "lib"
   },
-  "include": ["src/**/*", "../types/global.d.ts"],
+  "include": ["src/**/*", "../../types/global.d.ts"],
   "exclude": [
     "src/**/*.stories.ts",
     "src/**/*.stories.tsx",

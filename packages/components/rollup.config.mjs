@@ -21,33 +21,36 @@ const base = {
   ],
 };
 
-const makeConfig = (format, outDir, cssFile) => ({
+const makeConfig = (format, outDir) => ({
   ...base,
   output: {
     format,
     dir: path.resolve(outDir),
-    entryFileNames: "[name]." + (format === "es" ? "mjs.js" : "cjs.js"),
-    preserveModules: true,
+    preserveModules: false,
     sourcemap: true,
     interop: "auto",
-    assetFileNames: (assetInfo) => {
-      const name = assetInfo.name || "";
-      if (name.endsWith(".css")) return "[name][extname]";
-      return "assets/[name]-[hash][extname]";
+    entryFileNames: format === "es" ? "[name].mjs.js" : "[name].cjs.js",
+    chunkFileNames:
+      format === "es"
+        ? "chunks/[name]-[hash].mjs.js"
+        : "chunks/[name]-[hash].cjs.js",
+    assetFileNames: (asset) => {
+      const name = asset.name || "";
+      return name.endsWith(".css")
+        ? "[name][extname]"
+        : "assets/[name]-[hash][extname]";
     },
   },
   plugins: [
     ...base.plugins,
     postcss({
-      extract: path.resolve(outDir, cssFile),
+      autoModules: true,
       modules: { generateScopedName: "[local]_[hash:base64:5]" },
+      extract: path.resolve(outDir, "index.css"),
       sourceMap: true,
       minimize: false,
     }),
   ],
 });
 
-export default [
-  makeConfig("es", "esm", "index.css"),
-  makeConfig("cjs", "cjs", "index.css"),
-];
+export default [makeConfig("es", "esm"), makeConfig("cjs", "cjs")];

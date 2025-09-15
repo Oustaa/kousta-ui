@@ -32,7 +32,8 @@
     "dev": "yarn lerna run dev",
     "components:demo": "cd ./demos/components-demo && yarn run dev",
     "table:demo": "cd ./demos/table-demo && yarn run dev",
-    "demos": "concurrently \"yarn run components:demo\" \"yarn run table:demo\""
+    "demos": "concurrently \"yarn run components:demo\" \"yarn run table:demo\"",
+    "knip": "knip"
   },
   "keywords": [
     "ui-library",
@@ -85,8 +86,8 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "lerna": "^8.1.8",
-    "normalize-scss": "^8.0.0",
     "postcss": "^8.5.6",
+    "postcss-import": "^16.1.1",
     "postcss-loader": "^8.1.1",
     "postcss-modules": "^6.0.1",
     "prettier": "^3.3.3",
@@ -116,5 +117,8 @@
       "plugin:storybook/recommended"
     ]
   },
-  "packageManager": "yarn@4.5.0"
+  "packageManager": "yarn@4.5.0",
+  "dependencies": {
+    "knip": "^5.63.1"
+  }
 }

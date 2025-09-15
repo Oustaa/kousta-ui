@@ -5,8 +5,8 @@
 .btn-primary {
   display: block;
   border: unset;
-  padding: 6px 12px;
-  background-color: blue;
+  padding: var(--kui-spacing-sm) var(--kui-spacing-md);
+  background-color: var(--kui-primary-color);
   color: white;
   font-weight: 700;
 

@@ -1,18 +1,20 @@
 {
   "name": "@kousta-ui/styles",
   "version": "0.0.2-alpha.0",
-  "main": "dist/index.css",
-  "style": "dist/index.css",
   "type": "module",
   "scripts": {
     "lint": "stylelint './**/*.scss'",
     "lint:fix": "yarn lint --fix",
     "dev": "nodemon --watch src --exec yarn build -e scss",
-    "clean": "rimraf lib"
+    "build": "node build.js",
+    "clean": "rimraf dist"
   },
   "files": [
     "dist"
   ],
+  "exports": {
+    "./tokens.css": "./dist/tokens.css"
+  },
   "publishConfig": {
     "access": "public"
   },
