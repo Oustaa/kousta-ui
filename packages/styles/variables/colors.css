@@ -1,4 +1,62 @@
 :root {
-  --kui-primary-color: yellow;
-  --kui-secondary-color: cyan;
+  /* Primary Color */
+  --kui-primary-50: #fbf6fd;
+  --kui-primary-100: #f6ecfb;
+  --kui-primary-200: #ecd8f6;
+  --kui-primary-300: #deb9ee;
+  --kui-primary-400: #cc8fe3;
+  --kui-primary-500: #b364d1;
+  --kui-primary-600: #9141ac;
+  --kui-primary-700: #7f3695;
+  --kui-primary-800: #692e7a;
+  --kui-primary-900: #5a2a65;
+
+  /* Success Color */
+  --kui-success-50: #eafee7;
+  --kui-success-100: #d1fbcc;
+  --kui-success-200: #a6f89e;
+  --kui-success-300: #6ff066;
+  --kui-success-400: #2ae120;
+  --kui-success-500: #1fca18;
+  --kui-success-600: #12a10f;
+  --kui-success-700: #107b10;
+  --kui-success-800: #136113;
+  --kui-success-900: #155217;
+
+  /* Neutral Color */
+  --kui-neutral-50: #ffffff;
+  --kui-neutral-100: #efefef;
+  --kui-neutral-200: #dcdcdc;
+  --kui-neutral-300: #bdbdbd;
+  --kui-neutral-400: #989898;
+  --kui-neutral-500: #7c7c7c;
+  --kui-neutral-600: #656565;
+  --kui-neutral-700: #525252;
+  --kui-neutral-800: #464646;
+  --kui-neutral-900: #3d3d3d;
+  --kui-neutral-950: #000000;
+
+  /* Danger Color */
+  --kui-danger-50: #fff0f0;
+  --kui-danger-100: #ffdddd;
+  --kui-danger-200: #ffc0c0;
+  --kui-danger-300: #ff9494;
+  --kui-danger-400: #ff5757;
+  --kui-danger-500: #ff2323;
+  --kui-danger-600: #ff0000;
+  --kui-danger-700: #d70000;
+  --kui-danger-800: #b10303;
+  --kui-danger-900: #920a0a;
+
+  /* Warning Color */
+  --kui-warning-50: #fff9ec;
+  --kui-warning-100: #fff0d3;
+  --kui-warning-200: #ffdea5;
+  --kui-warning-300: #ffc66d;
+  --kui-warning-400: #ffa132;
+  --kui-warning-500: #ff840a;
+  --kui-warning-600: #e66100;
+  --kui-warning-700: #cc4d02;
+  --kui-warning-800: #a13c0b;
+  --kui-warning-900: #82330c;
 }

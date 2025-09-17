@@ -1,0 +1,10 @@
+:root {
+  /* Sizing */
+  --kui-text-xs: 8px;
+  --kui-text-sm: 12px;
+  --kui-text-base: 12px;
+  --kui-text-medium: 18px;
+  --kui-text-lg: 24px;
+  --kui-text-xl: 44px;
+  --kui-text-2xl: 64px;
+}
