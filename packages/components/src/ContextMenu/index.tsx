@@ -10,8 +10,6 @@ import { ContextMenuMenu } from "./components/ContextMenu";
 
 import classes from "./ContextMenu.module.css";
 
-console.log(classes);
-
 const ContextmenuProvider: FC<ContextmenuProviderProps> = ({
   children,
   onClose,

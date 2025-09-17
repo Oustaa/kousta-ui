@@ -2,21 +2,41 @@
 =                    Button                   =
 =============================================*/
 
-.btn-primary {
+.btn {
   display: block;
   border: unset;
   padding: var(--kui-spacing-sm) var(--kui-spacing-md);
-  background-color: var(--kui-primary-color);
-  color: white;
   font-weight: 700;
+}
+
+.btn-primary {
+  composes: btn;
+  background-color: var(--kui-primary-500);
+  color: var(--kui-neutral-50);
 
   &:hover {
-    background-color: cyan;
+    background-color: var(--kui-primary-600);
     cursor: pointer;
   }
 
   &:disabled {
-    background-color: red;
+    background-color: var(--kui-primary-300);
+    cursor: progress;
+  }
+}
+
+.btn-secondary {
+  composes: btn;
+  background-color: var(--kui-neutral-200);
+  color: var(--kui-neutral-600);
+
+  &:hover {
+    background-color: var(--kui-neutral-300);
+    cursor: pointer;
+  }
+
+  &:disabled {
+    background-color: var(--kui-neutral-100);
     cursor: progress;
   }
 }

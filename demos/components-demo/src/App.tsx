@@ -19,18 +19,48 @@ function App() {
   const sayHello = useSayHello("Oussama Is the goat");
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {}, [loading]);
+  useEffect(() => {
+    let timeout;
+    if (loading) {
+      timeout = setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }
+
+    return clearTimeout(timeout);
+  }, [loading]);
 
   return (
     <>
       <Button
-        content={"Hello btn"}
         loading={loading}
         onClick={() => {
           sayHello();
           setLoading((prev) => !prev);
+          setTimeout(() => {
+            setLoading(false);
+          }, 2000);
         }}
-      />
+      >
+        Primary Button
+      </Button>
+      <br />
+      <br />
+      <br />
+      <br />
+      <Button
+        varient="secondary"
+        loading={loading}
+        onClick={() => {
+          sayHello();
+          setLoading((prev) => !prev);
+          setTimeout(() => {
+            setLoading(false);
+          }, 2000);
+        }}
+      >
+        Secondary Button
+      </Button>
       <br />
       <br />
       <br />

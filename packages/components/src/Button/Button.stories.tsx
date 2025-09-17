@@ -16,7 +16,7 @@ const meta = {
     loading: {
       control: "boolean",
     },
-    content: {
+    children: {
       control: "text",
     },
     onClick: {
@@ -31,7 +31,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    content: "Click me",
+    children: "Click me",
     disabled: false,
     loading: false,
   },
@@ -39,7 +39,7 @@ export const Primary: Story = {
 
 export const PrimaryLoading: Story = {
   args: {
-    content: "Click me",
+    children: "Click me",
     disabled: false,
     loading: true,
   },

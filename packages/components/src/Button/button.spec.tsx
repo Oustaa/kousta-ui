@@ -4,7 +4,7 @@ import Button from "./index";
 describe("Button test", () => {
   it("should render props", () => {
     const content = "Kousta ui";
-    render(<Button content={content} />);
+    render(<Button>{content}</Button>);
     const buttonElement = screen.getByRole("button", { name: content });
 
     expect(buttonElement).toBeTruthy();
@@ -13,7 +13,7 @@ describe("Button test", () => {
   it("should invoke the onClick function", () => {
     const onClickCallBack = jest.fn();
 
-    render(<Button content={"Kousta ui"} onClick={onClickCallBack} />);
+    render(<Button onClick={onClickCallBack}>Kousta ui</Button>);
     const buttonElement = screen.getByRole("button", { name: /Kousta ui/i });
 
     fireEvent.click(buttonElement);
@@ -24,7 +24,11 @@ describe("Button test", () => {
   it("should not invoke the onClick function if the button was desibled", () => {
     const onClickCallBack = jest.fn();
 
-    render(<Button content={"Kousta ui"} onClick={onClickCallBack} disabled />);
+    render(
+      <Button onClick={onClickCallBack} disabled>
+        Kousta ui
+      </Button>,
+    );
     const buttonElement = screen.getByRole("button", { name: /Kousta ui/i });
 
     fireEvent.click(buttonElement);
