@@ -38,16 +38,18 @@ const App = () => {
         return (
           <div>
             <h2>{user.name}</h2>
-            <h3>{user.email}</h3>
+            {/* <h3>{user.email}</h3> */}
           </div>
         );
       },
+      canSee: false,
     },
     name: {
       value: "name",
       exec() {
         return "WHAAAAAAAAAA";
       },
+      visible: false,
     },
     age: {
       value: "age",
@@ -111,9 +113,9 @@ const App = () => {
       <br />
       <Menu.Menu type="click">
         <Menu.Target>Hello there motherfucker</Menu.Target>
-        <Menu.DropDown>
+        <Menu.DropDown closeItemOnClick={true}>
           <Menu.Label>Hello Application</Menu.Label>
-          <Menu.Item>Hello There 1</Menu.Item>
+          <Menu.Item closeOnClick={false}>Dont Close</Menu.Item>
           <Menu.Item>Hello There 2</Menu.Item>
           <Menu.Item>Hello There 3</Menu.Item>
           <Menu.Divider />

@@ -1,0 +1,11 @@
+/*=============================================
+=                 DataTable                   =
+=============================================*/
+
+.kui-table-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+/*=====         End of DataTable        ======*/

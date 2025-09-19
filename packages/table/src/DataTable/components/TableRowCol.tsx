@@ -10,6 +10,8 @@ const TableRowCol: FC<{
 }> = ({ headerValue, row }) => {
   let content: any;
 
+  if (headerValue.visible === false || headerValue.canSee === false) return;
+
   if (headerValue.exec && typeof headerValue.exec === "function") {
     content = headerValue.exec(row);
   } else {

@@ -26,6 +26,8 @@ export type TablePropsWithChildren =
 export type THeaderValue = {
   value: string;
   exec?: (row: any) => string | ReactNode;
+  visible?: boolean;
+  canSee?: boolean;
 };
 
 export type THeader = Record<string, THeaderValue>;
@@ -39,7 +41,7 @@ type TExtraView = { name: string };
 
 type TSearch = (
   q: string,
-  extrasProps?: Record<string, string | number | Array<String> | Array<number>>,
+  extrasProps?: Record<string, string | number | Array<string> | Array<number>>,
 ) => void;
 
 type TActions = {

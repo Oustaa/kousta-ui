@@ -6,10 +6,18 @@ const TableHeader = () => {
 
   const { headers } = tableProps;
 
+  const headersLabel = Object.keys(headers.data).filter((header) => {
+    console.log({ header, headerData: headers.data[header] });
+    return (
+      headers.data[header].visible !== false &&
+      headers.data[header].canSee !== false
+    );
+  });
+
   return (
     <Table.Thead>
       <Table.Tr>
-        {Object.keys(headers.data).map((header, index) => {
+        {headersLabel.map((header, index) => {
           return (
             <Table.Th
               aria-checked="true"

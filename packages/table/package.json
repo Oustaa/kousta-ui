@@ -18,7 +18,8 @@
   ],
   "dependencies": {
     "@kousta-ui/components": "workspace:*",
-    "@kousta-ui/helpers": "workspace:*"
+    "@kousta-ui/helpers": "workspace:*",
+    "@kousta-ui/styles": "workspace:*"
   },
   "devDependencies": {
     "sass": "^1.79.3"

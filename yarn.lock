@@ -1647,6 +1647,7 @@ __metadata:
   dependencies:
     "@kousta-ui/components": "workspace:*"
     "@kousta-ui/helpers": "workspace:*"
+    "@kousta-ui/styles": "workspace:*"
     sass: "npm:^1.79.3"
   peerDependencies:
     react: ^18.0.0
