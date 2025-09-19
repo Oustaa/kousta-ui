@@ -217,8 +217,10 @@ function App() {
       <br />
       <br />
       <br />
-      <Menu.Menu type="click">
-        <Menu.Target>Hello there motherfucker</Menu.Target>
+      <Menu.Menu type="hover">
+        <Menu.Target>
+          <Button>Hello there motherfucker</Button>
+        </Menu.Target>
         <Menu.DropDown>
           <Menu.Label>Hello Application</Menu.Label>
           <Menu.Item>Hello There 1</Menu.Item>

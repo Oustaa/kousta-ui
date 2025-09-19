@@ -2,6 +2,11 @@
 =                     Menu                    =
 =============================================*/
 
+button {
+  border: unset;
+  background: unset;
+}
+
 .kui-menu {
   position: relative;
   width: max-content;
@@ -9,21 +14,31 @@
 }
 
 .kui-menu_target {
-  padding: 0.5rem 1rem;
   border: unset;
-  background-color: red;
+  background-color: light-dark(
+    --var(--kui-neutral-600),
+    var(--kui-neutral-200)
+  );
 }
 
 .kui-menu_dropdown {
   position: absolute;
-  background: red;
+  background: light-dark(var(--kui-neutral-50), var(--kui-neutral-700));
+  color: light-dark(var(--kui-neutral-900), var(--kui-neutral-50));
   left: 0;
   top: calc(100% + 0.25rem);
   padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 4px;
+  box-shadow: 1px 1px 2px
+    light-dark(var(--kui-neutral-400), var(--kui-neutral-700));
 }
 
 .kui-menu_item {
-  font-size: 1rem;
+  font-size: 0.9rem;
+  font-weight: 400;
 }
 
 .kui-menu_label {
@@ -31,8 +46,10 @@
 }
 
 .kui-menu_divider {
-  height: 0.5px;
-  background-color: red;
+  height: 1px;
+  width: 100%;
+  background-color: light-dark(var(--kui-neutral-800), var(--kui-neutral-200));
+  border: unset;
 }
 
 /*=====            End of Menu         ======*/

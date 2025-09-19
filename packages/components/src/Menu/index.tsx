@@ -6,6 +6,8 @@ import classes from "./Menu.module.css";
 
 const MenuContainer: FC<PropsWithChildren<MenuProps>> = ({
   children,
+  type = "click",
+  closeItemOnClick = true,
   ...props
 }) => {
   const [opened, setOpened] = useState(false);
@@ -16,6 +18,8 @@ const MenuContainer: FC<PropsWithChildren<MenuProps>> = ({
       open={() => setOpened(true)}
       close={() => setOpened(false)}
       toggle={() => setOpened((prev) => !prev)}
+      type={type}
+      closeItemOnClick={closeItemOnClick}
       {...props}
     >
       <div className={classes["kui-menu"]}>{children}</div>
@@ -24,17 +28,26 @@ const MenuContainer: FC<PropsWithChildren<MenuProps>> = ({
 };
 
 const MenuTarget: FC<PropsWithChildren> = ({ children }) => {
-  // might use use ref
-  const { toggle, type } = useMenuContext();
+  const { toggle, close, open, type } = useMenuContext();
 
   return (
     <button
+      onMouseEnter={() => {
+        if (type === "click") return;
+
+        open();
+      }}
+      onMouseLeave={() => {
+        if (type === "click") return;
+
+        close();
+      }}
       onClick={() => {
         if (type === "hover") return;
 
         toggle();
       }}
-      className="kui-menu_target"
+      className={classes["kui-menu_target"]}
     >
       {children}
     </button>
@@ -49,8 +62,26 @@ const MenuDropDown: FC<PropsWithChildren> = ({ children }) => {
   return <div className={classes["kui-menu_dropdown"]}>{children}</div>;
 };
 
-const MenuItem: FC<PropsWithChildren> = ({ children }) => {
-  return <div className={classes["kui-menu_item"]}>{children}</div>;
+const MenuItem: FC<PropsWithChildren<{ closeOnClick?: boolean }>> = ({
+  children,
+  closeOnClick,
+}) => {
+  const { close, closeItemOnClick } = useMenuContext();
+
+  return (
+    <button
+      onClick={() => {
+        if (
+          (closeOnClick === undefined && closeItemOnClick) ||
+          closeOnClick === true
+        )
+          close();
+      }}
+      className={classes["kui-menu_item"]}
+    >
+      {children}
+    </button>
+  );
 };
 
 const MenuLabel: FC<
