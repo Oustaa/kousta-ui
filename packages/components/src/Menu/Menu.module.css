@@ -39,6 +39,8 @@ button {
 .kui-menu_item {
   font-size: 0.9rem;
   font-weight: 400;
+  display: flex;
+  gap: 4px;
 }
 
 .kui-menu_label {

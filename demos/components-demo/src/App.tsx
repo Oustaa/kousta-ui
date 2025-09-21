@@ -223,7 +223,15 @@ function App() {
         </Menu.Target>
         <Menu.DropDown>
           <Menu.Label>Hello Application</Menu.Label>
-          <Menu.Item>Hello There 1</Menu.Item>
+          <Menu.Item
+            leftSection={
+              <div>
+                <BsHouseLock />
+              </div>
+            }
+          >
+            Hello There 1
+          </Menu.Item>
           <Menu.Item>Hello There 2</Menu.Item>
           <Menu.Item>Hello There 3</Menu.Item>
           <Menu.Divider />

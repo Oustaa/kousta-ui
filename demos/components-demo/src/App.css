@@ -1,7 +1,9 @@
 :root {
   /* --kui-spacing-sm: 4px; */
   /* --kui-spacing-md: 8px; */
-  /* --kui-primary-color: red; */
+  /* --kui-primary-500: red; */
+  /* --kui-primary-600: rgba(255, 0, 0, 0.8); */
+  /* --kui-rounded: 1; */
 }
 
 #root {

@@ -1,4 +1,11 @@
-import { FC, PropsWithChildren, ReactNode, useState } from "react";
+import {
+  FC,
+  PropsWithChildren,
+  ReactNode,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { MenuContextProvider, useMenuContext } from "./MenuContextProvider";
 import { MenuProps } from "./_props";
 
@@ -10,7 +17,21 @@ const MenuContainer: FC<PropsWithChildren<MenuProps>> = ({
   closeItemOnClick = true,
   ...props
 }) => {
+  const menuRef = useRef<null | HTMLDivElement>(null);
   const [opened, setOpened] = useState(false);
+
+  useLayoutEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setOpened(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <MenuContextProvider
@@ -22,26 +43,31 @@ const MenuContainer: FC<PropsWithChildren<MenuProps>> = ({
       closeItemOnClick={closeItemOnClick}
       {...props}
     >
-      <div className={classes["kui-menu"]}>{children}</div>
+      <div
+        ref={menuRef}
+        onMouseEnter={() => {
+          if (type === "click") return;
+
+          setOpened(true);
+        }}
+        onMouseLeave={() => {
+          if (type === "click") return;
+
+          setOpened(false);
+        }}
+        className={classes["kui-menu"]}
+      >
+        {children}
+      </div>
     </MenuContextProvider>
   );
 };
 
 const MenuTarget: FC<PropsWithChildren> = ({ children }) => {
-  const { toggle, close, open, type } = useMenuContext();
+  const { toggle, type } = useMenuContext();
 
   return (
     <button
-      onMouseEnter={() => {
-        if (type === "click") return;
-
-        open();
-      }}
-      onMouseLeave={() => {
-        if (type === "click") return;
-
-        close();
-      }}
       onClick={() => {
         if (type === "hover") return;
 
@@ -62,10 +88,13 @@ const MenuDropDown: FC<PropsWithChildren> = ({ children }) => {
   return <div className={classes["kui-menu_dropdown"]}>{children}</div>;
 };
 
-const MenuItem: FC<PropsWithChildren<{ closeOnClick?: boolean }>> = ({
-  children,
-  closeOnClick,
-}) => {
+const MenuItem: FC<
+  PropsWithChildren<{
+    closeOnClick?: boolean;
+    leftSection?: ReactNode;
+    rightSection?: ReactNode;
+  }>
+> = ({ children, closeOnClick, leftSection, rightSection }) => {
   const { close, closeItemOnClick } = useMenuContext();
 
   return (
@@ -79,7 +108,9 @@ const MenuItem: FC<PropsWithChildren<{ closeOnClick?: boolean }>> = ({
       }}
       className={classes["kui-menu_item"]}
     >
+      {leftSection && leftSection}
       {children}
+      {rightSection && rightSection}
     </button>
   );
 };

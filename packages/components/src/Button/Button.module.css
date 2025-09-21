@@ -3,10 +3,11 @@
 =============================================*/
 
 .btn {
-  display: block;
+  /* display: block; */
   border: unset;
   padding: var(--kui-spacing-sm) var(--kui-spacing-md);
   font-weight: 700;
+  border-radius: calc(var(--kui-rounded) * 20px);
 }
 
 .btn-primary {
