@@ -1,4 +1,6 @@
 :root {
   --kui-spacing-sm: 4px;
   --kui-spacing-md: 8px;
+
+  --kui-rounded: 0px;
 }

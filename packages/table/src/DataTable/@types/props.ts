@@ -4,20 +4,21 @@ import { PropsWithChildren, ReactNode } from "react";
 /**
  * change unknown to be a generic type | unknown
  */
-
 export type TableProps = {
   data: any[];
   loading: boolean;
   title: string;
   headers: TableHeaders;
-  options?: {
-    search?: TSearch;
-    actions: Partial<TActions>;
-    extraActions: [];
-    bulkActions: [];
-    extraviews: TExtraView[];
-  };
+  options?: TOptions;
 };
+
+export type TOptions = Partial<{
+  search: TSearch;
+  actions: Partial<TActions>;
+  extraActions: [];
+  bulkActions: [];
+  extraviews: TExtraView[];
+}>;
 
 export type TablePropsWithChildren =
   | (PropsWithChildren<TableProps> & { children: ReactNode })
@@ -41,13 +42,15 @@ type TExtraView = { name: string };
 
 type TSearch = (
   q: string,
-  extrasProps?: Record<string, string | number | Array<string> | Array<number>>,
+  options: {
+    visibleHeaders: string[];
+    props: Record<string, string | number | Array<string> | Array<number>>;
+  },
 ) => void;
 
 type TActions = {
   get: () => void;
-  search: () => void;
-  update: (row: any) => void;
+  edit: (row: any) => void;
   delete: (row: any) => void;
   // this action could be deleted
   restore: unknown;

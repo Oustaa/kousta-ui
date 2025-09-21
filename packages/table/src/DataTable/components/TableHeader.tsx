@@ -1,10 +1,11 @@
 import Table from "../../Table";
 import { useTableContext } from "../tableContext";
+import { hasActions } from "../utils/tableAction";
 
 const TableHeader = () => {
   const tableProps = useTableContext();
 
-  const { headers } = tableProps;
+  const { headers, options } = tableProps;
 
   const headersLabel = Object.keys(headers.data).filter((header) => {
     console.log({ header, headerData: headers.data[header] });
@@ -28,6 +29,7 @@ const TableHeader = () => {
             </Table.Th>
           );
         })}
+        {hasActions(options) && <Table.Th>ACTIONS</Table.Th>}
       </Table.Tr>
     </Table.Thead>
   );

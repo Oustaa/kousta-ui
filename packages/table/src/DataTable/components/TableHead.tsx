@@ -8,7 +8,7 @@ import TableSearch from "./TableSearch";
 const TableHead = () => {
   const { headers } = useTableContext();
 
-  const visiblehHeaders = Object.keys(headers.data).filter(
+  const visibleHeaders = Object.keys(headers.data).filter(
     (header) =>
       headers.data[header].visible !== false &&
       headers.data[header].canSee !== false,
@@ -30,7 +30,7 @@ const TableHead = () => {
                 <input
                   id={headerName}
                   type="checkbox"
-                  checked={visiblehHeaders.includes(headerName)}
+                  checked={visibleHeaders.includes(headerName)}
                   onChange={(event) => {
                     headers.setHeaders((prev) => ({
                       ...prev,

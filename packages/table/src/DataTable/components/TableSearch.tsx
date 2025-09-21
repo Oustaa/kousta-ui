@@ -1,22 +1,37 @@
 import { useState } from "react";
 import { useTableContext } from "../tableContext";
+import { Button } from "@kousta-ui/components";
 
 const TableSearch = () => {
-  const { options } = useTableContext();
+  const { options, headers } = useTableContext();
   const [q, setQ] = useState<string>("");
+
+  const visibleHeaders = Object.keys(headers.data).filter(
+    (header) =>
+      headers.data[header].visible !== false &&
+      headers.data[header].canSee !== false,
+  );
 
   if (!options || !options.search) return <></>;
 
   return (
     <div className="table-search-container">
-      <input value={q} onChange={(e) => setQ(e.target.value)} />
-      <button
+      <input
+        onKeyDown={(event) => {
+          if (event.key === "Enter") {
+            options.search?.(q, { visibleHeaders, props: {} });
+          }
+        }}
+        value={q}
+        onChange={(e) => setQ(e.target.value)}
+      />
+      <Button
         onClick={() => {
-          options.search?.(q);
+          options.search?.(q, { visibleHeaders, props: {} });
         }}
       >
         Search
-      </button>
+      </Button>
     </div>
   );
 };

@@ -15,7 +15,7 @@ type UserType = {
 };
 
 const App = () => {
-  const data: Array<UserType> = [
+  const defaultData: Array<UserType> = [
     {
       name: "Oussama Tailba",
       age: 27,
@@ -30,6 +30,8 @@ const App = () => {
       location: { name: "Hello Ny Fucking Location" },
     },
   ];
+
+  const [data, setData] = useState<Array<UserType>>(defaultData);
 
   const [headers, setHeaders] = useState<THeader>({
     user: {
@@ -101,8 +103,26 @@ const App = () => {
         loading={false}
         title="this is a title"
         options={{
-          search: (q) => {
-            alert(q);
+          actions: {
+            delete: (row: UserType) => {
+              console.log({ row });
+            },
+            edit: (row: UserType) => {
+              console.log({ row });
+            },
+          },
+          search: (q, { visibleHeaders: vh }) => {
+            const reg = new RegExp(q);
+
+            setData(() =>
+              defaultData.filter(
+                (user) =>
+                  (vh?.includes("name") && reg.test(user.name)) ||
+                  (vh?.includes("email") && reg.test(user.email)) ||
+                  reg.test(user.address || "") ||
+                  reg.test(user.location.name),
+              ),
+            );
           },
         }}
       />
@@ -111,9 +131,9 @@ const App = () => {
       <br />
       <br />
       <br />
-      <Menu.Menu type="click">
+      <Menu.Menu closeItemOnClick type="click">
         <Menu.Target>Hello there motherfucker</Menu.Target>
-        <Menu.DropDown closeItemOnClick={true}>
+        <Menu.DropDown>
           <Menu.Label>Hello Application</Menu.Label>
           <Menu.Item closeOnClick={false}>Dont Close</Menu.Item>
           <Menu.Item>Hello There 2</Menu.Item>
