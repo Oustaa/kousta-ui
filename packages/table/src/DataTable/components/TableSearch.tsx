@@ -17,6 +17,7 @@ const TableSearch = () => {
   return (
     <div className="table-search-container">
       <input
+        aria-label="search-input"
         onKeyDown={(event) => {
           if (event.key === "Enter") {
             options.search?.(q, { visibleHeaders, props: {} });

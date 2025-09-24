@@ -50,7 +50,7 @@ const Tr: FC<PropsWithChildren<ComponentPropsWithRef<"tr">>> = ({
   ...rest
 }) => {
   return (
-    <tr {...rest} className={classes["kui-tr"]}>
+    <tr {...rest} role="tr" className={classes["kui-tr"]}>
       {children}
     </tr>
   );

@@ -20,34 +20,36 @@ const TableHead = () => {
 
   return (
     <div className={classes["kui-table-head"]}>
-      {/* Hide Table Rows */}
-      <Menu.Menu closeItemOnClick={false}>
-        <Menu.Target>S/H</Menu.Target>
-        <Menu.DropDown>
-          {headersCanSee.map((headerName) => (
-            <Menu.Item key={headerName}>
-              <div>
-                <input
-                  id={headerName}
-                  type="checkbox"
-                  checked={visibleHeaders.includes(headerName)}
-                  onChange={(event) => {
-                    headers.setHeaders((prev) => ({
-                      ...prev,
-                      [headerName]: {
-                        ...prev[headerName],
-                        visible: event.target.checked,
-                      },
-                    }));
-                  }}
-                />
-                <label htmlFor={headerName}>{headerName.toUpperCase()}</label>
-              </div>
-            </Menu.Item>
-          ))}
-        </Menu.DropDown>
-      </Menu.Menu>
-      <TableSearch />
+      <div className={classes["kui-table-head-section"]}>
+        {/* Hide Table Rows */}
+        <Menu.Menu closeItemOnClick={false}>
+          <Menu.Target>S/H</Menu.Target>
+          <Menu.DropDown>
+            {headersCanSee.map((headerName) => (
+              <Menu.Item key={headerName}>
+                <div className={classes["kui-table-head_sh_label"]}>
+                  <input
+                    id={headerName}
+                    type="checkbox"
+                    checked={visibleHeaders.includes(headerName)}
+                    onChange={(event) => {
+                      headers.setHeaders((prev) => ({
+                        ...prev,
+                        [headerName]: {
+                          ...prev[headerName],
+                          visible: event.target.checked,
+                        },
+                      }));
+                    }}
+                  />
+                  <label htmlFor={headerName}>{headerName.toUpperCase()}</label>
+                </div>
+              </Menu.Item>
+            ))}
+          </Menu.DropDown>
+        </Menu.Menu>
+        <TableSearch />
+      </div>
     </div>
   );
 };

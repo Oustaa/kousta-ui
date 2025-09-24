@@ -18,6 +18,7 @@ export type TOptions = Partial<{
   extraActions: [];
   bulkActions: [];
   extraviews: TExtraView[];
+  emptyTable: ReactNode;
 }>;
 
 export type TablePropsWithChildren =
@@ -50,8 +51,14 @@ type TSearch = (
 
 type TActions = {
   get: () => void;
-  edit: (row: any) => void;
-  delete: (row: any) => void;
+  edit: {
+    canEdit?: boolean;
+    onEdit: (row: any) => void;
+  };
+  delete: {
+    canDelete?: boolean;
+    onDelete: (row: any) => void;
+  };
   // this action could be deleted
   restore: unknown;
 };

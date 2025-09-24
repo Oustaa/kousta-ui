@@ -18,15 +18,15 @@ const TableRow: FC<{ row: Record<string, unknown>; index: number }> = ({
   const contextMenuOptions = [];
 
   if (options && options.actions) {
-    if (options.actions.delete)
+    if (hasDeleteAction(options))
       contextMenuOptions.push({
         title: "Delete",
-        onClick: () => options!.actions!.delete!(row),
+        onClick: () => options!.actions!.delete?.onDelete!(row),
       });
-    if (options.actions.edit)
+    if (hasEditAction(options))
       contextMenuOptions.push({
         title: "Edit",
-        onClick: () => options!.actions!.edit!(row),
+        onClick: () => options!.actions!.edit?.onEdit!(row),
       });
   }
 
@@ -44,12 +44,14 @@ const TableRow: FC<{ row: Record<string, unknown>; index: number }> = ({
       {hasActions(options) && (
         <Table.Td>
           {hasDeleteAction(options) && (
-            <Button onClick={() => options!.actions!.delete!(row)}>
+            <Button onClick={() => options!.actions!.delete?.onDelete!(row)}>
               delete
             </Button>
           )}
           {hasEditAction(options) && (
-            <Button onClick={() => options!.actions!.edit!(row)}>Edit</Button>
+            <Button onClick={() => options!.actions!.edit?.onEdit!(row)}>
+              Edit
+            </Button>
           )}
         </Table.Td>
       )}

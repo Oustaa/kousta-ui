@@ -8,7 +8,6 @@ const TableHeader = () => {
   const { headers, options } = tableProps;
 
   const headersLabel = Object.keys(headers.data).filter((header) => {
-    console.log({ header, headerData: headers.data[header] });
     return (
       headers.data[header].visible !== false &&
       headers.data[header].canSee !== false

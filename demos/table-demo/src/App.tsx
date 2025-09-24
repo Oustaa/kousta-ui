@@ -44,7 +44,7 @@ const App = () => {
           </div>
         );
       },
-      canSee: false,
+      visible: false,
     },
     name: {
       value: "name",
@@ -104,13 +104,20 @@ const App = () => {
         title="this is a title"
         options={{
           actions: {
-            delete: (row: UserType) => {
-              console.log({ row });
+            delete: {
+              canDelete: true,
+              onDelete: (row: UserType) => {
+                console.log({ row });
+              },
             },
-            edit: (row: UserType) => {
-              console.log({ row });
+            edit: {
+              canEdit: true,
+              onEdit: (row: UserType) => {
+                console.log({ row });
+              },
             },
           },
+          // emptyTable: <div style={{ color: "red" }}>Whaaat The fuck</div>,
           search: (q, { visibleHeaders: vh }) => {
             const reg = new RegExp(q);
 

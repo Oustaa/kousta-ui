@@ -8,4 +8,14 @@
   margin-bottom: 8px;
 }
 
+.kui-table-head-section {
+  display: flex;
+  gap: 8px;
+}
+
+.kui-table-head_sh_label {
+  display: flex;
+  gap: 4px;
+}
+
 /*=====         End of DataTable        ======*/
