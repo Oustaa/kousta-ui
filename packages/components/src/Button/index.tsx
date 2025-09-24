@@ -18,6 +18,7 @@ const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
 
   return (
     <button
+      role="button"
       className={
         buttonVarientsClassName[varient as keyof typeof buttonVarientsClassName]
       }

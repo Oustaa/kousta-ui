@@ -22,11 +22,10 @@ button {
 }
 
 .kui-menu_dropdown {
+  width: max-content;
   position: absolute;
   background: light-dark(var(--kui-neutral-50), var(--kui-neutral-700));
   color: light-dark(var(--kui-neutral-900), var(--kui-neutral-50));
-  left: 0;
-  top: calc(100% + 0.25rem);
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -41,6 +40,9 @@ button {
   font-weight: 400;
   display: flex;
   gap: 4px;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .kui-menu_label {

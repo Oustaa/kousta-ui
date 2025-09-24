@@ -146,6 +146,7 @@ function App() {
           },
           {
             title: "Option number 2",
+            closeOnClick: true,
             onClick() {
               console.log("Option number 2");
             },
@@ -217,9 +218,9 @@ function App() {
       <br />
       <br />
       <br />
-      <Menu.Menu type="hover">
+      <Menu.Menu offset={4}>
         <Menu.Target>
-          <Button>Hello there motherfucker</Button>
+          <Button>Menu Target Button</Button>
         </Menu.Target>
         <Menu.DropDown>
           <Menu.Label>Hello Application</Menu.Label>

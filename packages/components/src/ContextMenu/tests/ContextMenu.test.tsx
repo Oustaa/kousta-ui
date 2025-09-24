@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import ContextMenu from "../index";
 import { ContextMenuTypeOption } from "../_props";
@@ -50,7 +49,7 @@ beforeEach(() => {
 describe("ContextMenu test", () => {
   it("should render menu content correctly", () => {
     const contentEl = screen.getByText(/context menu/i);
-    expect(contentEl).toBeTruthy();
+    expect(contentEl).toBeInTheDocument();
   });
 
   // before each test right click on the context to open the context menu
@@ -60,7 +59,7 @@ describe("ContextMenu test", () => {
   describe("Context menu options", () => {
     it("should open context menu on right-click", () => {
       const optionEl = screen.getByText(/option one/i);
-      expect(optionEl).toBeTruthy();
+      expect(optionEl).toBeInTheDocument();
     });
 
     it("should invoke the option function", () => {
@@ -75,7 +74,7 @@ describe("ContextMenu test", () => {
 
       expect(mockOption1Click).toHaveBeenCalledTimes(2);
       const optionOneElementAfterClick = screen.getByText(/Option one/i);
-      expect(optionOneElementAfterClick).toBeTruthy();
+      expect(optionOneElementAfterClick).toBeInTheDocument();
     });
   });
 
@@ -88,7 +87,7 @@ describe("ContextMenu test", () => {
       // const subOptionOne = screen.getAllByText(/option 1 sub 1/i);
       const subOptions = screen.getAllByText(/option \d sub \d/i);
 
-      expect(subOptions.length).toBe(2);
+      expect(subOptions).toHaveLength(2);
     });
 
     it("should invoke the option function", () => {

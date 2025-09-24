@@ -1,4 +1,5 @@
 import {
+  CSSProperties,
   FC,
   PropsWithChildren,
   ReactNode,
@@ -7,14 +8,75 @@ import {
   useState,
 } from "react";
 import { MenuContextProvider, useMenuContext } from "./MenuContextProvider";
-import { MenuProps } from "./_props";
+import { MenuPosition, MenuProps } from "./_props";
 
 import classes from "./Menu.module.css";
+
+type postionStyleType = Record<MenuPosition, CSSProperties>;
+
+function getPositionStyle(gapSize: number): postionStyleType {
+  return {
+    "Bottom-Center": {
+      top: `calc(100% + ${gapSize}px)`,
+      left: "50%",
+      transform: "translateX(-50%)",
+    },
+    "Bottom-Start": {
+      top: `calc(100% + ${gapSize}px)`,
+      left: "0",
+    },
+    "Bottom-End": {
+      top: `calc(100% + ${gapSize}px)`,
+      right: "0",
+    },
+    "Left-Center": {
+      right: `calc(100% + ${gapSize}px)`,
+      top: "50%",
+      transform: "translateY(-50%)",
+    },
+    "Left-Start": {
+      right: `calc(100% + ${gapSize}px)`,
+      top: "0",
+    },
+    "Left-End": {
+      right: `calc(100% + ${gapSize}px)`,
+      bottom: "0",
+    },
+    "Right-Center": {
+      top: "50%",
+      left: `calc(100% + ${gapSize}px)`,
+      transform: "translateY(-50%)",
+    },
+    "Right-Start": {
+      top: "0",
+      left: `calc(100% + ${gapSize}px)`,
+    },
+    "Right-End": {
+      left: `calc(100% + ${gapSize}px)`,
+      bottom: "0",
+    },
+    "Top-Center": {
+      bottom: `calc(100% + ${gapSize}px)`,
+      left: "50%",
+      transform: "translateX(-50%)",
+    },
+    "Top-Start": {
+      bottom: `calc(100% + ${gapSize}px)`,
+      left: "0",
+    },
+    "Top-End": {
+      bottom: `calc(100% + ${gapSize}px)`,
+      right: "0",
+    },
+  };
+}
 
 const MenuContainer: FC<PropsWithChildren<MenuProps>> = ({
   children,
   type = "click",
   closeItemOnClick = true,
+  position = "Bottom-Start",
+  offset = 4,
   ...props
 }) => {
   const menuRef = useRef<null | HTMLDivElement>(null);
@@ -41,6 +103,8 @@ const MenuContainer: FC<PropsWithChildren<MenuProps>> = ({
       toggle={() => setOpened((prev) => !prev)}
       type={type}
       closeItemOnClick={closeItemOnClick}
+      position={position}
+      offset={offset}
       {...props}
     >
       <div
@@ -81,11 +145,18 @@ const MenuTarget: FC<PropsWithChildren> = ({ children }) => {
 };
 
 const MenuDropDown: FC<PropsWithChildren> = ({ children }) => {
-  const { opened } = useMenuContext();
-
+  const { opened, position, offset } = useMenuContext();
   if (!opened) return null;
 
-  return <div className={classes["kui-menu_dropdown"]}>{children}</div>;
+  return (
+    <div
+      role="menu"
+      style={getPositionStyle(offset!)[position!] as CSSProperties}
+      className={classes["kui-menu_dropdown"]}
+    >
+      {children}
+    </div>
+  );
 };
 
 const MenuItem: FC<
@@ -99,6 +170,7 @@ const MenuItem: FC<
 
   return (
     <button
+      role="menuitem"
       onClick={() => {
         if (
           (closeOnClick === undefined && closeItemOnClick) ||
