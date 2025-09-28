@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 import { MenuContextProvider, useMenuContext } from "./MenuContextProvider";
-import { MenuPosition, MenuProps } from "./_props";
+import { MenuItemProps, MenuPosition, MenuProps } from "./_props";
 
 import classes from "./Menu.module.css";
 
@@ -74,7 +74,7 @@ function getPositionStyle(gapSize: number): postionStyleType {
 const MenuContainer: FC<PropsWithChildren<MenuProps>> = ({
   children,
   type = "click",
-  closeItemOnClick = true,
+  closeOnClick = true,
   position = "Bottom-Start",
   offset = 4,
   ...props
@@ -102,7 +102,7 @@ const MenuContainer: FC<PropsWithChildren<MenuProps>> = ({
       close={() => setOpened(false)}
       toggle={() => setOpened((prev) => !prev)}
       type={type}
-      closeItemOnClick={closeItemOnClick}
+      closeOnClick={closeOnClick}
       position={position}
       offset={offset}
       {...props}
@@ -159,22 +159,23 @@ const MenuDropDown: FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-const MenuItem: FC<
-  PropsWithChildren<{
-    closeOnClick?: boolean;
-    leftSection?: ReactNode;
-    rightSection?: ReactNode;
-  }>
-> = ({ children, closeOnClick, leftSection, rightSection }) => {
-  const { close, closeItemOnClick } = useMenuContext();
+const MenuItem: FC<PropsWithChildren<MenuItemProps>> = ({
+  children,
+  closeMenuOnClick,
+  leftSection,
+  rightSection,
+  disabled,
+}) => {
+  const { close, closeOnClick } = useMenuContext();
 
   return (
     <button
+      disabled={disabled}
       role="menuitem"
       onClick={() => {
         if (
-          (closeOnClick === undefined && closeItemOnClick) ||
-          closeOnClick === true
+          (closeMenuOnClick === undefined && closeOnClick) ||
+          closeMenuOnClick === true
         )
           close();
       }}

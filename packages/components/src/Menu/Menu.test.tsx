@@ -119,16 +119,16 @@ describe("Menu", () => {
     }
   });
 
-  it("should close menu onClick on MenuItem if closeOnClick is true", async () => {
+  it("should close menu onClick on MenuItem if closeMenuOnClick is true", async () => {
     const user = userEvent.setup();
 
     render(
-      <Menu.Menu closeItemOnClick={false}>
+      <Menu.Menu closeOnClick={false}>
         <Menu.Target>Menu</Menu.Target>
         <Menu.DropDown>
           <Menu.Item>Menu Item 1</Menu.Item>
           <Menu.Item>Menu Item 2</Menu.Item>
-          <Menu.Item closeOnClick={true}>Menu Item 3</Menu.Item>
+          <Menu.Item closeMenuOnClick={true}>Menu Item 3</Menu.Item>
         </Menu.DropDown>
       </Menu.Menu>,
     );
@@ -155,12 +155,12 @@ describe("Menu", () => {
 
   it("should render a divider properly", async () => {
     render(
-      <Menu.Menu closeItemOnClick={false}>
+      <Menu.Menu closeOnClick={false}>
         <Menu.Target>Menu</Menu.Target>
         <Menu.DropDown>
           <Menu.Item>Menu Item 1</Menu.Item>
           <Menu.Item>Menu Item 2</Menu.Item>
-          <Menu.Item closeOnClick={true}>Menu Item 3</Menu.Item>
+          <Menu.Item closeMenuOnClick={true}>Menu Item 3</Menu.Item>
           <Menu.Divider />
         </Menu.DropDown>
       </Menu.Menu>,
@@ -174,7 +174,7 @@ describe("Menu", () => {
 
   it("should render a label", async () => {
     render(
-      <Menu.Menu closeItemOnClick={false}>
+      <Menu.Menu closeOnClick={false}>
         <Menu.Target>Menu</Menu.Target>
         <Menu.DropDown>
           <Menu.Label>Menu label</Menu.Label>

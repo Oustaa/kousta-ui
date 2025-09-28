@@ -22,6 +22,7 @@ const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
       className={
         buttonVarientsClassName[varient as keyof typeof buttonVarientsClassName]
       }
+      data-loading={loading}
       disabled={disabled || loading}
       onClick={onClick}
       type={type}

@@ -3,7 +3,7 @@ import { PropsWithChildren, ReactNode } from "react";
 export type ContextMenuTypeOption = {
   optionType?: "option";
   icon?: ReactNode;
-  title?: string;
+  title?: string | ReactNode;
   active?: boolean;
   hidden?: boolean;
   deactiveMessage?: string;

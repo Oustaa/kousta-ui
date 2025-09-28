@@ -8,8 +8,6 @@ import {
 import { ContextmenuProviderProps } from "./_props";
 import { ContextMenuMenu } from "./components/ContextMenu";
 
-import classes from "./ContextMenu.module.css";
-
 const ContextmenuProvider: FC<ContextmenuProviderProps> = ({
   children,
   onClose,

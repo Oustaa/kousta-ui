@@ -23,6 +23,10 @@
   &:disabled {
     background-color: var(--kui-primary-300);
     cursor: progress;
+
+    &:not([data-loading="true"]) {
+      cursor: not-allowed;
+    }
   }
 }
 

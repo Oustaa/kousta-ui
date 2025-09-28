@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, ContextMenu, Menu } from "@kousta-ui/components";
+import { Button, ContextMenu, Menu, Input } from "@kousta-ui/components";
 import { useSayHello } from "@kousta-ui/hooks";
 import {
   Bs123,
@@ -18,6 +18,7 @@ import "./index.css";
 function App() {
   const sayHello = useSayHello("Oussama Is the goat");
   const [loading, setLoading] = useState(false);
+  const [value, setValue] = useState<string>("");
 
   useEffect(() => {
     let timeout;
@@ -46,6 +47,20 @@ function App() {
       </Button>
       <br />
       <br />
+      <Input
+        label="Society"
+        placeholder="this is my placeholder"
+        // errors={["There is an error"]}
+        required={true}
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+        // i should add this
+        leftSection={
+          <Button onClick={() => alert("Hello InputLeft Section")} />
+        }
+      />
       <br />
       <br />
       <Button
@@ -218,7 +233,7 @@ function App() {
       <br />
       <br />
       <br />
-      <Menu.Menu offset={4}>
+      <Menu.Menu closeOnClick={false} offset={6} position="Bottom-Start">
         <Menu.Target>
           <Button>Menu Target Button</Button>
         </Menu.Target>
@@ -230,10 +245,11 @@ function App() {
                 <BsHouseLock />
               </div>
             }
+            closeMenuOnClick={true}
           >
             Hello There 1
           </Menu.Item>
-          <Menu.Item>Hello There 2</Menu.Item>
+          <Menu.Item disabled={true}>Hello There 2</Menu.Item>
           <Menu.Item>Hello There 3</Menu.Item>
           <Menu.Divider />
           <Menu.Item>Hello There 4</Menu.Item>
