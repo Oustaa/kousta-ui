@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { DataTable } from "@kousta-ui/table";
 import { THeader } from "@kousta-ui/table/lib/DataTable/@types/props";
-import { Menu } from "@kousta-ui/components";
+import { Input, Menu } from "@kousta-ui/components";
+import { Bs123 } from "react-icons/bs";
 
 import "@kousta-ui/table/esm/index.css";
 import "@kousta-ui/components/esm/index.css";
@@ -33,14 +34,13 @@ const App = () => {
 
   const [data, setData] = useState<Array<UserType>>(defaultData);
 
-  const [headers, setHeaders] = useState<THeader>({
+  const [headers, setHeaders] = useState<THeader<UserType>>({
     user: {
       value: "ema",
-      exec(user: UserType) {
+      exec(user) {
         return (
           <div>
-            <h2>{user.name}</h2>
-            {/* <h3>{user.email}</h3> */}
+            <h2>{user.email}</h2>
           </div>
         );
       },
@@ -68,7 +68,7 @@ const App = () => {
   });
 
   return (
-    <div style={{ width: "50%", marginInline: "auto", marginTop: "2rem" }}>
+    <div style={{ width: "90%", marginInline: "auto", marginTop: "2rem" }}>
       {/* <Table.Root> */}
       {/*   <Table.Thead> */}
       {/*     <Table.Tr> */}
@@ -91,6 +91,18 @@ const App = () => {
       {/*     })} */}
       {/*   </Table.Tbody> */}
       {/* </Table.Root> */}
+      <Input
+        label="Society"
+        placeholder="this is my placeholder"
+        // errors={["There is an error"]}
+        required={true}
+        // value={value}
+        // onChange={(e) => {
+        //   setValue(e.target.value);
+        // }}
+        // i should add this
+        // leftSection={<Button onClick={alert("Hello InputLeft Section")} />}
+      />
       <br />
       <br />
       <br />
@@ -105,7 +117,10 @@ const App = () => {
         options={{
           actions: {
             delete: {
-              canDelete: true,
+              canDelete: (row) => {
+                console.log({ row });
+                return row?.age > 25;
+              },
               onDelete: (row: UserType) => {
                 console.log({ row });
               },
@@ -117,6 +132,14 @@ const App = () => {
               },
             },
           },
+          extraActions: [
+            {
+              title: "Do Something",
+              onClick: () => {},
+              allowed: (row) => row.age < 23,
+              Icon: <Bs123 />,
+            },
+          ],
           // emptyTable: <div style={{ color: "red" }}>Whaaat The fuck</div>,
           search: (q, { visibleHeaders: vh }) => {
             const reg = new RegExp(q);
@@ -138,11 +161,11 @@ const App = () => {
       <br />
       <br />
       <br />
-      <Menu.Menu closeItemOnClick type="click">
+      <Menu.Menu closeOnClick type="click">
         <Menu.Target>Hello there motherfucker</Menu.Target>
         <Menu.DropDown>
           <Menu.Label>Hello Application</Menu.Label>
-          <Menu.Item closeOnClick={false}>Dont Close</Menu.Item>
+          <Menu.Item closeMenuOnClick={false}>Dont Close</Menu.Item>
           <Menu.Item>Hello There 2</Menu.Item>
           <Menu.Item>Hello There 3</Menu.Item>
           <Menu.Divider />

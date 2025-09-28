@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTableContext } from "../tableContext";
-import { Button } from "@kousta-ui/components";
+import { Button, Input } from "@kousta-ui/components";
 
 const TableSearch = () => {
   const { options, headers } = useTableContext();
@@ -16,7 +16,7 @@ const TableSearch = () => {
 
   return (
     <div className="table-search-container">
-      <input
+      <Input
         aria-label="search-input"
         onKeyDown={(event) => {
           if (event.key === "Enter") {
@@ -25,14 +25,16 @@ const TableSearch = () => {
         }}
         value={q}
         onChange={(e) => setQ(e.target.value)}
+        rightSection={
+          <Button
+            onClick={() => {
+              options.search?.(q, { visibleHeaders, props: {} });
+            }}
+          >
+            Search
+          </Button>
+        }
       />
-      <Button
-        onClick={() => {
-          options.search?.(q, { visibleHeaders, props: {} });
-        }}
-      >
-        Search
-      </Button>
     </div>
   );
 };

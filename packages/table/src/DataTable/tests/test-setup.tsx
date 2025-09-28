@@ -7,7 +7,7 @@ export type UserType = {
   address?: string;
 };
 
-export const headers: THeader = {
+export const headers: THeader<UserType> = {
   user: {
     value: "email",
     exec() {

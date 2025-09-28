@@ -1,9 +1,9 @@
-import { TOptions } from "../@types/props";
+import { CanPerformAction, TOptions } from "../@types/props";
 
-export function hasActions(options?: TOptions): boolean {
+export function hasActions(options?: TOptions<unknown>): boolean {
   if (
     options &&
-    options.actions && // has delete action
+    (options.actions || options?.extraActions) && // has delete action
     ((options.actions?.delete &&
       options.actions.delete.canDelete &&
       typeof options.actions.delete.onDelete === "function") ||
@@ -19,20 +19,26 @@ export function hasActions(options?: TOptions): boolean {
   return false;
 }
 
-export function hasDeleteAction(options?: TOptions): boolean {
+export function hasDeleteAction(
+  options: TOptions<unknown> | undefined,
+  row?: unknown,
+): boolean {
   if (
     options &&
     options.actions &&
     options.actions.delete &&
     options.actions.delete.onDelete &&
     typeof options.actions.delete.onDelete === "function" &&
-    options.actions.delete.canDelete
+    ((typeof options.actions.delete.canDelete === "function" &&
+      options.actions.delete.canDelete?.(row)) ||
+      (typeof options.actions.delete.canDelete !== "function" &&
+        options.actions.delete.canDelete))
   )
     return true;
   return false;
 }
 
-export function hasEditAction(options?: TOptions): boolean {
+export function hasEditAction(options: TOptions<unknown> | undefined): boolean {
   if (
     options &&
     options.actions &&
@@ -43,4 +49,15 @@ export function hasEditAction(options?: TOptions): boolean {
   )
     return true;
   return false;
+}
+
+export function canPerformActionResolver<T>(
+  row: T,
+  actionPerms?: CanPerformAction<T>,
+) {
+  return (
+    actionPerms === undefined ||
+    (typeof actionPerms === "boolean" && actionPerms === true) ||
+    (typeof actionPerms === "function" && actionPerms(row))
+  );
 }

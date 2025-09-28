@@ -4,18 +4,24 @@
 
 .kui-table-head {
   display: flex;
+  gap: var(--kui-spacing-md);
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: var(--kui-spacing-xs);
 }
 
 .kui-table-head-section {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: var(--kui-spacing-sm);
 }
 
 .kui-table-head_sh_label {
   display: flex;
-  gap: 4px;
+  gap: var(--kui-spacing-xs);
 }
 
+.table-actions-container {
+  display: flex;
+  gap: var(--kui-spacing-xs);
+}
 /*=====         End of DataTable        ======*/

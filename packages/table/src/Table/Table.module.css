@@ -32,6 +32,8 @@
   padding-block: 0.5rem;
   border: 1px solid light-dark(var(--kui-neutral-200), var(--kui-neutral-700));
   color: light-dark(var(--kui-neutral-950), var(--kui-neutral-50));
+  padding-inline: var(--kui-spacing-sm);
+  text-align: left;
 }
 
 /*=====          End of Table          ======*/

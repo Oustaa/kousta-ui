@@ -4,39 +4,39 @@ import { PropsWithChildren, ReactNode } from "react";
 /**
  * change unknown to be a generic type | unknown
  */
-export type TableProps = {
-  data: any[];
+export type TableProps<T> = {
+  data: T[];
   loading: boolean;
   title: string;
-  headers: TableHeaders;
-  options?: TOptions;
+  headers: TableHeaders<T>;
+  options?: TOptions<T>;
 };
 
-export type TOptions = Partial<{
+export type TOptions<T> = Partial<{
   search: TSearch;
-  actions: Partial<TActions>;
-  extraActions: [];
+  actions: Partial<TActions<T>>;
+  extraActions: Array<ExtraActions<T>>;
   bulkActions: [];
   extraviews: TExtraView[];
   emptyTable: ReactNode;
 }>;
 
-export type TablePropsWithChildren =
-  | (PropsWithChildren<TableProps> & { children: ReactNode })
-  | (TableProps & { children?: never });
+export type TablePropsWithChildren<T> =
+  | (PropsWithChildren<TableProps<T>> & { children: ReactNode })
+  | (TableProps<T> & { children?: never });
 
-export type THeaderValue = {
+export type THeaderValue<T> = {
   value: string;
-  exec?: (row: any) => string | ReactNode;
+  exec?: (row: T) => string | ReactNode;
   visible?: boolean;
   canSee?: boolean;
 };
 
-export type THeader = Record<string, THeaderValue>;
+export type THeader<T> = Record<string, THeaderValue<T>>;
 
-export type TableHeaders = {
-  data: THeader;
-  setHeaders: React.Dispatch<React.SetStateAction<THeader>>;
+export type TableHeaders<T> = {
+  data: THeader<T>;
+  setHeaders: React.Dispatch<React.SetStateAction<THeader<T>>>;
 };
 
 type TExtraView = { name: string };
@@ -49,16 +49,25 @@ type TSearch = (
   },
 ) => void;
 
-type TActions = {
+type TActions<T> = {
   get: () => void;
   edit: {
-    canEdit?: boolean;
+    canEdit?: CanPerformAction<T>;
     onEdit: (row: any) => void;
   };
   delete: {
-    canDelete?: boolean;
+    canDelete?: CanPerformAction<T>;
     onDelete: (row: any) => void;
   };
   // this action could be deleted
   restore: unknown;
 };
+
+type ExtraActions<T> = {
+  title: string | ReactNode;
+  onClick: (row: T) => void;
+  Icon?: ReactNode;
+  allowed?: CanPerformAction<T>;
+};
+
+export type CanPerformAction<T> = ((row: T) => boolean) | boolean;

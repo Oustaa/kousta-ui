@@ -12,7 +12,8 @@
   "workspaces": {
     "packages": [
       "packages/*",
-      "demos/*"
+      "demos/*",
+      "docs"
     ]
   },
   "publishConfig": {
@@ -33,7 +34,10 @@
     "components:demo": "cd ./demos/components-demo && yarn run dev",
     "table:demo": "cd ./demos/table-demo && yarn run dev",
     "demos": "concurrently \"yarn run components:demo\" \"yarn run table:demo\"",
-    "knip": "knip"
+    "knip": "knip",
+    "docs:start": "yarn workspace docs start",
+    "docs:build": "yarn workspace docs build",
+    "docs:serve": "yarn workspace docs serve"
   },
   "keywords": [
     "ui-library",

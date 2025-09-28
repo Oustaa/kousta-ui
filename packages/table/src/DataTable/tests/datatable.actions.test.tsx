@@ -4,7 +4,7 @@ import { TableProps } from "../@types/props";
 import userEvent from "@testing-library/user-event";
 import { data, headers } from "./test-setup";
 
-function renderTableWithExtraProps(props: Partial<TableProps>) {
+function renderTableWithExtraProps(props: Partial<TableProps<unknown>>) {
   const setHeaders = jest.fn();
   render(
     <DataTable

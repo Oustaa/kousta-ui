@@ -1,19 +1,27 @@
-import { createContext, FC, PropsWithChildren, useContext } from "react";
-import { TableProps } from "./@types/props";
+import { createContext, PropsWithChildren, useContext } from "react";
+import type { TableProps } from "./@types/props";
 
-type TTableContextType = TableProps;
+type TableContextType<T> = TableProps<T>;
 
-const tableContext = createContext<TTableContextType | null>(null);
+const TableContext = createContext<TableContextType<unknown> | null>(null);
 
-export const useTableContext = () => {
-  const context = useContext(tableContext) as TTableContextType;
+export function useTableContext<T>() {
+  const ctx = useContext(TableContext);
+  if (!ctx) {
+    throw new Error(
+      "useTableContext must be used within a TableContextProvider",
+    );
+  }
+  return ctx as TableContextType<T>;
+}
 
-  return context;
-};
-
-export const TableContextProvider: FC<PropsWithChildren<TTableContextType>> = ({
+export const TableContextProvider = <T,>({
   children,
-  ...rest
-}) => {
-  return <tableContext.Provider value={rest}>{children}</tableContext.Provider>;
+  ...value
+}: PropsWithChildren<TableContextType<T>>) => {
+  return (
+    <TableContext.Provider value={value as TableContextType<unknown>}>
+      {children}
+    </TableContext.Provider>
+  );
 };

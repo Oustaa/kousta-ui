@@ -3,7 +3,7 @@ import DataTable from "..";
 import { data, headers } from "./test-setup";
 import { TableProps } from "../@types/props";
 
-function renderTableWithExtraProps(props?: Partial<TableProps>) {
+function renderTableWithExtraProps(props?: Partial<TableProps<unknown>>) {
   const setHeaders = jest.fn();
   render(
     <DataTable

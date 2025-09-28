@@ -22,7 +22,7 @@ const TableHead = () => {
     <div className={classes["kui-table-head"]}>
       <div className={classes["kui-table-head-section"]}>
         {/* Hide Table Rows */}
-        <Menu.Menu closeItemOnClick={false}>
+        <Menu.Menu closeOnClick={false}>
           <Menu.Target>S/H</Menu.Target>
           <Menu.DropDown>
             {headersCanSee.map((headerName) => (
