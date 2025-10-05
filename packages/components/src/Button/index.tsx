@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from "react";
-import { ButtonProps, ButtonVarient } from "./type";
+import { ButtonProps, ButtonVarient } from "./_props";
 
 import classes from "./Button.module.css";
 

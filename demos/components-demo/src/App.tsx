@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, ContextMenu, Menu, Input } from "@kousta-ui/components";
-import { useSayHello } from "@kousta-ui/hooks";
+import { Button, ContextMenu, Menu, Input, Modal } from "@kousta-ui/components";
 import {
   Bs123,
   BsAirplane,
@@ -14,9 +13,10 @@ import { RiFileExcel2Line } from "react-icons/ri";
 import "@kousta-ui/components/esm/index.css";
 import "./App.css";
 import "./index.css";
+import { useDisclosure } from "@kousta-ui/hooks";
 
 function App() {
-  const sayHello = useSayHello("Oussama Is the goat");
+  const { opened, close, open } = useDisclosure(true);
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState<string>("");
 
@@ -33,10 +33,134 @@ function App() {
 
   return (
     <>
+      <Modal
+        opened={opened}
+        onClose={close}
+        // modalTrigger={"Create Project In Modal"}
+        title={
+          <img
+            style={{ width: "50px" }}
+            src={
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/768px-LEGO_logo.svg.png"
+            }
+          />
+        }
+        // withCloseBtn={false}
+        // withBackdrop={false}
+        // beforeClose={() => {
+        //   alert("How are you??");
+        //   // return false;
+        // }}
+        position="left"
+        size="450"
+        offset={0}
+        // fullHeight
+        // fullWidth
+      >
+        Hello I Am A Modal Hello I Am A Modal Hello I Am A Modal Hello I Am A
+        Modal Hello I Am A Modal Hello I Am A Modal Hello I Am A Modal Hello I
+        Am A Modal
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        cs dsfdsg f
+      </Modal>
       <Button
         loading={loading}
         onClick={() => {
-          sayHello();
           setLoading((prev) => !prev);
           setTimeout(() => {
             setLoading(false);
@@ -46,19 +170,24 @@ function App() {
         Primary Button
       </Button>
       <br />
+      <Button onClick={open}>Open Modal</Button>
+
       <br />
       <Input
         label="Society"
         placeholder="this is my placeholder"
-        // errors={["There is an error"]}
+        errors={["There is an error"]}
         required={true}
+        // type="numbenumberr"
         value={value}
         onChange={(e) => {
           setValue(e.target.value);
         }}
         // i should add this
         leftSection={
-          <Button onClick={() => alert("Hello InputLeft Section")} />
+          <Button onClick={() => alert("Hello InputLeft Section")}>
+            dfdfh
+          </Button>
         }
       />
       <br />
@@ -67,7 +196,6 @@ function App() {
         varient="secondary"
         loading={loading}
         onClick={() => {
-          sayHello();
           setLoading((prev) => !prev);
           setTimeout(() => {
             setLoading(false);
@@ -220,11 +348,15 @@ function App() {
           },
         ]}
       >
-        Hello there sdfgdjh fdbkj hreghdf hjkghre oyuigdsfg khrklg dfhbgjkfd
-        hkjgh jkldsfagkhja fghjhldsfg ewyufghjddhjafg dsjhkfghds jfagsdhjf
-        gew8fg dsyfage hjkfgsdhjkf agweufy ds gew8fg dsyfage hjkfgsdhjkf agweufy
-        ds gew8fg dsyfage hjkfgsdhjkf agweufy ds gew8fg dsyfage hjkfgsdhjkf
-        agweufy ds gew8fg dsyfage hjkfgsdhjkf agweufy ds
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five
+        centuries, but also the leap into electronic typesetting, remaining
+        essentially unchanged. It was popularised in the 1960s with the release
+        of Letraset sheets containing Lorem Ipsum passages, and more recently
+        with desktop publishing software like Aldus PageMaker including versions
+        of Lorem Ipsum.
       </ContextMenu>
 
       <br />

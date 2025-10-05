@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { InputProps } from "./types";
+import { InputProps } from "./_props";
 
 import classes from "./Input.module.css";
 

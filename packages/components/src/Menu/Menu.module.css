@@ -19,6 +19,10 @@ button {
     --var(--kui-neutral-600),
     var(--kui-neutral-200)
   );
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .kui-menu_dropdown {
