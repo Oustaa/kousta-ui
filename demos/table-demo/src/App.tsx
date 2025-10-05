@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { DataTable } from "@kousta-ui/table";
 import { THeader } from "@kousta-ui/table/lib/DataTable/@types/props";
 import { Input, Menu } from "@kousta-ui/components";
 import { Bs123 } from "react-icons/bs";
 
+import { users } from "./data/users";
+
 import "@kousta-ui/table/esm/index.css";
 import "@kousta-ui/components/esm/index.css";
 
-type UserType = {
+export type UserType = {
   name: string;
   age: number;
   email: string;
@@ -16,23 +18,7 @@ type UserType = {
 };
 
 const App = () => {
-  const defaultData: Array<UserType> = [
-    {
-      name: "Oussama Tailba",
-      age: 27,
-      email: "otailaba98@gmail.com",
-      address: "Bab ghmat syba 37",
-      location: { name: "Hello Location" },
-    },
-    {
-      name: "kaoutar Taki",
-      age: 22,
-      email: "ktaki@gmail.com",
-      location: { name: "Hello Ny Fucking Location" },
-    },
-  ];
-
-  const [data, setData] = useState<Array<UserType>>(defaultData);
+  const [data, setData] = useState<Array<UserType>>(users);
 
   const [headers, setHeaders] = useState<THeader<UserType>>({
     user: {
@@ -52,6 +38,7 @@ const App = () => {
         return "WHAAAAAAAAAA";
       },
       visible: false,
+      // canSee: false,
     },
     age: {
       value: "age",
@@ -66,6 +53,23 @@ const App = () => {
       value: "location.name",
     },
   });
+
+  const searchHandler = useCallback(
+    (q: string, { visibleHeaders: vh }: { visibleHeaders: string[] }) => {
+      const reg = new RegExp(q);
+
+      setData(() =>
+        users.filter(
+          (user) =>
+            (vh?.includes("name") && reg.test(user.name)) ||
+            (vh?.includes("email") && reg.test(user.email)) ||
+            reg.test(user.address || "") ||
+            reg.test(user.location.name),
+        ),
+      );
+    },
+    [],
+  );
 
   return (
     <div style={{ width: "90%", marginInline: "auto", marginTop: "2rem" }}>
@@ -115,6 +119,17 @@ const App = () => {
         loading={false}
         title="this is a title"
         options={{
+          viewComp: {
+            Component: (row) => {
+              return <h2>{row.email}</h2>;
+            },
+            type: "Row",
+            // modalOptions: {
+            //   title: "Hello Extended Table",
+            //   position: "top",
+            //   offset: 80,
+            // },
+          },
           actions: {
             delete: {
               canDelete: (row) => {
@@ -141,19 +156,7 @@ const App = () => {
             },
           ],
           // emptyTable: <div style={{ color: "red" }}>Whaaat The fuck</div>,
-          search: (q, { visibleHeaders: vh }) => {
-            const reg = new RegExp(q);
-
-            setData(() =>
-              defaultData.filter(
-                (user) =>
-                  (vh?.includes("name") && reg.test(user.name)) ||
-                  (vh?.includes("email") && reg.test(user.email)) ||
-                  reg.test(user.address || "") ||
-                  reg.test(user.location.name),
-              ),
-            );
-          },
+          search: searchHandler,
         }}
       />
       <br />
@@ -162,7 +165,7 @@ const App = () => {
       <br />
       <br />
       <Menu.Menu closeOnClick type="click">
-        <Menu.Target>Hello there motherfucker</Menu.Target>
+        <Menu.Target>I AM A MENU</Menu.Target>
         <Menu.DropDown>
           <Menu.Label>Hello Application</Menu.Label>
           <Menu.Item closeMenuOnClick={false}>Dont Close</Menu.Item>

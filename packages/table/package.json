@@ -19,6 +19,7 @@
   "dependencies": {
     "@kousta-ui/components": "workspace:*",
     "@kousta-ui/helpers": "workspace:*",
+    "@kousta-ui/hooks": "workspace:*",
     "@kousta-ui/styles": "workspace:*"
   },
   "devDependencies": {

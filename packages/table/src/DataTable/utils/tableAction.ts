@@ -3,16 +3,18 @@ import { CanPerformAction, TOptions } from "../@types/props";
 export function hasActions(options?: TOptions<unknown>): boolean {
   if (
     options &&
-    (options.actions || options?.extraActions) && // has delete action
-    ((options.actions?.delete &&
-      options.actions.delete.canDelete &&
-      typeof options.actions.delete.onDelete === "function") ||
-      // has edit action
-      (options.actions?.edit &&
-        options.actions.edit.canEdit &&
-        typeof options.actions.edit.onEdit === "function") ||
-      // has extra actions
-      (options.extraActions && options.extraActions?.length > 0))
+    (((options.actions || options?.extraActions) &&
+      // has delete action
+      ((options.actions?.delete &&
+        options.actions.delete.canDelete &&
+        typeof options.actions.delete.onDelete === "function") ||
+        // has edit action
+        (options.actions?.edit &&
+          options.actions.edit.canEdit &&
+          typeof options.actions.edit.onEdit === "function") ||
+        // has extra actions
+        (options.extraActions && options.extraActions?.length > 0))) ||
+      options?.viewComp)
   )
     return true;
 

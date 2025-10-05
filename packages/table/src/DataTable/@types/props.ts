@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { PropsWithChildren, ReactNode } from "react";
+import { ModalProps } from "@kousta-ui/components";
 
 /**
  * change unknown to be a generic type | unknown
@@ -16,9 +17,24 @@ export type TOptions<T> = Partial<{
   search: TSearch;
   actions: Partial<TActions<T>>;
   extraActions: Array<ExtraActions<T>>;
+  emptyTable: ReactNode;
+  viewComp: {
+    Component: (row: T) => ReactNode;
+    type?: "Modal" | "Row";
+    modalOptions?: Omit<ModalProps, "opned" | "onClose" | "modalTrigger">;
+  } & (
+    | {
+        type: "Modal";
+        modalOptions?: ModalProps;
+      }
+    | {
+        type?: "Row";
+        modalOptions?: never;
+      }
+  );
+
   bulkActions: [];
   extraviews: TExtraView[];
-  emptyTable: ReactNode;
 }>;
 
 export type TablePropsWithChildren<T> =

@@ -1,3 +1,4 @@
+import { TOptions } from "../@types/props";
 import {
   canPerformActionResolver,
   hasActions,
@@ -43,7 +44,7 @@ describe("table actions presence helpers", () => {
     });
 
     it("returns false when actions missing and no extraActions", () => {
-      expect(hasActions({} as any)).toBe(false);
+      expect(hasActions({})).toBe(false);
     });
 
     it("returns true when valid delete action exists (boolean canDelete = true)", () => {
@@ -51,7 +52,7 @@ describe("table actions presence helpers", () => {
         actions: {
           delete: { canDelete: true, onDelete: jest.fn() },
         },
-      } as any;
+      };
       expect(hasActions(options)).toBe(true);
     });
 
@@ -60,7 +61,7 @@ describe("table actions presence helpers", () => {
         actions: {
           delete: { canDelete: () => true, onDelete: jest.fn() },
         },
-      } as any;
+      };
       expect(hasActions(options)).toBe(true);
     });
 
@@ -69,7 +70,7 @@ describe("table actions presence helpers", () => {
         actions: {
           edit: { canEdit: true, onEdit: jest.fn() },
         },
-      } as any;
+      };
       expect(hasActions(options)).toBe(true);
     });
 
@@ -85,8 +86,8 @@ describe("table actions presence helpers", () => {
         actions: {
           delete: { canDelete: true },
         },
-      } as any;
-      expect(hasActions(options)).toBe(false);
+      };
+      expect(hasActions(options as any)).toBe(false);
     });
 
     it("returns false when edit is invalid (missing onEdit)", () => {
@@ -94,13 +95,21 @@ describe("table actions presence helpers", () => {
         actions: {
           edit: { canEdit: true },
         },
-      } as any;
-      expect(hasActions(options)).toBe(false);
+      };
+      expect(hasActions(options as any)).toBe(false);
     });
 
     it("returns false when extraActions is empty array", () => {
-      const options = { extraActions: [] } as any;
+      const options = { extraActions: [] };
       expect(hasActions(options)).toBe(false);
+    });
+
+    it("canPerformActionResolver should return true if options has only ViewComp", () => {
+      const options = {
+        viewComp: {},
+      };
+
+      expect(hasActions(options as any)).toBe(true);
     });
   });
 
@@ -112,7 +121,7 @@ describe("table actions presence helpers", () => {
     });
 
     it("returns false when delete action missing", () => {
-      const options = { actions: {} } as any;
+      const options = { actions: {} };
       expect(hasDeleteAction(options, row)).toBe(false);
     });
 
@@ -121,8 +130,8 @@ describe("table actions presence helpers", () => {
         actions: {
           delete: { canDelete: true, onDelete: null },
         },
-      } as any;
-      expect(hasDeleteAction(options, row)).toBe(false);
+      };
+      expect(hasDeleteAction(options as any, row)).toBe(false);
     });
 
     it("returns true when canDelete = true and onDelete is function", () => {
@@ -130,7 +139,7 @@ describe("table actions presence helpers", () => {
         actions: {
           delete: { canDelete: true, onDelete: jest.fn() },
         },
-      } as any;
+      };
       expect(hasDeleteAction(options, row)).toBe(true);
     });
 
@@ -139,7 +148,7 @@ describe("table actions presence helpers", () => {
         actions: {
           delete: { canDelete: false, onDelete: jest.fn() },
         },
-      } as any;
+      };
       expect(hasDeleteAction(options, row)).toBe(false);
     });
 
@@ -149,7 +158,7 @@ describe("table actions presence helpers", () => {
         actions: {
           delete: { canDelete, onDelete: jest.fn() },
         },
-      } as any;
+      };
       expect(hasDeleteAction(options, row)).toBe(true);
       expect(canDelete).toHaveBeenCalledWith(row);
     });
@@ -159,7 +168,7 @@ describe("table actions presence helpers", () => {
         actions: {
           delete: { canDelete: () => false, onDelete: jest.fn() },
         },
-      } as any;
+      };
       expect(hasDeleteAction(options, row)).toBe(false);
     });
   });
@@ -170,7 +179,7 @@ describe("table actions presence helpers", () => {
     });
 
     it("returns false when edit action missing", () => {
-      const options = { actions: {} } as any;
+      const options = { actions: {} };
       expect(hasEditAction(options)).toBe(false);
     });
 
@@ -179,8 +188,8 @@ describe("table actions presence helpers", () => {
         actions: {
           edit: { canEdit: true, onEdit: null },
         },
-      } as any;
-      expect(hasEditAction(options)).toBe(false);
+      };
+      expect(hasEditAction(options as any)).toBe(false);
     });
 
     it("returns false when canEdit = false", () => {
@@ -188,7 +197,7 @@ describe("table actions presence helpers", () => {
         actions: {
           edit: { canEdit: false, onEdit: jest.fn() },
         },
-      } as any;
+      };
       expect(hasEditAction(options)).toBe(false);
     });
 
@@ -197,7 +206,7 @@ describe("table actions presence helpers", () => {
         actions: {
           edit: { canEdit: true, onEdit: jest.fn() },
         },
-      } as any;
+      };
       expect(hasEditAction(options)).toBe(true);
     });
   });
