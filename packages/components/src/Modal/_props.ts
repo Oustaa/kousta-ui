@@ -35,7 +35,7 @@ export type ModalProps = {
 
   // Animations will not be implemented now
   // animation?: ModalAnimation;
-  animationDurationMs?: number;
+  // animationDurationMs?: number;
 
   // controlled modal
   opened?: boolean;

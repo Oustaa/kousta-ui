@@ -112,12 +112,11 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
 
     if (!isControlled) {
       modalRef.current.show();
-      lockBody(true);
       setModalOpened(true);
       afterOpen?.();
     }
 
-    modalRef.current.classList.add("toLeft");
+    lockBody(true);
   }, [beforeOpen, afterOpen, isControlled]);
 
   const handleCloseModal = useCallback(() => {
@@ -125,14 +124,13 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
 
     if (isControlled) {
       onClose?.();
-      return;
+    } else if (modalRef.current) {
+      modalRef.current.close();
+      setModalOpened(false);
+      afterClose?.();
     }
 
-    if (!modalRef.current) return;
-    modalRef.current.close();
     lockBody(false);
-    setModalOpened(false);
-    afterClose?.();
   }, [beforeClose, afterClose, isControlled, onClose]);
 
   useEffect(() => {

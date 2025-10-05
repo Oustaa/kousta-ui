@@ -13,4 +13,4 @@ export { default as Input } from "./Input";
 export type * from "./Input/_props";
 
 export { default as Modal } from "./Modal";
-export type * from "./Menu/_props";
+export type * from "./Modal/_props";
