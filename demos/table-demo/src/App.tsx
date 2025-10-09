@@ -119,6 +119,15 @@ const App = () => {
         loading={false}
         title="this is a title"
         options={{
+          bulkActions: [
+            {
+              title: "Delete All",
+              onClick: (rows) => {
+                console.log({ rows });
+              },
+            },
+          ],
+
           viewComp: {
             Component: (row) => {
               return <h2>{row.email}</h2>;
@@ -132,10 +141,7 @@ const App = () => {
           },
           actions: {
             delete: {
-              canDelete: (row) => {
-                console.log({ row });
-                return row?.age > 25;
-              },
+              canDelete: (row) => row?.age > 25,
               onDelete: (row: UserType) => {
                 console.log({ row });
               },
@@ -155,6 +161,7 @@ const App = () => {
               Icon: <Bs123 />,
             },
           ],
+          selectFilter: { adult: (row) => row.age > 22 && row.age < 33 },
           // emptyTable: <div style={{ color: "red" }}>Whaaat The fuck</div>,
           search: searchHandler,
         }}

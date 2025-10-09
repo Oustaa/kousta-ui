@@ -1,4 +1,4 @@
-import { THeader } from "../@types/props";
+import { THeader } from "../_props";
 
 export type UserType = {
   name: string;

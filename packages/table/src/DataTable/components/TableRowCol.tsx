@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import Table from "../../Table";
-import { THeaderValue } from "../@types/props";
+import { THeaderValue } from "../_props";
 
 import { getNestedProperty } from "@kousta-ui/helpers";
 

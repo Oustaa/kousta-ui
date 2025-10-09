@@ -2,9 +2,6 @@
 import { PropsWithChildren, ReactNode } from "react";
 import { ModalProps } from "@kousta-ui/components";
 
-/**
- * change unknown to be a generic type | unknown
- */
 export type TableProps<T> = {
   data: T[];
   loading: boolean;
@@ -32,9 +29,9 @@ export type TOptions<T> = Partial<{
         modalOptions?: never;
       }
   );
-
-  bulkActions: [];
+  bulkActions: TBulkActions<T>[];
   extraviews: TExtraView[];
+  selectFilter: Record<string, (row: T) => boolean>;
 }>;
 
 export type TablePropsWithChildren<T> =
@@ -53,6 +50,12 @@ export type THeader<T> = Record<string, THeaderValue<T>>;
 export type TableHeaders<T> = {
   data: THeader<T>;
   setHeaders: React.Dispatch<React.SetStateAction<THeader<T>>>;
+};
+
+type TBulkActions<T> = {
+  title: string;
+  onClick: (rows: T[]) => void | Promise<unknown>;
+  valueExtractor?: (rows: T[]) => unknown;
 };
 
 type TExtraView = { name: string };

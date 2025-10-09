@@ -10,6 +10,7 @@ import {
 import {
   canPerformActionResolver,
   hasActions,
+  hasBulkActions,
   hasDeleteAction,
   hasEditAction,
 } from "../utils/tableAction";
@@ -19,6 +20,7 @@ import classes from "../DataTable.module.css";
 import { ReactNode } from "react";
 import { useDisclosure } from "@kousta-ui/hooks";
 import { getShownHeders } from "../utils/getShownHeaders";
+import TableRowCheckbox from "./TableRowSelect";
 
 const TableRow = <T extends Record<string, unknown>>({
   row,
@@ -33,18 +35,30 @@ const TableRow = <T extends Record<string, unknown>>({
   const contextMenuOptions: ContextMenuTypeOption[] = [];
   const tableActions: ReactNode[] = [];
 
-  // the following conditions should be compined together
   if (options && options.actions) {
-    if (hasDeleteAction(options, row))
+    if (hasDeleteAction(options, row)) {
       contextMenuOptions.push({
         title: "Delete",
         onClick: () => options!.actions!.delete?.onDelete!(row),
       });
-    if (hasEditAction(options))
+
+      tableActions.push(
+        <Button onClick={() => options!.actions!.delete?.onDelete!(row)}>
+          delete
+        </Button>,
+      );
+    }
+    if (hasEditAction(options)) {
       contextMenuOptions.push({
         title: "Edit",
         onClick: () => options!.actions!.edit?.onEdit!(row),
       });
+      tableActions.push(
+        <Button onClick={() => options!.actions!.edit?.onEdit!(row)}>
+          Edit
+        </Button>,
+      );
+    }
     if (options?.viewComp) {
       if (options.viewComp.type === "Modal") {
         contextMenuOptions.push({
@@ -61,40 +75,24 @@ const TableRow = <T extends Record<string, unknown>>({
 
     if (options.extraActions && options.extraActions.length > 0) {
       options.extraActions.forEach((action) => {
-        contextMenuOptions.push({
-          title: action.title,
-          icon: action.Icon,
-          active: canPerformActionResolver(row, action.allowed),
-          onClick: action.onClick.bind(this, row),
-        });
+        if (canPerformActionResolver(row, action.allowed)) {
+          contextMenuOptions.push({
+            title: action.title,
+            icon: action.Icon,
+            active: canPerformActionResolver(row, action.allowed),
+            onClick: action.onClick.bind(this, row),
+          });
+          tableActions.push(
+            canPerformActionResolver(row, action.allowed) && (
+              <Button onClick={() => options!.actions!.edit?.onEdit!(row)}>
+                {action.Icon} {action.title}
+              </Button>
+            ),
+          );
+        }
       });
     }
   }
-
-  if (hasDeleteAction(options, row))
-    tableActions.push(
-      <Button onClick={() => options!.actions!.delete?.onDelete!(row)}>
-        delete
-      </Button>,
-    );
-
-  if (hasEditAction(options))
-    tableActions.push(
-      <Button onClick={() => options!.actions!.edit?.onEdit!(row)}>
-        Edit
-      </Button>,
-    );
-
-  if (options?.extraActions)
-    options!.extraActions?.forEach((action) =>
-      tableActions.push(
-        canPerformActionResolver(row, action.allowed) && (
-          <Button onClick={() => options!.actions!.edit?.onEdit!(row)}>
-            {action.Icon} {action.title}
-          </Button>
-        ),
-      ),
-    );
 
   if (options?.viewComp) {
     if (options.viewComp.type === "Modal") {
@@ -119,6 +117,9 @@ const TableRow = <T extends Record<string, unknown>>({
       )}
 
       <ContextMenu itemCloseOnClick={true} options={contextMenuOptions} As="tr">
+        {hasBulkActions(options) && (
+          <TableRowCheckbox index={index} row={row} />
+        )}
         {Object.values(headers.data).map((headerValue) => {
           return (
             <TableRowCol<T>

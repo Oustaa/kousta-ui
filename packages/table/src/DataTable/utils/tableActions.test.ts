@@ -1,4 +1,3 @@
-import { TOptions } from "../@types/props";
 import {
   canPerformActionResolver,
   hasActions,

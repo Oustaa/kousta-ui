@@ -1,4 +1,4 @@
-import { THeader } from "../@types/props";
+import { THeader } from "../_props";
 
 export function getShownHeders(headers: THeader<unknown>): string[] {
   return Object.keys(headers).filter(

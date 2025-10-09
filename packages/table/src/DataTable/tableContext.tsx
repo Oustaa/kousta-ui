@@ -1,7 +1,12 @@
 import { createContext, PropsWithChildren, useContext } from "react";
-import type { TableProps } from "./@types/props";
+import type { TableProps } from "./_props";
 
-type TableContextType<T> = TableProps<T>;
+type TableContextType<T> = TableProps<T> & {
+  rowSelection: {
+    selectedRows: Record<number, unknown>;
+    setSelectedRows: (index: number, row: unknown, all?: boolean) => void;
+  };
+};
 
 const TableContext = createContext<TableContextType<unknown> | null>(null);
 

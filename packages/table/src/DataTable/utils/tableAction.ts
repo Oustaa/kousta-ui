@@ -1,4 +1,4 @@
-import { CanPerformAction, TOptions } from "../@types/props";
+import { CanPerformAction, TOptions } from "../_props";
 
 export function hasActions(options?: TOptions<unknown>): boolean {
   if (
@@ -19,6 +19,10 @@ export function hasActions(options?: TOptions<unknown>): boolean {
     return true;
 
   return false;
+}
+
+export function hasBulkActions(options?: TOptions<unknown>): boolean {
+  return !!(options && options.bulkActions && options?.bulkActions?.length > 0);
 }
 
 export function hasDeleteAction(

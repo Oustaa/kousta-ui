@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import DataTable from "..";
 import { data, headers } from "./test-setup";
-import { TableProps } from "../@types/props";
+import { TableProps } from "../_props";
 
 function renderTableWithExtraProps(props?: Partial<TableProps<unknown>>) {
   const setHeaders = jest.fn();

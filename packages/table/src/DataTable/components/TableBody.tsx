@@ -11,14 +11,7 @@ const TableBody = <T extends Record<string, unknown>>() => {
   ) : (
     <Table.Tbody>
       {data.map((row, index) => {
-        return (
-          <TableRow<T>
-            index={index}
-            key={index}
-            // @ts-expect-error this is not an error
-            row={row}
-          />
-        );
+        return <TableRow<T> index={index} key={index} row={row as T} />;
       })}
     </Table.Tbody>
   );

@@ -1,3 +1,5 @@
+import { MouseEvent } from "react";
+
 export type ButtonVarient = "primary" | "secondary";
 
 export type ButtonProps = {
@@ -5,5 +7,5 @@ export type ButtonProps = {
   disabled?: boolean;
   varient?: ButtonVarient;
   type?: "submit" | "reset" | "button";
-  onClick?: () => void;
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 };

@@ -24,7 +24,7 @@ const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
       }
       data-loading={loading}
       disabled={disabled || loading}
-      onClick={onClick}
+      onClick={(e) => onClick?.(e)}
       type={type}
     >
       {loading ? <div className="">Loading...</div> : children}

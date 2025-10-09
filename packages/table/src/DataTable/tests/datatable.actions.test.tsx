@@ -1,6 +1,6 @@
 import DataTable from "..";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { TableProps } from "../@types/props";
+import { TableProps } from "../_props";
 import userEvent from "@testing-library/user-event";
 import { data, headers } from "./test-setup";
 
