@@ -1,5 +1,6 @@
 // _props.ts
 import { ReactNode } from "react";
+import { ButtonVariant } from "../Button/_props";
 
 export type ModalSize = "xs" | "sm" | "md" | "lg" | "xl";
 
@@ -32,6 +33,9 @@ export type ModalProps = {
   position?: ModalPosition;
   fullHeight?: boolean;
   fullWidth?: boolean;
+  closeOnClickEsc?: boolean;
+  closeOnClickOutside?: boolean;
+  modalTriggerBtnVariant?: ButtonVariant;
 
   // Animations will not be implemented now
   // animation?: ModalAnimation;
@@ -50,9 +54,11 @@ export type ModalProps = {
       opened: boolean;
       onClose: VoidFunction;
       modalTrigger?: never;
+      modalTriggerBtnVariant?: never;
     }
   | {
       modalTrigger: string | ReactNode;
+      modalTriggerBtnVariant?: ButtonVariant;
       opened?: never;
       onClose?: never;
     }

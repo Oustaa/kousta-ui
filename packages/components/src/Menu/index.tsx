@@ -11,6 +11,7 @@ import { MenuContextProvider, useMenuContext } from "./MenuContextProvider";
 import { MenuItemProps, MenuPosition, MenuProps } from "./_props";
 
 import classes from "./Menu.module.css";
+import { MenuPropsProvided, useComponentContext } from "../PropsContext";
 
 type postionStyleType = Record<MenuPosition, CSSProperties>;
 
@@ -71,14 +72,39 @@ function getPositionStyle(gapSize: number): postionStyleType {
   };
 }
 
+const defaultProps: MenuProps = {
+  type: "click",
+  closeOnClick: true,
+  position: "Bottom-Start",
+  offset: 4,
+};
+
 const MenuContainer: FC<PropsWithChildren<MenuProps>> = ({
   children,
-  type = "click",
-  closeOnClick = true,
-  position = "Bottom-Start",
-  offset = 4,
+  type,
+  closeOnClick,
+  position,
+  offset,
   ...props
 }) => {
+  debugger;
+  const menuProps = useComponentContext("menu") as MenuPropsProvided;
+
+  if (menuProps && menuProps.menu) {
+    const { menu } = menuProps;
+
+    if (menu.type && !type) type = menu.type;
+    if (menu.offset && !offset) offset = menu.offset;
+    if (menu.position && !position) position = menu.position;
+    if (menu.closeOnClick && closeOnClick === undefined)
+      closeOnClick = menu.closeOnClick;
+  }
+
+  if (!type) type = defaultProps.type;
+  if (!position) position = defaultProps.position;
+  if (!offset) offset = defaultProps.offset;
+  if (closeOnClick === undefined) closeOnClick = defaultProps.closeOnClick;
+
   const menuRef = useRef<null | HTMLDivElement>(null);
   const [opened, setOpened] = useState(false);
 
@@ -97,6 +123,7 @@ const MenuContainer: FC<PropsWithChildren<MenuProps>> = ({
 
   return (
     <MenuContextProvider
+      {...props}
       opened={opened}
       open={() => setOpened(true)}
       close={() => setOpened(false)}
@@ -105,7 +132,6 @@ const MenuContainer: FC<PropsWithChildren<MenuProps>> = ({
       closeOnClick={closeOnClick}
       position={position}
       offset={offset}
-      {...props}
     >
       <div
         ref={menuRef}
@@ -161,23 +187,30 @@ const MenuDropDown: FC<PropsWithChildren> = ({ children }) => {
 
 const MenuItem: FC<PropsWithChildren<MenuItemProps>> = ({
   children,
-  closeMenuOnClick,
+  closeMenuOnClick = undefined,
   leftSection,
   rightSection,
   disabled,
 }) => {
+  const menuProps = useComponentContext("menu") as MenuPropsProvided;
+  if (menuProps && menuProps.menuItem) {
+    const { menuItem } = menuProps;
+
+    if (menuItem.closeMenuOnClick && closeMenuOnClick === undefined)
+      closeMenuOnClick = menuItem.closeMenuOnClick;
+  }
   const { close, closeOnClick } = useMenuContext();
+
+  const shouldClose = (closeMenuOnClick ?? closeOnClick) === true;
 
   return (
     <button
       disabled={disabled}
       role="menuitem"
       onClick={() => {
-        if (
-          (closeMenuOnClick === undefined && closeOnClick) ||
-          closeMenuOnClick === true
-        )
-          close();
+        console.log({ closeMenuOnClick, closeOnClick });
+
+        if (shouldClose) close();
       }}
       className={classes["kui-menu_item"]}
     >

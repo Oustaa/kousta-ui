@@ -14,3 +14,5 @@ export type * from "./Input/_props";
 
 export { default as Modal } from "./Modal";
 export type * from "./Modal/_props";
+
+export { ComponentPropsProvider } from "./PropsContext";

@@ -7,7 +7,7 @@ button {
 }
 
 .kui-contextMenu-Container {
-  z-index: 9999;
+  /* z-index: 9999; */
 }
 
 .kui-contextMenu {
@@ -15,6 +15,7 @@ button {
   background-color: light-dark(var(--kui-neutral-50), var(--kui-neutral-700));
   width: max-content;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
 }
 
 .kui-contextMenu-Item {
@@ -86,7 +87,7 @@ button {
 }
 
 .kui-contextMenu_group_title {
-  font-size: 0.5rem;
+  font-size: var(--kui-spacing-sm);
   color: var(--kui-neutral-500);
   padding-inline: 10px;
   padding-top: 4px;

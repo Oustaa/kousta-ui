@@ -3,25 +3,15 @@
 =============================================*/
 
 .btn {
-  /* display: block; */
   border: unset;
-  padding: var(--kui-spacing-sm) var(--kui-spacing-md);
   font-weight: 700;
   border-radius: calc(var(--kui-rounded) * 20px);
-}
-
-.btn-primary {
-  composes: btn;
-  background-color: var(--kui-primary-500);
-  color: var(--kui-neutral-50);
 
   &:hover {
-    background-color: var(--kui-primary-600);
     cursor: pointer;
   }
 
   &:disabled {
-    background-color: var(--kui-primary-300);
     cursor: progress;
 
     &:not([data-loading="true"]) {
@@ -30,19 +20,172 @@
   }
 }
 
-.btn-secondary {
+.btn-sm {
   composes: btn;
-  background-color: var(--kui-neutral-200);
-  color: var(--kui-neutral-600);
+  padding: var(--kui-spacing-xs) var(--kui-spacing-sm);
+}
+
+.btn-md {
+  composes: btn;
+  padding: var(--kui-spacing-sm) var(--kui-spacing-md);
+}
+
+.btn-lg {
+  composes: btn;
+  padding: var(--kui-spacing-md) var(--kui-spacing-lg);
+}
+
+/* Button Variants */
+.btn-primary {
+  background-color: var(--kui-primary-500);
+  color: var(--kui-primary-50);
 
   &:hover {
-    background-color: var(--kui-neutral-300);
-    cursor: pointer;
+    background-color: var(--kui-primary-600);
   }
+}
 
-  &:disabled {
-    background-color: var(--kui-neutral-100);
-    cursor: progress;
+.btn-primary-outline {
+  outline: 1px solid var(--kui-primary-500);
+  outline-offset: -1px;
+  color: var(--kui-primary-500);
+
+  &:hover {
+    background-color: var(--kui-primary-500);
+    color: var(--kui-neutral-50);
+  }
+}
+
+.btn-primary-light {
+  background-color: var(--kui-primary-100);
+  color: var(--kui-primary-600);
+
+  &:hover {
+    background-color: var(--kui-primary-500);
+    color: var(--kui-primary-50);
+  }
+}
+
+.btn-success {
+  background-color: var(--kui-success-500);
+  color: var(--kui-success-50);
+
+  &:hover {
+    background-color: var(--kui-success-600);
+  }
+}
+
+.btn-success-outline {
+  outline: 1px solid var(--kui-success-500);
+  outline-offset: -1px;
+  color: var(--kui-success-500);
+
+  &:hover {
+    background-color: var(--kui-success-500);
+    color: var(--kui-neutral-50);
+  }
+}
+
+.btn-success-light {
+  background-color: var(--kui-success-100);
+  color: var(--kui-success-600);
+
+  &:hover {
+    background-color: var(--kui-success-500);
+    color: var(--kui-success-50);
+  }
+}
+
+.btn-danger {
+  background-color: var(--kui-danger-500);
+  color: var(--kui-danger-50);
+
+  &:hover {
+    background-color: var(--kui-danger-600);
+  }
+}
+
+.btn-danger-outline {
+  outline: 1px solid var(--kui-danger-500);
+  outline-offset: -1px;
+  color: var(--kui-danger-500);
+
+  &:hover {
+    background-color: var(--kui-danger-500);
+    color: var(--kui-neutral-50);
+  }
+}
+
+.btn-danger-light {
+  background-color: var(--kui-danger-100);
+  color: var(--kui-danger-600);
+
+  &:hover {
+    background-color: var(--kui-danger-500);
+    color: var(--kui-danger-50);
+  }
+}
+
+.btn-neutral {
+  background-color: var(--kui-neutral-500);
+  color: var(--kui-neutral-50);
+
+  &:hover {
+    background-color: var(--kui-neutral-600);
+  }
+}
+
+.btn-neutral-outline {
+  outline: 1px solid var(--kui-neutral-500);
+  outline-offset: -1px;
+  color: var(--kui-neutral-500);
+
+  &:hover {
+    background-color: var(--kui-neutral-500);
+    color: var(--kui-neutral-50);
+  }
+}
+
+.btn-neutral-light {
+  background-color: light-dark(var(--kui-neutral-100), var(--kui-neutral-800));
+  color: light-dark(var(--kui-neutral-600), var(--kui-neutral-100));
+
+  &:hover {
+    background-color: light-dark(
+      var(--kui-neutral-200),
+      var(--kui-neutral-700)
+    );
+    color: light-dark(var(--kui-neutral-50));
+  }
+}
+
+.btn-warning {
+  background-color: var(--kui-warning-500);
+  color: var(--kui-warning-50);
+
+  &:hover {
+    background-color: var(--kui-warning-600);
+  }
+}
+
+.btn-warning-outline {
+  outline: 1px solid var(--kui-warning-500);
+  outline-offset: -1px;
+  color: var(--kui-warning-500);
+
+  &:hover {
+    background-color: var(--kui-warning-500);
+    color: var(--kui-warning-50);
+  }
+}
+
+.btn-warning-light {
+  background-color: var(--kui-warning-100);
+  color: var(--kui-warning-600);
+
+  &:hover {
+    background-color: var(--kui-warning-500);
+    color: var(--kui-warning-50);
   }
 }
 

@@ -1,21 +1,7 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Modal from "./index";
-
-// ---- HTMLDialogElement polyfill for JSDOM ----
-beforeAll(() => {
-  if (!HTMLDialogElement.prototype.show) {
-    HTMLDialogElement.prototype.show = function () {
-      this.open = true;
-    };
-  }
-  if (!HTMLDialogElement.prototype.close) {
-    HTMLDialogElement.prototype.close = function () {
-      this.open = false;
-    };
-  }
-});
 
 jest.mock("../Button", () => {
   return {
@@ -33,12 +19,18 @@ describe("Modal", () => {
   const user = userEvent.setup();
 
   describe("Uncontrolled Modal", () => {
+    it("should render the target button text", () => {
+      render(<Modal modalTrigger="Open Modal">Modal Content</Modal>);
+      const buttonElem = screen.getByRole("button", { name: /open modal/i });
+      expect(buttonElem).toBeInTheDocument();
+    });
+
     it("should render the dialog element by default (not open yet)", () => {
-      render(<Modal modalTrigger="Open Modal" />);
-      const dialog = screen.getByRole("dialog", { hidden: true });
-      expect(dialog).toBeInTheDocument();
-      // @ts-expect-error this is not an error
-      expect(dialog.open).toBeFalsy();
+      render(<Modal modalTrigger="Open Modal">Modal Content</Modal>);
+
+      const modal = screen.queryByRole("modal");
+
+      expect(modal).not.toBeInTheDocument();
     });
 
     it("opens when clicking the trigger and runs afterOpen; locks body scroll", async () => {
@@ -49,15 +41,16 @@ describe("Modal", () => {
 
       await user.click(screen.getByRole("button", { name: /open modal/i }));
 
-      const dialog = screen.getByRole("dialog");
+      const modal = screen.queryByRole("modal");
 
-      // @ts-expect-error this is not an error
-      expect(dialog.open).toBe(true);
+      expect(modal).toBeInTheDocument();
       expect(afterOpen).toHaveBeenCalledTimes(1);
       expect(document.body.style.overflow).toBe("hidden");
 
+      // modal title
       expect(screen.getByText("Hello")).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: "X" })).toBeInTheDocument();
+      // modal close button
+      expect(screen.getByRole("modal-close")).toBeInTheDocument();
     });
 
     it("closes on close button click and runs afterClose; restores body scroll", async () => {
@@ -65,47 +58,42 @@ describe("Modal", () => {
       render(<Modal modalTrigger="Open" title="T" afterClose={afterClose} />);
 
       await user.click(screen.getByRole("button", { name: /open/i }));
-      const dialog = screen.getByRole("dialog");
-      // @ts-expect-error this is not an error
-      expect(dialog.open).toBe(true);
+      const modal = screen.queryByRole("modal");
 
-      await user.click(screen.getByRole("button", { name: "X" }));
+      expect(modal).toBeInTheDocument();
 
-      // In uncontrolled mode, the component calls dialog.close()
-      // @ts-expect-error this is not an error
-      expect(dialog.open).toBe(false);
+      await user.click(screen.getByRole("modal-close"));
+
+      expect(modal).not.toBeInTheDocument();
       expect(afterClose).toHaveBeenCalledTimes(1);
-      expect(document.body.style.overflow).toBe("auto");
+      expect(document.body.style.overflow).toBe("");
     });
 
     it("closes on Escape key", async () => {
       render(<Modal modalTrigger="Open" />);
       await user.click(screen.getByRole("button", { name: /open/i }));
 
-      const dialog = screen.getByRole("dialog");
-      // @ts-expect-error this is not an error
-      expect(dialog.open).toBe(true);
+      const modal = screen.queryByRole("modal");
+
+      expect(modal).toBeInTheDocument();
 
       fireEvent.keyDown(document, { key: "Escape" });
 
-      // @ts-expect-error this is not an error
-      expect(dialog.open).toBe(false);
-      expect(document.body.style.overflow).toBe("auto");
+      expect(modal).not.toBeInTheDocument();
+      expect(document.body.style.overflow).toBe("");
     });
 
     it("closes when clicking outside (document listener)", async () => {
       render(<Modal modalTrigger="Open" />);
       await user.click(screen.getByRole("button", { name: /open/i }));
 
-      const dialog = screen.getByRole("dialog");
-      // @ts-expect-error this is not an error
-      expect(dialog.open).toBe(true);
+      const modal = screen.queryByRole("modal");
 
-      // Click outside the dialog (on the document)
+      expect(modal).toBeInTheDocument();
+
       fireEvent.mouseDown(document.body);
 
-      // @ts-expect-error this is not an error
-      expect(dialog.open).toBe(false);
+      expect(modal).not.toBeInTheDocument();
     });
 
     it("does not open if beforeOpen returns false", async () => {
@@ -113,10 +101,9 @@ describe("Modal", () => {
       render(<Modal modalTrigger="Open" beforeOpen={beforeOpen} />);
       await user.click(screen.getByRole("button", { name: /open/i }));
 
-      // const dialog = screen.getByTestId("dialog-menu");
-      const dialog = screen.getByRole("dialog", { hidden: true });
-      // @ts-expect-error this is not an error
-      expect(dialog.open).toBeFalsy();
+      const modal = screen.queryByRole("modal");
+
+      expect(modal).not.toBeInTheDocument();
       expect(beforeOpen).toHaveBeenCalledTimes(1);
     });
 
@@ -125,24 +112,24 @@ describe("Modal", () => {
       render(<Modal modalTrigger="Open" beforeClose={beforeClose} />);
       await user.click(screen.getByRole("button", { name: /open/i }));
 
-      const dialog = screen.getByRole("dialog");
-      // @ts-expect-error this is not an error
-      expect(dialog.open).toBe(true);
+      const modal = screen.queryByRole("modal");
 
-      await user.click(screen.getByRole("button", { name: "X" }));
-      // Still open because beforeClose prevented it
-      // @ts-expect-error this is not an error
-      expect(dialog.open).toBe(true);
+      expect(modal).toBeInTheDocument();
+
+      await user.click(screen.getByRole("modal-close"));
+
+      expect(modal).toBeInTheDocument();
       expect(beforeClose).toHaveBeenCalledTimes(1);
     });
 
     it("applies position styles with offset (e.g., top: 24px)", async () => {
       render(<Modal modalTrigger="Open" position="top" offset={24} />);
-      const dialog = screen.getByRole("dialog", { hidden: true });
-      // We render the dialog always in uncontrolled, but not open yet
-      expect(dialog).toBeInTheDocument();
-      // style is applied inline via modalPositionStyle
-      expect(dialog).toHaveStyle({ top: "24px" });
+      await user.click(screen.getByRole("button", { name: /open/i }));
+
+      const modal = screen.queryByRole("modal");
+
+      expect(modal).toBeInTheDocument();
+      expect(modal).toHaveStyle({ top: "24px" });
     });
   });
 
@@ -158,14 +145,13 @@ describe("Modal", () => {
         />,
       );
 
-      // No trigger button in controlled mode
       expect(
         screen.queryByRole("button", { name: /open/i }),
       ).not.toBeInTheDocument();
 
-      const dialog = screen.getByRole("dialog");
-      // @ts-expect-error this is not an error
-      expect(dialog.open).toBe(true);
+      const modal = screen.queryByRole("modal");
+
+      expect(modal).toBeInTheDocument();
       expect(afterOpen).toHaveBeenCalledTimes(1);
       expect(document.body.style.overflow).toBe("hidden");
     });
@@ -174,27 +160,26 @@ describe("Modal", () => {
       const onClose = jest.fn();
       render(<Modal opened={true} onClose={onClose} title="C" />);
 
-      const dialog = screen.getByRole("dialog");
-      // @ts-expect-error this is not an error
-      expect(dialog.open).toBe(true);
+      const modal = screen.queryByRole("modal");
 
-      await user.click(screen.getByRole("button", { name: "X" }));
+      expect(modal).toBeInTheDocument();
+
+      await user.click(screen.getByRole("modal-close"));
 
       expect(onClose).toHaveBeenCalledTimes(1);
-      // @ts-expect-error this is not an error
-      expect(dialog.open).toBe(true);
+
+      expect(modal).toBeInTheDocument();
     });
 
     it("calls onClose on Escape (still remains open until parent changes)", () => {
       const onClose = jest.fn();
       render(<Modal opened={true} onClose={onClose} />);
+      const modal = screen.queryByRole("modal");
+
+      expect(modal).toBeInTheDocument();
 
       fireEvent.keyDown(document, { key: "Escape" });
       expect(onClose).toHaveBeenCalledTimes(1);
-
-      const dialog = screen.getByRole("dialog");
-      // @ts-expect-error this is not an error
-      expect(dialog.open).toBe(true);
     });
   });
 });

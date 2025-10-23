@@ -2,6 +2,7 @@
 =                   Modal                     =
 =============================================*/
 .modal-container {
+  position: fixed;
   border: 0;
   background-color: light-dark(var(--kui-neutral-100), var(--kui-neutral-800));
   top: 120px;
@@ -11,10 +12,13 @@
   max-height: 100vh;
   max-width: 100vw;
   overflow: auto;
+  z-index: 1000;
+  border-radius: calc(1rem * var(--kui-rounded));
 }
 
 .menu-header {
   padding-inline: var(--kui-spacing-sm);
+  padding-block: var(--kui-spacing-xs);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,6 +26,11 @@
   position: sticky;
   top: 0;
   background-color: light-dark(var(--kui-neutral-100), var(--kui-neutral-800));
+
+  & h3 {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .menu-header h3 {
@@ -33,10 +42,11 @@
 }
 
 .backdrop {
-  position: fixed; /* use fixed so it covers the viewport */
+  position: fixed;
   inset: 0;
   background-color: var(--kui-neutral-950);
   opacity: 0.35;
+  z-index: 300;
 }
 
 /*======================

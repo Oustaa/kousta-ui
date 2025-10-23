@@ -4,7 +4,7 @@ import ContextMenuItem from "../components/ContextMenuItem";
 const optionfunction = jest.fn();
 const setMenuVisible = jest.fn();
 
-describe("Context menu item tests", () => {
+describe("Context menu item", () => {
   it("should render menu item", () => {
     render(
       <ContextMenuItem

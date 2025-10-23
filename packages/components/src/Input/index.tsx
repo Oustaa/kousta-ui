@@ -2,6 +2,10 @@ import { FC } from "react";
 import { InputProps } from "./_props";
 
 import classes from "./Input.module.css";
+import {
+  renderLeftSectionItem,
+  renderRightSectionItem,
+} from "../utils/renderSections";
 
 const Input: FC<InputProps> = ({
   label,
@@ -29,7 +33,7 @@ const Input: FC<InputProps> = ({
         </label>
       )}
       <div className={classes["input-container"]}>
-        {leftSection && leftSection}
+        {leftSection && renderLeftSectionItem(leftSection)}
         <input
           data-error={
             // this is not correct based on the type of the errors...
@@ -39,7 +43,7 @@ const Input: FC<InputProps> = ({
           id={label}
           {...rest}
         />
-        {rightSection && rightSection}
+        {rightSection && renderRightSectionItem(rightSection)}
       </div>
       <span className={classes["error-message"]}>
         {(errors as string[])?.[0]}

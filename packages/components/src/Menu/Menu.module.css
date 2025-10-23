@@ -44,10 +44,10 @@ button {
   font-size: 0.9rem;
   font-weight: 400;
   display: flex;
-  gap: 4px;
+  gap: 6px;
 
   &:not(:first-child) {
-    margin-top: var(--kui-spacing-xs);
+    margin-top: var(--kui-spacing-sm);
   }
 
   &:hover {
@@ -62,6 +62,7 @@ button {
 .kui-menu_divider {
   height: 1px;
   width: 100%;
+  margin-block: var(--kui-spacing-sm);
   background-color: light-dark(var(--kui-neutral-800), var(--kui-neutral-200));
   border: unset;
 }

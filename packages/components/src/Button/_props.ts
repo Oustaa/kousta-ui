@@ -1,11 +1,19 @@
-import { MouseEvent } from "react";
+import { MouseEvent, ComponentPropsWithoutRef, ReactNode } from "react";
 
-export type ButtonVarient = "primary" | "secondary";
+type ButtonColor = "primary" | "warning" | "neutral" | "danger" | "success";
+
+type ButtonColoringStyle = "outline" | "light" | "link" | "";
+
+export type ButtonVariant =
+  | ButtonColor
+  | `${ButtonColor}-${Exclude<ButtonColoringStyle, "">}`;
 
 export type ButtonProps = {
   loading?: boolean;
+  loadingIndicator?: string | ReactNode;
   disabled?: boolean;
-  varient?: ButtonVarient;
+  variant?: ButtonVariant | string;
+  size?: "sm" | "md" | "lg";
   type?: "submit" | "reset" | "button";
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
-};
+} & ComponentPropsWithoutRef<"button">;

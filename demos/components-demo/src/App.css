@@ -3,7 +3,7 @@
   /* --kui-spacing-md: 8px; */
   /* --kui-primary-500: red; */
   /* --kui-primary-600: rgba(255, 0, 0, 0.8); */
-  /* --kui-rounded: 0.2; */
+  --kui-rounded: 0.4;
 }
 
 #root {
@@ -24,6 +24,12 @@
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.btn-class {
+  background-color: blue !important;
+  border-radius: 23px;
+  color: white !important;
 }
 
 @keyframes logo-spin {

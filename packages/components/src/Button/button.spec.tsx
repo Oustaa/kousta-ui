@@ -35,4 +35,12 @@ describe("Button test", () => {
 
     expect(onClickCallBack).not.toHaveBeenCalled();
   });
+
+  // tests that i should implement
+  // variants
+  // loading state
+  // disabled state
+  // size
+  // type
+  // loadingIndicator
 });

@@ -1,5 +1,4 @@
 import {
-  CSSProperties,
   FC,
   PropsWithChildren,
   useCallback,
@@ -10,6 +9,9 @@ import {
 import { ModalPosition, ModalProps, ModalSize } from "./_props";
 import classes from "./Modal.module.css";
 import Button from "../Button";
+import { useScrollLock } from "@kousta-ui/hooks";
+import { modalPositionStyle } from "./modalPositions";
+import { ModalPropsProvided, useComponentContext } from "../PropsContext";
 
 const modalSizeValue: Record<ModalSize, string> = {
   xs: "600px",
@@ -19,143 +21,140 @@ const modalSizeValue: Record<ModalSize, string> = {
   xl: "1800px",
 };
 
-const modalPositionStyle = (
-  offset?: number,
-): Record<ModalPosition, CSSProperties> => ({
-  center: {
-    marginInline: "auto",
-    top: "50%",
-    transform: "translateY(-50%)",
-  },
-  bottom: {
-    bottom: `${offset}px`,
-    top: "unset",
-  },
-  top: {
-    bottom: "unset",
-    top: `${offset}px`,
-  },
-  right: {
-    marginInline: "unset",
-    marginInlineStart: "auto",
-    top: "50%",
-    transform: "translateY(-50%)",
-    left: "unset",
-  },
-  "right-top": {
-    marginInlineStart: "auto",
-    top: `${offset}px`,
-    left: "unset",
-  },
-  "right-bottom": {
-    marginInlineStart: "auto",
-    bottom: `${offset}px`,
-    top: "unset",
-    left: "unset",
-  },
-  left: {
-    marginInline: "unset",
-    top: "50%",
-    transform: "translateY(-50%)",
-    right: "unset",
-  },
-  "left-bottom": {
-    marginInline: "unset",
-    bottom: `${offset}px`,
-    top: "unset",
-    right: "unset",
-  },
-  "left-top": {
-    marginInline: "unset",
-    top: `${offset}px`,
-    right: "unset",
-  },
-});
+const defaultProps: ModalPropsProvided = {
+  size: "md",
+  withCloseBtn: true,
+  withBackdrop: true,
+  position: "center",
+  offset: 0,
+  closeOnClickEsc: true,
+  closeOnClickOutside: true,
+};
 
 const Modal: FC<PropsWithChildren<ModalProps>> = ({
   children,
   title,
   opened,
   onClose,
-  size = "md",
-  withCloseBtn = true,
-  withBackdrop = true,
+  size,
+  withCloseBtn,
+  withBackdrop,
   modalTrigger,
   afterClose,
   beforeClose,
   afterOpen,
   beforeOpen,
-  position = "center",
+  position,
   offset,
   fullHeight,
   fullWidth,
+  closeOnClickEsc,
+  closeOnClickOutside,
+  modalTriggerBtnVariant,
 }) => {
-  const modalRef = useRef<HTMLDialogElement | null>(null);
+  const modalProps = useComponentContext("modal") as ModalPropsProvided;
+
+  // props provider
+  if (modalProps) {
+    if (modalProps.position && !position) position = modalProps.position;
+    if (modalProps.size && !size) size = modalProps.size;
+    if (modalProps.offset && typeof offset === "undefined")
+      offset = modalProps.offset;
+    if (
+      typeof modalProps.closeOnClickEsc !== "undefined" &&
+      closeOnClickEsc === undefined
+    )
+      closeOnClickEsc = modalProps.closeOnClickEsc;
+    if (
+      typeof modalProps.closeOnClickOutside !== "undefined" &&
+      closeOnClickOutside === undefined
+    )
+      closeOnClickOutside = modalProps.closeOnClickOutside;
+    if (
+      typeof modalProps.withCloseBtn !== "undefined" &&
+      withCloseBtn === undefined
+    )
+      withCloseBtn = modalProps.withCloseBtn;
+    if (
+      typeof modalProps.withBackdrop !== "undefined" &&
+      withBackdrop === undefined
+    )
+      withBackdrop = modalProps.withBackdrop;
+  }
+
+  // default values
+  if (!size) size = defaultProps.size;
+  if (withCloseBtn === undefined) withCloseBtn = defaultProps.withCloseBtn;
+  if (withBackdrop === undefined) withBackdrop = defaultProps.withBackdrop;
+  if (!position) position = defaultProps.position;
+  if (!offset) offset = defaultProps.offset;
+  if (closeOnClickEsc === undefined)
+    closeOnClickEsc = defaultProps.closeOnClickEsc;
+  if (closeOnClickOutside === undefined)
+    closeOnClickOutside = defaultProps.closeOnClickOutside;
+
+  const { lockScroll, unlockScroll } = useScrollLock();
+  const modalRef = useRef<HTMLDivElement | null>(null);
 
   const isControlled = typeof opened === "boolean";
   const [modalOpened, setModalOpened] = useState<boolean>(!!opened);
-  const isOpen = isControlled ? !!opened : modalOpened;
+  const isOpen = (isControlled && opened) || modalOpened;
 
   const modalSize =
     size && size in modalSizeValue
       ? modalSizeValue[size as ModalSize]
       : `${size}px`;
 
-  const lockBody = (lock: boolean) => {
-    const body = document.querySelector("body");
-    if (body) body.style.overflow = lock ? "hidden" : "auto";
-  };
-
   const handleOpenModal = useCallback(() => {
-    if (!modalRef.current) return;
     if (beforeOpen && beforeOpen() === false) return;
 
     if (!isControlled) {
-      modalRef.current.show();
       setModalOpened(true);
       afterOpen?.();
     }
 
-    lockBody(true);
+    lockScroll();
   }, [beforeOpen, afterOpen, isControlled]);
 
   const handleCloseModal = useCallback(() => {
+    debugger;
     if (beforeClose && beforeClose() === false) return;
 
     if (isControlled) {
       onClose?.();
+      setModalOpened(false);
     } else if (modalRef.current) {
-      modalRef.current.close();
       setModalOpened(false);
       afterClose?.();
     }
 
-    lockBody(false);
-  }, [beforeClose, afterClose, isControlled, onClose]);
+    unlockScroll();
+  }, [beforeClose, opened, afterClose, isControlled, onClose]);
+
+  useEffect(() => {
+    if (isControlled && opened) lockScroll();
+
+    return () => unlockScroll();
+  }, [opened]);
 
   useEffect(() => {
     const dlg = modalRef.current;
     if (!dlg) return;
 
     if (isOpen) {
-      if (!dlg.open) {
-        dlg.show();
-        lockBody(true);
-        afterOpen?.();
-      }
+      setModalOpened(true);
+      lockScroll();
+      afterOpen?.();
     } else {
-      if (dlg.open) {
-        dlg.close();
-        lockBody(false);
-        afterClose?.();
-      }
+      setModalOpened(false);
+      unlockScroll();
+      afterClose?.();
     }
-  }, [isOpen, afterOpen, afterClose]);
+  }, [afterOpen, afterClose]);
 
   useEffect(() => {
-    if (!isOpen) return;
-
     const onPointerDown = (e: MouseEvent | TouchEvent) => {
+      if (closeOnClickOutside === false) return;
       const modalEl = modalRef.current;
       if (!modalEl) return;
 
@@ -175,8 +174,10 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
     document.addEventListener("touchstart", onPointerDown, true);
 
     const onKeyDown = (e: KeyboardEvent) => {
+      if (closeOnClickEsc === false) return;
       if (e.key === "Escape") handleCloseModal();
     };
+
     document.addEventListener("keydown", onKeyDown);
 
     return () => {
@@ -184,25 +185,33 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
       document.removeEventListener("touchstart", onPointerDown, true);
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [isOpen, handleCloseModal]);
+  }, [modalOpened, opened, handleCloseModal]);
 
   return (
     <>
       {!isControlled && modalTrigger && (
-        <Button onClick={handleOpenModal}>{modalTrigger}</Button>
+        <Button variant={modalTriggerBtnVariant} onClick={handleOpenModal}>
+          {modalTrigger}
+        </Button>
       )}
 
-      {withBackdrop && isOpen && <div className={classes["backdrop"]} />}
-      {(!isControlled || (isControlled && isOpen)) && (
-        <dialog
+      {withBackdrop && ((isControlled && opened) || modalOpened) && (
+        <div className={classes["backdrop"]} />
+      )}
+      {((isControlled && opened) || modalOpened) && (
+        <div
           data-testId={"dialog-menu"}
-          role="dialog"
+          role="modal"
           ref={modalRef}
           style={{
             animation: `toLeft 5s toLeft`,
-            width: fullWidth ? "100vw" : `clamp(200px, ${modalSize}, 100%)`,
-            height: fullHeight ? "100vh" : "max-content",
-            ...modalPositionStyle(offset)[position],
+            width: fullWidth
+              ? `calc(100vw - ${offset || 0 * 2}px)`
+              : `clamp(200px, ${modalSize}, 100%)`,
+            height: fullHeight
+              ? `calc(100vh - ${offset || 0 * 2}px)`
+              : "max-content",
+            ...modalPositionStyle(offset)[position as ModalPosition],
           }}
           className={classes["modal-container"]}
         >
@@ -214,14 +223,17 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
                 <h3 />
               )}
               {withCloseBtn ? (
-                <button onClick={handleCloseModal}>X</button>
+                <button role="modal-close" onClick={handleCloseModal}>
+                  X
+                </button>
               ) : (
                 <div />
               )}
             </header>
           )}
           <div className={classes["menu-body"]}>{children}</div>
-        </dialog>
+          <div className={classes["menu-footer"]}></div>
+        </div>
       )}
     </>
   );

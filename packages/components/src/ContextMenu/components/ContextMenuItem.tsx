@@ -21,8 +21,8 @@ const ContextMenuItem: FC<
     setMenuVisible,
     active = true,
     hidden,
-    closeOnClick,
-    itemCloseOnClick,
+    closeOnClick = true,
+    itemCloseOnClick = true,
   } = props;
 
   if (hidden) return;
@@ -41,8 +41,8 @@ const ContextMenuItem: FC<
         onClick?.();
 
         if (
-          itemCloseOnClick === true &&
-          (closeOnClick === true || closeOnClick === undefined)
+          (itemCloseOnClick !== false && closeOnClick === true) ||
+          closeOnClick === true
         ) {
           setMenuVisible(false);
         }
