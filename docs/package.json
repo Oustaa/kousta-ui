@@ -17,6 +17,7 @@
   "dependencies": {
     "@docusaurus/core": "3.5.2",
     "@docusaurus/preset-classic": "3.5.2",
+    "@docusaurus/theme-search-algolia": "^3.9.2",
     "@kousta-ui/components": "workspace:*",
     "@kousta-ui/helpers": "workspace:*",
     "@kousta-ui/hooks": "workspace:*",

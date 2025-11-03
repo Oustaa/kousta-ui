@@ -48,9 +48,7 @@ The modal can be controlled **internally** (uncontrolled) or **externally** (con
 
 ---
 
-## Examples
-
-### Uncontrolled Modal
+## Uncontrolled Modal
 
 An **uncontrolled modal** manages its open state internally. Use this when the modal is lightweight and doesn’t depend on heavy data or async requests.
 
@@ -74,7 +72,7 @@ Avoid uncontrolled modals for complex or data-heavy components since they mount 
 
 ---
 
-### Controlled Modal
+## Controlled Modal
 
 A **controlled modal** allows parent components to manage its open/close state manually. This is useful for modals that depend on asynchronous data or need to be programmatically opened/closed.
 
@@ -100,7 +98,7 @@ const Example = () => {
 
 ---
 
-### Drawer Example
+## Modal as **Drawer**
 
 By combining `position` and `fullHeight`, you can create **Drawer-like modals** anchored to screen edges.
 
