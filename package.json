@@ -17,7 +17,8 @@
     ]
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
     "test": "jest",
@@ -56,6 +57,7 @@
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@commitlint/config-lerna-scopes": "^19.7.0",
+    "@docusaurus/theme-live-codeblock": "^3.9.1",
     "@eslint/js": "^9.11.1",
     "@rollup/plugin-commonjs": "^28.0.0",
     "@rollup/plugin-node-resolve": "^15.3.0",

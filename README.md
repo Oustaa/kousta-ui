@@ -8,7 +8,7 @@
 # @Kousta-ui
 @kousta-ui is a react ui library i have build after 3 years of experementing with other awesome ui libraries, and creating some custome ui components, it is meant for ease if use, and performance focuse.
 
-[Docs](https://choosealicense.com/licenses/mit/)
+[Docs](https://ui.kousta.org)
 
 ## Available Packges
 ### Components
