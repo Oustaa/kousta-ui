@@ -17,7 +17,7 @@ import {
 import Table from "../../Table";
 
 import classes from "../DataTable.module.css";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { useDisclosure } from "@kousta-ui/hooks";
 import { getShownHeders } from "../utils/getShownHeaders";
 import TableRowCheckbox from "./TableRowSelect";
@@ -29,46 +29,62 @@ const TableRow = <T extends Record<string, unknown>>({
   row: T;
   index: number;
 }) => {
-  const { open, opened, close, toggle } = useDisclosure(false);
-  const { headers, options } = useTableContext();
+  const [highlighted, setHighlighted] = useState(false);
+  const { open, opened: rowExtended, close, toggle } = useDisclosure(false);
+  const { keyExtractor, headers, options, config } = useTableContext();
+  const key = keyExtractor?.(row);
 
   const contextMenuOptions: ContextMenuTypeOption[] = [];
   const tableActions: ReactNode[] = [];
 
   if (options && options.actions) {
     if (hasDeleteAction(options, row)) {
+      const action = options!.actions!.delete;
       contextMenuOptions.push({
         title: "Delete",
-        onClick: () => options!.actions!.delete?.onDelete!(row),
+        onClick: () => action?.onDelete!(row),
       });
 
       tableActions.push(
-        <Button onClick={() => options!.actions!.delete?.onDelete!(row)}>
-          delete
+        <Button
+          variant="neutral-light"
+          onClick={() => action?.onDelete!(row)}
+          {...action?.buttonProps}
+        >
+          {action?.title ? action.title : "Delete"}
         </Button>,
       );
     }
-    if (hasEditAction(options)) {
+    if (hasEditAction(options, row)) {
+      const action = options!.actions!.edit;
       contextMenuOptions.push({
         title: "Edit",
-        onClick: () => options!.actions!.edit?.onEdit!(row),
+        onClick: () => action?.onEdit!(row),
       });
       tableActions.push(
-        <Button onClick={() => options!.actions!.edit?.onEdit!(row)}>
-          Edit
+        <Button
+          variant="neutral-light"
+          onClick={() => action?.onEdit!(row)}
+          {...action?.buttonProps}
+        >
+          {action?.title ? action.title : "Edit"}
         </Button>,
       );
     }
     if (options?.viewComp) {
-      if (options.viewComp.type === "Modal") {
+      if (options.viewComp.type === "modal") {
         contextMenuOptions.push({
           title: "Open Modal",
+          icon: options.viewComp.openModalIcon,
           onClick: open,
         });
       } else {
         contextMenuOptions.push({
-          title: "Extend",
-          onClick: () => alert("Extend Table Row"),
+          title: rowExtended ? "Minimize" : "Extend",
+          icon: rowExtended
+            ? options.viewComp.minimizeRowIcon
+            : options.viewComp.extendRowIcon,
+          onClick: toggle,
         });
       }
     }
@@ -84,7 +100,10 @@ const TableRow = <T extends Record<string, unknown>>({
           });
           tableActions.push(
             canPerformActionResolver(row, action.allowed) && (
-              <Button onClick={() => options!.actions!.edit?.onEdit!(row)}>
+              <Button
+                variant="neutral-light"
+                onClick={() => options!.actions!.edit?.onEdit!(row)}
+              >
                 {action.Icon} {action.title}
               </Button>
             ),
@@ -94,21 +113,46 @@ const TableRow = <T extends Record<string, unknown>>({
     }
   }
 
-  if (options?.viewComp) {
-    if (options.viewComp.type === "Modal") {
-      tableActions.push(<Button onClick={open}>Open Modal</Button>);
+  if (
+    options?.viewComp &&
+    ((typeof options.viewComp.canView === "function" &&
+      options.viewComp.canView(row)) ||
+      (typeof options.viewComp.canView === "boolean" &&
+        options.viewComp.canView) ||
+      options?.viewComp?.canView === undefined)
+  ) {
+    if (options.viewComp.type === "modal") {
+      tableActions.push(
+        <Button
+          variant="neutral-light"
+          {...options.viewComp.openButtonProps}
+          onClick={open}
+        >
+          {options.viewComp.openModalIcon || "Open Modal"}
+        </Button>,
+      );
     } else {
-      tableActions.push(<Button onClick={toggle}>Extends</Button>);
+      tableActions.push(
+        <Button
+          variant="neutral-light"
+          {...options.viewComp.openButtonProps}
+          onClick={toggle}
+        >
+          {rowExtended
+            ? options.viewComp.minimizeRowIcon || "Minimize"
+            : options.viewComp.extendRowIcon || "Extends"}
+        </Button>,
+      );
     }
   }
 
   return (
     <>
-      {options?.viewComp?.type === "Modal" && (
+      {options?.viewComp?.type === "modal" && (
         // @ts-expect-error this is not an error
         <Modal
           withCloseBtn={false}
-          opened={opened}
+          opened={rowExtended}
           onClose={close}
           {...options.viewComp.modalOptions}
         >
@@ -116,32 +160,55 @@ const TableRow = <T extends Record<string, unknown>>({
         </Modal>
       )}
 
-      <ContextMenu itemCloseOnClick={true} options={contextMenuOptions} As="tr">
+      <ContextMenu
+        onOpen={() => setHighlighted(true)}
+        onClose={() => setHighlighted(false)}
+        disabled={config?.disableContextMenu === true}
+        itemCloseOnClick={true}
+        options={contextMenuOptions}
+        As="tr"
+        {...config?.props?.tr}
+      >
         {hasBulkActions(options) && (
-          <TableRowCheckbox index={index} row={row} />
+          <TableRowCheckbox index={index} row={row} highlighted={highlighted} />
         )}
-        {Object.values(headers.data).map((headerValue) => {
+        {Object.keys(headers.data).map((headerName) => {
+          const headerValue = headers.data[headerName];
+
           return (
             <TableRowCol<T>
-              key={`${headerValue.value} - table row - ${index}`}
+              key={`${key} ${headerName}`.replaceAll(" ", "_")}
               headerValue={headerValue}
               row={row}
+              highlighted={highlighted}
             />
           );
         })}
         {hasActions(options) && (
-          <Table.Td className={classes["table-actions-container"]}>
-            {tableActions.length > 0 ? tableActions : "--"}
+          <Table.Td
+            {...config?.props?.td}
+            style={{
+              backgroundColor: highlighted
+                ? "light-dark(var(--kui-neutral-100), var(--kui-neutral-800))"
+                : "unset",
+              ...config?.props?.td?.style,
+            }}
+          >
+            <div className={classes["table-actions-container"]}>
+              {tableActions.length > 0 ? tableActions : config?.emptyRowIcon}
+            </div>
           </Table.Td>
         )}
       </ContextMenu>
 
-      {options?.viewComp?.type === "Row" && opened && (
-        <Table.Tr>
+      {options?.viewComp?.type !== "modal" && rowExtended && (
+        <Table.Tr {...config?.props?.tr}>
           <Table.Td
+            {...config?.props?.td}
             colSpan={
               getShownHeders(headers.data)?.length +
-              (hasActions(options) ? 1 : 0)
+              (hasActions(options) ? 1 : 0) +
+              (hasBulkActions(options) ? 1 : 0)
             }
           >
             {options?.viewComp?.Component(row)}

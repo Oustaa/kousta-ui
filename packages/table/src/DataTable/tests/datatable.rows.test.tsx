@@ -4,17 +4,14 @@ import { data, headers } from "./test-setup";
 import { TableProps } from "../_props";
 
 function renderTableWithExtraProps(props?: Partial<TableProps<unknown>>) {
-  const setHeaders = jest.fn();
   render(
     <DataTable
       {...props}
       data={data}
-      headers={{
-        data: headers,
-        setHeaders: setHeaders,
-      }}
+      headers={headers}
       loading={false}
       title="this is a title"
+      keyExtractor={(row) => row.name}
     />,
   );
 }
@@ -43,12 +40,10 @@ describe("Table Rows", () => {
     render(
       <DataTable
         data={data}
-        headers={{
-          data: newHeaders,
-          setHeaders: jest.fn(),
-        }}
+        headers={newHeaders}
         loading={false}
         title="this is a title"
+        keyExtractor={(row) => row.name}
       />,
     );
     const visibleHeadersKeys: string[] = [];

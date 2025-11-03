@@ -136,7 +136,7 @@ describe("table actions presence helpers", () => {
     it("returns true when canDelete = true and onDelete is function", () => {
       const options = {
         actions: {
-          delete: { canDelete: true, onDelete: jest.fn() },
+          delete: { canDelete: () => true, onDelete: jest.fn() },
         },
       };
       expect(hasDeleteAction(options, row)).toBe(true);
@@ -152,17 +152,26 @@ describe("table actions presence helpers", () => {
     });
 
     it("returns true when canDelete(row) returns true and calls predicate with row", () => {
-      const canDelete = jest.fn((r) => r.age >= 10);
+      const canDelete = jest.fn(() => false);
       const options = {
         actions: {
           delete: { canDelete, onDelete: jest.fn() },
         },
       };
-      expect(hasDeleteAction(options, row)).toBe(true);
+      expect(hasDeleteAction(options, row)).toBe(false);
       expect(canDelete).toHaveBeenCalledWith(row);
     });
 
-    it("returns false when canDelete(row) returns false", () => {
+    it("should returns true if canDelete is undefined", () => {
+      const options = {
+        actions: {
+          delete: { onDelete: jest.fn() },
+        },
+      };
+      expect(hasDeleteAction(options, row)).toBe(true);
+    });
+
+    it("should returns what canDelete(row) returns", () => {
       const options = {
         actions: {
           delete: { canDelete: () => false, onDelete: jest.fn() },
@@ -200,13 +209,22 @@ describe("table actions presence helpers", () => {
       expect(hasEditAction(options)).toBe(false);
     });
 
-    it("returns true when canEdit = true and onEdit is function", () => {
+    it("should return true if canEdit is undefined", () => {
       const options = {
         actions: {
-          edit: { canEdit: true, onEdit: jest.fn() },
+          edit: { onEdit: jest.fn() },
         },
       };
       expect(hasEditAction(options)).toBe(true);
+    });
+
+    it("should return what canEdit(row) returns", () => {
+      const options = {
+        actions: {
+          edit: { canEdit: () => false, onEdit: jest.fn() },
+        },
+      };
+      expect(hasEditAction(options)).toBe(false);
     });
   });
 });

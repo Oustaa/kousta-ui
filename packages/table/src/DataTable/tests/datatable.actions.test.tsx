@@ -5,17 +5,14 @@ import userEvent from "@testing-library/user-event";
 import { data, headers } from "./test-setup";
 
 function renderTableWithExtraProps(props: Partial<TableProps<unknown>>) {
-  const setHeaders = jest.fn();
   render(
     <DataTable
       {...props}
       data={data}
-      headers={{
-        data: headers,
-        setHeaders: setHeaders,
-      }}
+      headers={headers}
       loading={false}
       title="this is a title"
+      keyExtractor={(row) => row.name}
     />,
   );
 }

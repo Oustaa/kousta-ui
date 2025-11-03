@@ -27,6 +27,7 @@ const TableSearch = () => {
         onChange={(e) => setQ(e.target.value)}
         rightSection={
           <Button
+            variant="neutral"
             onClick={() => {
               options.search?.(q, { visibleHeaders, props: {} });
             }}

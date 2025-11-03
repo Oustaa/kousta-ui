@@ -56,7 +56,7 @@ export const users: UserType[] = [
   },
   {
     name: "Rania El Alaoui",
-    age: 26,
+    age: 12,
     email: "rania.elalaoui@example.com",
     location: { name: "Oujda" },
   },

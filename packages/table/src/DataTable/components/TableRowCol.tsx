@@ -3,14 +3,18 @@ import Table from "../../Table";
 import { THeaderValue } from "../_props";
 
 import { getNestedProperty } from "@kousta-ui/helpers";
+import { useTableContext } from "../tableContext";
 
 const TableRowCol = <T extends Record<string, unknown>>({
   headerValue,
   row,
+  highlighted,
 }: {
   row: T;
   headerValue: THeaderValue<T>;
+  highlighted: boolean;
 }) => {
+  const { config } = useTableContext();
   let content: string | ReactNode;
 
   if (headerValue.visible === false || headerValue.canSee === false) return;
@@ -24,7 +28,19 @@ const TableRowCol = <T extends Record<string, unknown>>({
     );
   }
 
-  return <Table.Td>{content || "--"}</Table.Td>;
+  return (
+    <Table.Td
+      {...config?.props?.td}
+      style={{
+        backgroundColor: highlighted
+          ? "light-dark(var(--kui-neutral-100), var(--kui-neutral-800))"
+          : "unset",
+        ...config?.props?.td?.style,
+      }}
+    >
+      {content || config?.emptyRowIcon}
+    </Table.Td>
+  );
 };
 
 export default TableRowCol;

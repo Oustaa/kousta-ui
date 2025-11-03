@@ -12,7 +12,7 @@
 .kui-table-head-section {
   display: flex;
   align-items: center;
-  gap: var(--kui-spacing-sm);
+  column-gap: var(--kui-spacing-sm);
 }
 
 .kui-table-head_sh_label {

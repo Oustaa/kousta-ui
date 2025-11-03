@@ -9,7 +9,6 @@ export type UserType = {
 
 export const headers: THeader<UserType> = {
   user: {
-    value: "email",
     exec() {
       return (
         <div>

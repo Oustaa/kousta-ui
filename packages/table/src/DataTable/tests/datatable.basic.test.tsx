@@ -14,12 +14,10 @@ beforeEach(() => {
   render(
     <DataTable
       data={data}
-      headers={{
-        data: headers,
-        setHeaders: setHeaders,
-      }}
+      headers={headers}
       loading={false}
       title="this is a title"
+      keyExtractor={(row) => row.name}
     />,
   );
 });

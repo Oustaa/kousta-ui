@@ -3,7 +3,7 @@ import { FC } from "react";
 import Table from "../../Table";
 import { useTableContext } from "../tableContext";
 import { getShownHeders } from "../utils/getShownHeaders";
-import { hasActions } from "../utils/tableAction";
+import { hasActions, hasBulkActions } from "../utils/tableAction";
 
 const EmptyTable: FC = () => {
   const { options, headers } = useTableContext();
@@ -13,7 +13,9 @@ const EmptyTable: FC = () => {
       <Table.Tr>
         <Table.Td
           colSpan={
-            getShownHeders(headers.data).length + Number(hasActions(options))
+            getShownHeders(headers.data).length +
+            Number(hasActions(options)) +
+            Number(hasBulkActions(options))
           }
         >
           {options && options.emptyTable

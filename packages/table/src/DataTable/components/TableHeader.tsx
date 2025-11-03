@@ -5,13 +5,13 @@ import { hasActions, hasBulkActions } from "../utils/tableAction";
 import { Menu } from "@kousta-ui/components";
 
 function TableHeader() {
-  const [allSelected, setAllSelected] = useState<boolean>(false);
+  const [, setAllSelected] = useState<boolean>(false);
   // const [filterFunction, setFilterFunction] = useState<
   //   // eslint-disable-next-line
   //   Record<string, (row: any) => boolean>
   // >({});
 
-  const { data, headers, options, rowSelection } = useTableContext();
+  const { data, headers, options, config, rowSelection } = useTableContext();
 
   const headersLabel = Object.keys(headers.data).filter((header) => {
     return (
@@ -22,14 +22,6 @@ function TableHeader() {
 
   const selectAll = (cb?: (row: unknown) => boolean) => {
     data.map((row, index) => {
-      // const filterFunctions = Object.values(filterFunction);
-      //
-      // if (filterFunctions.length) {
-      //   if (filterFunctions.some((func) => func(row)))
-      //     rowSelection.setSelectedRows(index, row);
-      // } else {
-      //   rowSelection.setSelectedRows(index, row);
-      // }
       if (!cb) {
         rowSelection.setSelectedRows(index, row, true);
       } else if (cb(row)) {
@@ -39,17 +31,20 @@ function TableHeader() {
   };
 
   return (
-    <Table.Thead>
-      <Table.Tr>
+    <Table.Thead {...config?.props?.thead}>
+      <Table.Tr {...config?.props?.tr}>
         {hasBulkActions(options) && (
-          <Table.Th>
+          <Table.Th
+            {...config?.props?.th}
+            style={{ width: "4px", ...config?.props?.th?.style }}
+          >
             {options?.selectFilter &&
             Object.keys(options.selectFilter).length > 0 ? (
               <Menu.Menu>
                 <Menu.Target>
                   <button onClick={(e) => e.stopPropagation()}>
                     <input
-                      checked={allSelected}
+                      checked={!!Object.keys(rowSelection.selectedRows).length}
                       onChange={() => {
                         setAllSelected((prev) => !prev);
                         selectAll();
@@ -57,30 +52,15 @@ function TableHeader() {
                       type="checkbox"
                     />
                   </button>
-                  <button>More</button>
+                  <button>{config?.selectFilter?.icon || "More"}</button>
                 </Menu.Target>
-                <Menu.DropDown>
+                <Menu.DropDown {...config?.selectFilter?.menuProps}>
                   {Object.keys(options?.selectFilter || {}).map((key) => (
-                    <Menu.Item>
+                    <Menu.Item key={key}>
                       <input
                         type="checkbox"
-                        // checked={key in filterFunction}
                         onChange={() => {
                           selectAll(options?.selectFilter?.[key]);
-
-                          // // @ts-expect-error this is not an error
-                          // setFilterFunction((prev) => {
-                          //   if (key in filterFunction) {
-                          //     // eslint-disable-next-line
-                          //     const { key: _deleted, ...rest } = prev;
-                          //     return rest;
-                          //   }
-                          //
-                          //   return {
-                          //     ...prev,
-                          //     [key]: options?.selectFilter?.[key],
-                          //   };
-                          // });
                         }}
                       />
                       {key}
@@ -91,7 +71,7 @@ function TableHeader() {
             ) : (
               <>
                 <input
-                  checked={allSelected}
+                  checked={!!Object.keys(rowSelection.selectedRows).length}
                   onChange={() => {
                     setAllSelected((prev) => !prev);
                     selectAll();
@@ -105,6 +85,7 @@ function TableHeader() {
         {headersLabel.map((header, index) => {
           return (
             <Table.Th
+              {...config?.props?.th}
               aria-checked="true"
               role="th"
               key={`${header} - ${index}`}
@@ -113,7 +94,9 @@ function TableHeader() {
             </Table.Th>
           );
         })}
-        {hasActions(options) && <Table.Th>ACTIONS</Table.Th>}
+        {hasActions(options) && (
+          <Table.Th {...config?.props?.th}>ACTIONS</Table.Th>
+        )}
       </Table.Tr>
     </Table.Thead>
   );

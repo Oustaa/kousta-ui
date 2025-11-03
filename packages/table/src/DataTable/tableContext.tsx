@@ -1,7 +1,13 @@
 import { createContext, PropsWithChildren, useContext } from "react";
-import type { TableProps } from "./_props";
+import type { TableProps, THeader } from "./_props";
 
-type TableContextType<T> = TableProps<T> & {
+export type TableHeaders<T> = {
+  data: THeader<T>;
+  setHeaders: React.Dispatch<React.SetStateAction<THeader<T>>>;
+};
+
+type TableContextType<T> = Omit<TableProps<T>, "headers"> & {
+  headers: TableHeaders<T>;
   rowSelection: {
     selectedRows: Record<number, unknown>;
     setSelectedRows: (index: number, row: unknown, all?: boolean) => void;

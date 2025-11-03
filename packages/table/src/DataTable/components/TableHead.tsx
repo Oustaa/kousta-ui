@@ -6,7 +6,7 @@ import classes from "../DataTable.module.css";
 import TableSearch from "./TableSearch";
 
 const TableHead = () => {
-  const { headers, rowSelection } = useTableContext();
+  const { headers, options, config, rowSelection } = useTableContext();
 
   const visibleHeaders = Object.keys(headers.data).filter(
     (header) =>
@@ -21,47 +21,64 @@ const TableHead = () => {
   return (
     <div className={classes["kui-table-head"]}>
       {Object.keys(rowSelection.selectedRows).length ? (
-        <Button
-          onClick={() =>
-            console.log({ selectedRows: rowSelection.selectedRows })
-          }
-        >
-          CLick Me
-        </Button>
-      ) : (
+        options?.bulkActions?.map((action) => {
+          if (action.canPerformAction) return null;
+
+          return (
+            <Button
+              {...(action.buttonProps || {})}
+              onClick={() =>
+                action.onClick(Object.values(rowSelection.selectedRows), () =>
+                  rowSelection.setSelectedRows(0, {}, true),
+                )
+              }
+            >
+              {action.title}
+            </Button>
+          );
+        })
+      ) : config?.noHead !== true ? (
         <div className={classes["kui-table-head-section"]}>
           {/* Hide Table Rows */}
-          <Menu.Menu closeOnClick={false}>
-            <Menu.Target>S/H</Menu.Target>
-            <Menu.DropDown>
-              {headersCanSee.map((headerName) => (
-                <Menu.Item key={headerName}>
-                  <div className={classes["kui-table-head_sh_label"]}>
-                    <input
-                      id={headerName}
-                      type="checkbox"
-                      checked={visibleHeaders.includes(headerName)}
-                      onChange={(event) => {
-                        headers.setHeaders((prev) => ({
-                          ...prev,
-                          [headerName]: {
-                            ...prev[headerName],
-                            visible: event.target.checked,
-                          },
-                        }));
-                      }}
-                    />
-                    <label htmlFor={headerName}>
-                      {headerName.toUpperCase()}
-                    </label>
-                  </div>
-                </Menu.Item>
-              ))}
-            </Menu.DropDown>
-          </Menu.Menu>
+          {config?.toggleRows !== false && (
+            <Menu.Menu closeOnClick={false}>
+              <Menu.Target>
+                <Button
+                  variant="neutral"
+                  children={"S/H"}
+                  {...config?.toggleRows}
+                />
+              </Menu.Target>
+              <Menu.DropDown>
+                {headersCanSee.map((headerName) => (
+                  <Menu.Item key={headerName}>
+                    <div className={classes["kui-table-head_sh_label"]}>
+                      <input
+                        id={headerName}
+                        type="checkbox"
+                        checked={visibleHeaders.includes(headerName)}
+                        onChange={(event) => {
+                          headers.setHeaders((prev) => ({
+                            ...prev,
+                            [headerName]: {
+                              ...prev[headerName],
+                              visible: event.target.checked,
+                            },
+                          }));
+                        }}
+                      />
+                      <label htmlFor={headerName}>
+                        {headerName.toUpperCase()}
+                      </label>
+                    </div>
+                  </Menu.Item>
+                ))}
+              </Menu.DropDown>
+            </Menu.Menu>
+          )}
           <TableSearch />
         </div>
-      )}
+      ) : null}
     </div>
   );
 };
