@@ -87,7 +87,6 @@ const MenuContainer: FC<PropsWithChildren<MenuProps>> = ({
   offset,
   ...props
 }) => {
-  debugger;
   const menuProps = useComponentContext("menu") as MenuPropsProvided;
 
   if (menuProps && menuProps.menu) {
@@ -208,8 +207,6 @@ const MenuItem: FC<PropsWithChildren<MenuItemProps>> = ({
       disabled={disabled}
       role="menuitem"
       onClick={() => {
-        console.log({ closeMenuOnClick, closeOnClick });
-
         if (shouldClose) close();
       }}
       className={classes["kui-menu_item"]}

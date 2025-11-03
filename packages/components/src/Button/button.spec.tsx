@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import Button from "./index";
+import { ComponentPropsProvider } from "../PropsContext";
 
 describe("Button test", () => {
   it("should render props", () => {
@@ -43,4 +44,74 @@ describe("Button test", () => {
   // size
   // type
   // loadingIndicator
+});
+
+test("renders and handles click", () => {
+  const onClick = jest.fn();
+  render(<Button onClick={onClick}>Kousta ui</Button>);
+
+  fireEvent.click(screen.getByRole("button", { name: /Kousta ui/i }));
+  expect(onClick).toHaveBeenCalledTimes(1);
+});
+
+test("does not click when disabled", () => {
+  const onClick = jest.fn();
+  render(
+    <Button disabled onClick={onClick}>
+      Kousta ui
+    </Button>,
+  );
+
+  fireEvent.click(screen.getByRole("button", { name: /Kousta ui/i }));
+  expect(onClick).not.toHaveBeenCalled();
+});
+
+test("applies variant and size classes", () => {
+  render(
+    <Button variant="neutral-light" size="lg">
+      A
+    </Button>,
+  );
+  const btn = screen.getByRole("button", { name: "A" });
+  expect(btn.className).toMatch(/btn-neutral-light/);
+  expect(btn.className).toMatch(/btn-lg/);
+});
+
+test("shows loadingIndicator and disables when loading", () => {
+  render(
+    <Button loading loadingIndicator="Please wait">
+      Load
+    </Button>,
+  );
+  const btn = screen.getByRole("button");
+  expect(btn).toBeDisabled();
+  expect(btn).toHaveAttribute("data-loading", "true");
+  expect(screen.getByText("Please wait")).toBeInTheDocument();
+});
+
+test("provider sets defaults", () => {
+  render(
+    <ComponentPropsProvider button={{ size: "sm", type: "submit" }}>
+      <Button>Save</Button>
+    </ComponentPropsProvider>,
+  );
+  const btn = screen.getByRole("button", { name: "Save" }) as HTMLButtonElement;
+  expect(btn.type).toBe("submit");
+  expect(btn.className).toMatch(/btn-sm/);
+});
+
+test("provider custom variant is merged", () => {
+  render(
+    <ComponentPropsProvider
+      button={{ variants: { mine: { style: { backgroundColor: "red" } } } }}
+    >
+      <Button variant="mine" style={{ opacity: 0.5 }}>
+        X
+      </Button>
+    </ComponentPropsProvider>,
+  );
+  const btn = screen.getByRole("button", { name: "X" });
+  // provider style + local style merged, local wins on conflicts
+  expect((btn as HTMLButtonElement).style.backgroundColor).toBe("red");
+  expect((btn as HTMLButtonElement).style.opacity).toBe("0.5");
 });

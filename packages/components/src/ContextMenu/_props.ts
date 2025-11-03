@@ -47,6 +47,7 @@ export type ContextMenuOption =
 
 export type ContextmenuProviderProps = {
   options: ContextMenuOption[];
+  disabled?: boolean;
   As?: string;
   onOpen?: () => void;
   onClose?: () => void;

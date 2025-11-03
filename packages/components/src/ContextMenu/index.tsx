@@ -13,6 +13,7 @@ const ContextmenuProvider: FC<ContextmenuProviderProps> = ({
   onClose,
   onOpen,
   options,
+  disabled = false,
   As = "div",
   itemCloseOnClick = true,
   ...extraProps
@@ -63,6 +64,7 @@ const ContextmenuProvider: FC<ContextmenuProviderProps> = ({
   }, [menuVisible, onClose, coordinates.y, coordinates.x]);
 
   const handleContextMenu = (e: ReactMouseEvent<HTMLDivElement>) => {
+    if (disabled) return;
     e.preventDefault();
     setCoordinates({ x: e.pageX, y: e.pageY });
     setMenuVisible(true);
@@ -84,6 +86,7 @@ const ContextmenuProvider: FC<ContextmenuProviderProps> = ({
             options={options}
             setMenuVisible={setMenuVisible}
             itemCloseOnClick={itemCloseOnClick}
+            onClose={onClose}
           />
         )}
       </div>

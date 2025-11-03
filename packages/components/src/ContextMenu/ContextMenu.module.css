@@ -16,6 +16,7 @@ button {
   width: max-content;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
   z-index: 1000;
+  border-radius: calc(var(--kui-rounded) * 1rem);
 }
 
 .kui-contextMenu-Item {

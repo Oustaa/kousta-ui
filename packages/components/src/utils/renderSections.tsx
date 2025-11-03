@@ -32,3 +32,25 @@ export function renderRightSectionItem(item: ReactNode): ReactNode {
 
   return item;
 }
+
+export function renderMiddleSectionItem(
+  item: ReactNode,
+  sections?: { left?: ReactNode; right?: ReactNode },
+): ReactNode {
+  if (isValidElement(item)) {
+    return cloneElement(item, {
+      style: mergeStyles(item.props.style, {
+        ...(sections?.left && {
+          borderTopLeftRadius: 0,
+          borderBottomLeftRadius: 0,
+        }),
+        ...(sections?.right && {
+          borderTopRightRadius: 0,
+          borderBottomRightRadius: 0,
+        }),
+      }),
+    });
+  }
+
+  return item;
+}

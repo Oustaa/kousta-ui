@@ -16,7 +16,10 @@ type OptionalKeys<T> = {
 type GetOptionalProperties<T> = Pick<T, OptionalKeys<T>>;
 
 /* Button */
-export type ButtonPropsProvided = GetOptionalProperties<ButtonProps> & {
+export type ButtonPropsProvided = Pick<
+  ButtonProps,
+  "size" | "type" | "variant" | "style" | "loadingIndicator" | "className"
+> & {
   variants?: Record<string, ComponentPropsWithoutRef<"button">>;
 };
 /* Menu */
@@ -26,11 +29,6 @@ export type MenuPropsProvided = {
 };
 /* Modal */
 export type ModalPropsProvided = GetOptionalProperties<ModalProps>;
-/* ContextMenu */
-// export type ContextModalPropsProvided = {
-//  menu: GetOptionalProperties<ContextMenuOption>;
-//   item:
-// }
 
 type PropsContextType = {
   button?: ButtonPropsProvided;

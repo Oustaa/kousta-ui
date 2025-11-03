@@ -11,6 +11,7 @@ const ContextMenuItem: FC<
     offsetY: number;
     offsetX: number;
     itemCloseOnClick?: boolean;
+    onClose?: VoidFunction;
   }
 > = (props) => {
   const {
@@ -23,6 +24,7 @@ const ContextMenuItem: FC<
     hidden,
     closeOnClick = true,
     itemCloseOnClick = true,
+    onClose,
   } = props;
 
   if (hidden) return;
@@ -45,6 +47,7 @@ const ContextMenuItem: FC<
           closeOnClick === true
         ) {
           setMenuVisible(false);
+          onClose?.();
         }
       }}
       className={classes["kui-contextMenu-Item"]}

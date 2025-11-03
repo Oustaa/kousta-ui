@@ -46,6 +46,7 @@ function App() {
           // variant: "mine",
           type: "submit",
           // className: "btn-class",
+          loadingIndicator: "Asbeeeer",
           variants: {
             mine: {
               style: {
@@ -68,13 +69,18 @@ function App() {
           closeOnClickOutside: false,
           closeOnClickEsc: false,
           withCloseBtn: false,
-          withBackdrop: false,
+          // withBackdrop: false,
           position: "top",
           offset: 20,
           size: "lg",
         }}
       >
-        <Button type={"reset"}>Mine Button</Button>
+        <Button variant="primary-link" type={"reset"}>
+          Primary Link
+        </Button>
+        <Button variant="neutral-link" type={"reset"}>
+          Success Link
+        </Button>
         <Modal
           opened={opened}
           onClose={close}
@@ -88,9 +94,9 @@ function App() {
             />
           }
           // closeOnClickEsc={true}
-          closeOnClickOutside={true}
-          // withCloseBtn={false}
-          // withBackdrop={false}
+          // closeOnClickOutside={true}
+          withCloseBtn={true}
+          // withBackdrop={true}
           // beforeClose={() => {
           //   alert("How are you??");
           //   // return false;

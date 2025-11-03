@@ -4,6 +4,7 @@ import { InputProps } from "./_props";
 import classes from "./Input.module.css";
 import {
   renderLeftSectionItem,
+  renderMiddleSectionItem,
   renderRightSectionItem,
 } from "../utils/renderSections";
 
@@ -34,15 +35,21 @@ const Input: FC<InputProps> = ({
       )}
       <div className={classes["input-container"]}>
         {leftSection && renderLeftSectionItem(leftSection)}
-        <input
-          data-error={
-            // this is not correct based on the type of the errors...
-            Array.isArray(errors) && errors.length > 0 ? "true" : "false"
-          }
-          className={classes["input"]}
-          id={label}
-          {...rest}
-        />
+        {renderMiddleSectionItem(
+          <input
+            data-error={
+              // this is not correct based on the type of the errors...
+              Array.isArray(errors) && errors.length > 0 ? "true" : "false"
+            }
+            className={classes["input"]}
+            id={label}
+            {...rest}
+          />,
+          {
+            left: leftSection,
+            right: rightSection,
+          },
+        )}
         {rightSection && renderRightSectionItem(rightSection)}
       </div>
       <span className={classes["error-message"]}>

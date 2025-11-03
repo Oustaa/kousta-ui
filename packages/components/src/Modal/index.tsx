@@ -200,7 +200,7 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
       )}
       {((isControlled && opened) || modalOpened) && (
         <div
-          data-testId={"dialog-menu"}
+          data-testid={"dialog-menu"}
           role="modal"
           ref={modalRef}
           style={{

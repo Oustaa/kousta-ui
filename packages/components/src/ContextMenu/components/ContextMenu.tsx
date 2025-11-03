@@ -14,11 +14,21 @@ interface ContextMenuMenuProps {
   options: ContextMenuOption[];
   itemCloseOnClick: boolean;
   setMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  onClose?: VoidFunction;
 }
 
 export const ContextMenuMenu = forwardRef<HTMLDivElement, ContextMenuMenuProps>(
   (
-    { x, y, options, setMenuVisible, offsetX, offsetY, itemCloseOnClick },
+    {
+      x,
+      y,
+      options,
+      setMenuVisible,
+      offsetX,
+      offsetY,
+      itemCloseOnClick,
+      onClose,
+    },
     ref,
   ) => {
     return (
@@ -58,6 +68,7 @@ export const ContextMenuMenu = forwardRef<HTMLDivElement, ContextMenuMenuProps>(
               offsetX={offsetX}
               offsetY={offsetY}
               itemCloseOnClick={itemCloseOnClick}
+              onClose={onClose}
             />
           );
         })}
