@@ -44,6 +44,9 @@ tmp/
 *.jsx
 *.map
 *.log
+!build.js
+
+!global.d.ts
 
 # Storybook
 .out/
@@ -80,3 +83,8 @@ Thumbs.db
 .parcel-cache
 **/*.gz
 !packages/styles/src/scripts/build.js
+
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
+
+.env

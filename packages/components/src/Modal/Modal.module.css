@@ -1,0 +1,226 @@
+/*=============================================
+=                   Modal                     =
+=============================================*/
+.modal-container {
+  position: fixed;
+  border: 0;
+  background-color: light-dark(var(--kui-neutral-100), var(--kui-neutral-800));
+  top: 120px;
+  padding: 0;
+  margin: 0;
+  margin-inline: auto;
+  max-height: 100vh;
+  max-width: 100vw;
+  overflow: auto;
+  z-index: 1000;
+  border-radius: calc(1rem * var(--kui-rounded));
+}
+
+.menu-header {
+  padding-inline: var(--kui-spacing-sm);
+  padding-block: var(--kui-spacing-xs);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: sticky;
+  top: 0;
+  background-color: light-dark(var(--kui-neutral-100), var(--kui-neutral-800));
+
+  & h3 {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.menu-header h3 {
+  font-size: var(--kui-text-base);
+}
+
+.menu-body {
+  padding: var(--kui-spacing-sm);
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: var(--kui-neutral-950);
+  opacity: 0.35;
+  z-index: 300;
+}
+
+/*======================
+=     Animations       =
+======================*/
+
+/* @media (prefers-reduced-motion: reduce) { */
+/*   .anim-enter, */
+/*   .anim-exit, */
+/*   .backdrop-enter, */
+/*   .backdrop-exit { */
+/*     animation: none !important; */
+/*     transition: none !important; */
+/*   } */
+/* } */
+
+/* Fades */
+/* @keyframes fade-in { */
+/*   from { */
+/*     opacity: 0; */
+/*     transform: translateY(0); */
+/*   } */
+/*   to { */
+/*     opacity: 1; */
+/*     transform: translateY(0); */
+/*   } */
+/* } */
+/* @keyframes fade-out { */
+/*   from { */
+/*     opacity: 1; */
+/*     transform: translateY(0); */
+/*   } */
+/*   to { */
+/*     opacity: 0; */
+/*     transform: translateY(0); */
+/*   } */
+/* } */
+
+/* Slide from left (centered vertically by your inline style or position style) */
+/* @keyframes slide-left-in { */
+/*   from { */
+/*     transform: translateX(-16px); */
+/*     opacity: 0; */
+/*   } */
+/*   to { */
+/*     transform: translateX(0); */
+/*     opacity: 1; */
+/*   } */
+/* } */
+/* @keyframes slide-left-out { */
+/*   from { */
+/*     transform: translateX(0); */
+/*     opacity: 1; */
+/*   } */
+/*   to { */
+/*     transform: translateX(-16px); */
+/*     opacity: 0; */
+/*   } */
+/* } */
+
+/* Slide from right */
+/* @keyframes slide-right-in { */
+/*   from { */
+/*     transform: translateX(16px); */
+/*     opacity: 0; */
+/*   } */
+/*   to { */
+/*     transform: translateX(0); */
+/*     opacity: 1; */
+/*   } */
+/* } */
+/* @keyframes slide-right-out { */
+/*   from { */
+/*     transform: translateX(0); */
+/*     opacity: 1; */
+/*   } */
+/*   to { */
+/*     transform: translateX(16px); */
+/*     opacity: 0; */
+/*   } */
+/* } */
+
+/* Zoom */
+/* @keyframes zoom-in { */
+/*   from { */
+/*     transform: scale(0.96); */
+/*     opacity: 0; */
+/*   } */
+/*   to { */
+/*     transform: scale(1); */
+/*     opacity: 1; */
+/*   } */
+/* } */
+/* @keyframes zoom-out { */
+/*   from { */
+/*     transform: scale(1); */
+/*     opacity: 1; */
+/*   } */
+/*   to { */
+/*     transform: scale(0.96); */
+/*     opacity: 0; */
+/*   } */
+/* } */
+
+/* Drop from top */
+/* @keyframes drop-top-in { */
+/*   from { */
+/*     transform: translateY(-16px); */
+/*     opacity: 0; */
+/*   } */
+/*   to { */
+/*     transform: translateY(0); */
+/*     opacity: 1; */
+/*   } */
+/* } */
+/* @keyframes drop-top-out { */
+/*   from { */
+/*     transform: translateY(0); */
+/*     opacity: 1; */
+/*   } */
+/*   to { */
+/*     transform: translateY(-16px); */
+/*     opacity: 0; */
+/*   } */
+/* } */
+/**/
+/* .anim-enter { */
+/*   animation-fill-mode: both; */
+/* } */
+/* .anim-exit { */
+/*   animation-fill-mode: both; */
+/* } */
+/**/
+/* .backdrop-enter { */
+/*   animation: fade-in var(--kui-anim-duration, 200ms) ease-out both; */
+/* } */
+/* .backdrop-exit { */
+/*   animation: fade-out var(--kui-anim-duration, 200ms) ease-in both; */
+/* } */
+/**/
+/* .slide-left-enter { */
+/*   animation: slide-left-in var(--kui-anim-duration, 200ms) ease-out; */
+/* } */
+/* .slide-left-exit { */
+/*   animation: slide-left-out var(--kui-anim-duration, 160ms) ease-in; */
+/* } */
+/**/
+/* .slide-right-enter { */
+/*   animation: slide-right-in var(--kui-anim-duration, 200ms) ease-out; */
+/* } */
+/* .slide-right-exit { */
+/*   animation: slide-right-out var(--kui-anim-duration, 160ms) ease-in; */
+/* } */
+/**/
+/* .fade-enter { */
+/*   animation: fade-in var(--kui-anim-duration, 180ms) ease-out; */
+/* } */
+/* .fade-exit { */
+/*   animation: fade-out var(--kui-anim-duration, 120ms) ease-in; */
+/* } */
+/**/
+/* .zoom-enter { */
+/*   animation: zoom-in var(--kui-anim-duration, 200ms) */
+/*     cubic-bezier(0.2, 0.8, 0.2, 1); */
+/* } */
+/* .zoom-exit { */
+/*   animation: zoom-out var(--kui-anim-duration, 160ms) cubic-bezier(0.4, 0, 1, 1); */
+/* } */
+/**/
+/* .drop-top-enter { */
+/*   animation: drop-top-in var(--kui-anim-duration, 220ms) ease-out; */
+/* } */
+/* .drop-top-exit { */
+/*   animation: drop-top-out var(--kui-anim-duration, 160ms) ease-in; */
+/* } */
+
+/*=====          End of Modal          ======*/

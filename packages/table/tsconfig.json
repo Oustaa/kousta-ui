@@ -1,22 +1,9 @@
 {
+  "extends": "../tsconfig.settings.json",
   "compilerOptions": {
-    "declaration": true,
-    "declarationDir": "lib",
-    "emitDeclarationOnly": true,
-    "jsx": "react-jsx",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "target": "ESNext",
-    "sourceMap": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "paths": {
-      "@kousta-ui/styles/*": ["../styles/src/*"]
-    }
+    "declarationDir": "lib"
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "../../types/global.d.ts"],
   "exclude": [
     "src/**/*.stories.ts",
     "src/**/*.stories.tsx",

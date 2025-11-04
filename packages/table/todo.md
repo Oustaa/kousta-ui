@@ -1,0 +1,14 @@
+- [ ] search
+- [ ] show/hide row
+- [ ] inline update
+- [ ] style overwite
+- [ ] actions
+- [ ] extra actions
+- [ ] bulk actions
+- [ ] extra views
+- [ ] filters
+- [ ] order/sort
+- [ ] archive
+- [ ] group
+- [ ] extends
+- [ ] pagination

@@ -1,0 +1,242 @@
+/*=============================================
+=                    Button                   =
+=============================================*/
+
+.btn {
+  border: unset;
+  font-weight: 700;
+  border-radius: calc(var(--kui-rounded) * 1rem);
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    cursor: progress;
+
+    &:not([data-loading="true"]) {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.btn-sm {
+  composes: btn;
+  padding: var(--kui-spacing-xs) var(--kui-spacing-sm);
+}
+
+.btn-md {
+  composes: btn;
+  padding: var(--kui-spacing-sm) var(--kui-spacing-md);
+}
+
+.btn-lg {
+  composes: btn;
+  padding: var(--kui-spacing-md) var(--kui-spacing-lg);
+}
+
+/* Button Variants */
+.btn-primary {
+  background-color: var(--kui-primary-500);
+  color: var(--kui-primary-50);
+
+  &:hover {
+    background-color: var(--kui-primary-600);
+  }
+}
+
+.btn-primary-outline {
+  outline: 1px solid var(--kui-primary-500);
+  outline-offset: -1px;
+  color: var(--kui-primary-500);
+
+  &:hover {
+    background-color: var(--kui-primary-500);
+    color: var(--kui-neutral-50);
+  }
+}
+
+.btn-primary-light {
+  background-color: var(--kui-primary-100);
+  color: var(--kui-primary-600);
+
+  &:hover {
+    background-color: var(--kui-primary-500);
+    color: var(--kui-primary-50);
+  }
+}
+
+.btn-primary-link {
+  color: var(--kui-primary-400);
+  background-color: transparent;
+
+  &:hover {
+    color: var(--kui-neutral-50);
+    background-color: var(--kui-primary-400);
+  }
+}
+
+.btn-success {
+  background-color: var(--kui-success-500);
+  color: var(--kui-success-50);
+
+  &:hover {
+    background-color: var(--kui-success-600);
+  }
+}
+
+.btn-success-outline {
+  outline: 1px solid var(--kui-success-500);
+  outline-offset: -1px;
+  color: var(--kui-success-500);
+
+  &:hover {
+    background-color: var(--kui-success-500);
+    color: var(--kui-neutral-50);
+  }
+}
+
+.btn-success-light {
+  background-color: var(--kui-success-100);
+  color: var(--kui-success-600);
+
+  &:hover {
+    background-color: var(--kui-success-500);
+    color: var(--kui-success-50);
+  }
+}
+
+.btn-success-link {
+  color: var(--kui-success-500);
+  background-color: transparent;
+
+  &:hover {
+    background-color: var(--kui-success-500);
+    color: var(--kui-success-50);
+  }
+}
+
+.btn-danger {
+  background-color: var(--kui-danger-500);
+  color: var(--kui-danger-50);
+
+  &:hover {
+    background-color: var(--kui-danger-600);
+  }
+}
+
+.btn-danger-outline {
+  outline: 1px solid var(--kui-danger-500);
+  outline-offset: -1px;
+  color: var(--kui-danger-500);
+
+  &:hover {
+    background-color: var(--kui-danger-500);
+    color: var(--kui-neutral-50);
+  }
+}
+
+.btn-danger-light {
+  background-color: var(--kui-danger-100);
+  color: var(--kui-danger-600);
+
+  &:hover {
+    background-color: var(--kui-danger-500);
+    color: var(--kui-danger-50);
+  }
+}
+
+.btn-danger-link {
+  color: light-dark(var(--kui-danger-500));
+  background-color: transparent;
+
+  &:hover {
+    background-color: var(--kui-danger-500);
+    color: var(--kui-danger-50);
+  }
+}
+
+.btn-neutral {
+  background-color: var(--kui-neutral-500);
+  color: var(--kui-neutral-50);
+
+  &:hover {
+    background-color: var(--kui-neutral-600);
+  }
+}
+
+.btn-neutral-outline {
+  outline: 1px solid var(--kui-neutral-500);
+  outline-offset: -1px;
+  color: var(--kui-neutral-500);
+
+  &:hover {
+    background-color: var(--kui-neutral-500);
+    color: var(--kui-neutral-50);
+  }
+}
+
+.btn-neutral-light {
+  background-color: light-dark(var(--kui-neutral-100), var(--kui-neutral-800));
+  color: light-dark(var(--kui-neutral-600), var(--kui-neutral-100));
+
+  &:hover {
+    background-color: light-dark(
+      var(--kui-neutral-200),
+      var(--kui-neutral-700)
+    );
+    color: light-dark(var(--kui-neutral-50));
+  }
+}
+
+.btn-neutral-link {
+  color: var(--kui-neutral-500);
+  background-color: transparent;
+
+  &:hover {
+    background-color: var(--kui-neutral-500);
+    color: var(--kui-neutral-50);
+  }
+}
+
+.btn-warning {
+  background-color: var(--kui-warning-500);
+  color: var(--kui-warning-50);
+
+  &:hover {
+    background-color: var(--kui-warning-600);
+  }
+}
+
+.btn-warning-outline {
+  outline: 1px solid var(--kui-warning-500);
+  outline-offset: -1px;
+  color: var(--kui-warning-500);
+
+  &:hover {
+    background-color: var(--kui-warning-500);
+    color: var(--kui-warning-50);
+  }
+}
+
+.btn-warning-light {
+  background-color: var(--kui-warning-100);
+  color: var(--kui-warning-600);
+
+  &:hover {
+    background-color: var(--kui-warning-500);
+    color: var(--kui-warning-50);
+  }
+}
+
+.btn-warning-link {
+  color: var(--kui-warning-500);
+  background-color: transparent;
+
+  &:hover {
+    background-color: var(--kui-warning-500);
+    color: var(--kui-warning-50);
+  }
+}
+
+/*=====           End of Button        ======*/

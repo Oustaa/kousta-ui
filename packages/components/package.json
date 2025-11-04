@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc --emitDeclarationOnly && rollup -c",
-    "dev": "yarn build --watch"
+    "dev": "yarn build --watch",
+    "clean": "rimraf lib cjs esm .rollup.cache"
   },
   "files": [
     "cjs",
@@ -16,9 +17,20 @@
     "styles"
   ],
   "devDependencies": {
-    "@types/react": "^18.0.0",
+    "@kousta-ui/styles": "workspace:*",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.14",
+    "@types/react": "^18.3.10",
     "@types/react-dom": "^18.0.0",
-    "sass": "^1.79.3"
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "react": "^18.3.1",
+    "sass": "^1.79.3",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2"
   },
   "publishConfig": {
     "access": "public"
@@ -26,6 +38,9 @@
   "peerDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "@kousta-ui/hooks": "workspace:*"
   },
   "gitHead": "e16b21dcc95871dc25fa49523aca54847c7bd4d6"
 }

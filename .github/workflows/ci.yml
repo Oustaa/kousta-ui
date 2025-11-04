@@ -2,40 +2,45 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: "18"
-          registry-url: "https://registry.npmjs.org/"
+          node-version: '18'
+          cache: 'yarn'
+          registry-url: 'https://registry.npmjs.org/'
+          check-latest: true
 
-      - name: Install Dependencies
+      - name: Enable Corepack (Yarn)
+        run: corepack enable
+
+      - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Lint Code
+      - name: Lint
         run: yarn lint
 
-      - name: Run Tests
-        run: yarn test
+      - name: Test
+        run: yarn test --ci
 
-      - name: Build Project
+      - name: Build
         run: yarn build
 
       - name: Publish to npm
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: yarn publish
+        run: yarn npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

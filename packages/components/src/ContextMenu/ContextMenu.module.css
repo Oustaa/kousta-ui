@@ -1,0 +1,97 @@
+/*=============================================
+=                 Context Menu                =
+=============================================*/
+button {
+  margin: 0;
+  padding: 0;
+}
+
+.kui-contextMenu-Container {
+  /* z-index: 9999; */
+}
+
+.kui-contextMenu {
+  position: absolute;
+  background-color: light-dark(var(--kui-neutral-50), var(--kui-neutral-700));
+  width: max-content;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  border-radius: calc(var(--kui-rounded) * 1rem);
+}
+
+.kui-contextMenu-Item {
+  position: relative;
+  border: unset;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-inline-end: 10px;
+
+  background: light-dark(var(--kui-neutral-50), var(--kui-neutral-700));
+  color: light-dark(var(--kui-neutral-900), var(--kui-neutral-50));
+  font-size: 0.9rem;
+  font-weight: 400;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    background-color: light-dark(
+      var(--kui-neutral-100),
+      var(--kui-neutral-800)
+    );
+    color: light-dark(var(--kui-neutral-300), var(--kui-neutral-600));
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):hover {
+    background-color: light-dark(
+      var(--kui-neutral-100),
+      var(--kui-neutral-600)
+    );
+  }
+}
+
+.kui-contextMenu-ItemIcon {
+  min-width: 35px;
+  aspect-ratio: 1/1;
+  /* height: 30px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: light-dark(var(--kui-neutral-200), var(--kui-neutral-800));
+}
+
+.kui-contextMenu_separator_container {
+  position: relative;
+  display: flex;
+}
+
+.kui-contextMenu_separator {
+  height: 0.5px;
+  margin-block: 8px;
+  width: 100%;
+  margin-inline: 10px;
+  margin-block: 0px;
+  background-color: var(--kui-neutral-200);
+}
+
+.kui-contextMenu_separator_icon {
+  min-width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: light-dark(var(--kui-neutral-200), var(--kui-neutral-800));
+}
+
+.kui-contextMenu_group_title {
+  font-size: var(--kui-spacing-sm);
+  color: var(--kui-neutral-500);
+  padding-inline: 10px;
+  padding-top: 4px;
+}
+
+/*=====        End of Context Menu      ======*/

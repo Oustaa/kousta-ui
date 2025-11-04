@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import "./Button.module.css";
 import Button from ".";
 
 const meta = {
@@ -10,18 +11,12 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    disabled: {
-      control: "boolean",
-    },
-    loading: {
-      control: "boolean",
-    },
-    content: {
-      control: "text",
-    },
-    onClick: {
-      action: "clicked",
-    },
+    disabled: { control: "boolean" },
+    loading: { control: "boolean" },
+    children: { control: "text" },
+    onClick: { action: "clicked" },
+    loadingIndicator: { control: "text" },
+    variant: { control: "number", defaultValue: "primary" },
   },
 } satisfies Meta<typeof Button>;
 
@@ -31,16 +26,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    content: "Click me",
+    children: "Click me",
     disabled: false,
     loading: false,
-  },
-};
-
-export const PrimaryLoading: Story = {
-  args: {
-    content: "Click me",
-    disabled: false,
-    loading: true,
   },
 };

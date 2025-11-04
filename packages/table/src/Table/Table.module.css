@@ -1,0 +1,39 @@
+/*=============================================
+=                   Table                     =
+=============================================*/
+
+.kui-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.kui-thead {
+  background-color: light-dark(var(--kui-neutral-100), var(--kui-neutral-800));
+  color: light-dark(var(--kui-neutral-950), var(--kui-neutral-50));
+}
+
+.kui-body {
+  text-align: center;
+}
+
+.kui-tr {
+  /* border: 1px solid light-dark(var(--kui-neutral-200), var(--kui-neutral-700)); */
+}
+
+.kui-th {
+  border: 1px solid light-dark(var(--kui-neutral-200), var(--kui-neutral-700));
+  padding-block: 0.5rem;
+}
+
+.kui-td {
+  background-color: light-dark(var(--kui-neutral-50), var(--kui-neutral-900));
+  text-align: center;
+  padding: 0.25rem;
+  padding-block: 0.5rem;
+  border: 1px solid light-dark(var(--kui-neutral-200), var(--kui-neutral-700));
+  color: light-dark(var(--kui-neutral-950), var(--kui-neutral-50));
+  padding-inline: var(--kui-spacing-sm);
+  text-align: left;
+}
+
+/*=====          End of Table          ======*/

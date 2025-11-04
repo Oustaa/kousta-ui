@@ -2,31 +2,16 @@ import path from "path";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
+import postcss from "rollup-plugin-postcss";
 
-export default {
+const extensions = [".js", ".jsx", ".ts", ".tsx"];
+
+const base = {
   input: "src/index.ts",
-  output: [
-    {
-      format: "es",
-      entryFileNames: "[name].mjs.js",
-      dir: path.resolve("./esm"),
-      preserveModules: true,
-      sourcemap: true,
-    },
-    {
-      format: "cjs",
-      entryFileNames: "[name].cjs.js",
-      dir: path.resolve("./cjs"),
-      preserveModules: true,
-      sourcemap: true,
-      interop: "auto",
-    },
-  ],
+  external: ["react", "react-dom", "react/jsx-runtime"],
+  treeshake: true,
   plugins: [
-    nodeResolve({
-      extensions: [".js", ".jsx", ".ts", ".tsx", ".scss"],
-      preferBuiltins: false,
-    }),
+    nodeResolve({ extensions, preferBuiltins: false }),
     commonjs(),
     typescript({
       tsconfig: "./tsconfig.json",
@@ -34,5 +19,38 @@ export default {
       declarationDir: undefined,
     }),
   ],
-  external: ["react", "react-dom", "react/jsx-runtime"],
 };
+
+const makeConfig = (format, outDir) => ({
+  ...base,
+  output: {
+    format,
+    dir: path.resolve(outDir),
+    preserveModules: false,
+    sourcemap: true,
+    interop: "auto",
+    entryFileNames: format === "es" ? "[name].mjs.js" : "[name].cjs.js",
+    chunkFileNames:
+      format === "es"
+        ? "chunks/[name]-[hash].mjs.js"
+        : "chunks/[name]-[hash].cjs.js",
+    assetFileNames: (asset) => {
+      const name = asset.name || "";
+      return name.endsWith(".css")
+        ? "[name][extname]"
+        : "assets/[name]-[hash][extname]";
+    },
+  },
+  plugins: [
+    ...base.plugins,
+    postcss({
+      autoModules: true,
+      modules: { generateScopedName: "[local]_[hash:base64:5]" },
+      extract: path.resolve(outDir, "index.css"),
+      sourceMap: true,
+      minimize: false,
+    }),
+  ],
+});
+
+export default [makeConfig("es", "esm"), makeConfig("cjs", "cjs")];
