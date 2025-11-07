@@ -22,12 +22,9 @@ const [headers, setHeaders] = useState({
 });
 
 <DataTable
-  data={[] /* the data you want to display, data should be an array of objects */}
-  loading={boolean}
-  headers={{
-    data: headers,
-    setHeaders,
-  }}
+  data={[]} /* the data you want to display, data should be an array of objects */
+  loading={false} // boolean
+  headers={headers}
 />
 ```
 

@@ -83,12 +83,12 @@ import { Button, ComponentPropsProvider } from "@kousta-ui/components";
     /* new custom variants */
     variants: {
       ghost: {
-        className: "btn-ghost"
+        className: "btn-ghost",
       },
       info: {
-        className: "bg-blue-500 text-white rounded-md"
-      }
-    }
+        className: "bg-blue-500 text-white rounded-md",
+      },
+    },
   }}
 >
   <Button variant="ghost">Ghost</Button>
