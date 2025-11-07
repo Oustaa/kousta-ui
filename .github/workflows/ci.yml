@@ -31,11 +31,11 @@ jobs:
       - name: Lint
         run: yarn lint
 
-      - name: Test
-        run: yarn test --ci
-
       - name: Build
         run: yarn build
+
+      - name: Test
+        run: yarn test --ci
 
       - name: Publish to npm
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
