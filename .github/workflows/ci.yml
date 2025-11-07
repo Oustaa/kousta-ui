@@ -37,10 +37,10 @@ jobs:
       - name: Test
         run: yarn test --ci
 
-      - name: Publish to npm
+      - name: Publish all public workspaces
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: yarn npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          yarn plugin import workspace-tools
+          yarn workspaces foreach -p --no-private npm publish --access public --tolerate-republish

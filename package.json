@@ -8,7 +8,7 @@
   "directories": {
     "doc": "docs"
   },
-  "private": true,
+  "private": false,
   "workspaces": {
     "packages": [
       "packages/*",
