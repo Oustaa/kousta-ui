@@ -1,6 +1,6 @@
 {
   "name": "@kousta-ui/styles",
-  "version": "0.0.2-alpha.0",
+  "version": "0.1.0-alpha.0",
   "type": "module",
   "scripts": {
     "lint": "stylelint './**/*.scss'",

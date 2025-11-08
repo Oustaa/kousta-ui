@@ -42,5 +42,4 @@ jobs:
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          yarn plugin import workspace-tools
           yarn workspaces foreach -p --no-private npm publish --access public --tolerate-republish

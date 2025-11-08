@@ -1,0 +1,18 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.1.0-alpha.0](https://github.com/Oustaa/kousta-ui/compare/@kousta-ui/hooks@0.0.5-alpha.0...@kousta-ui/hooks@0.1.0-alpha.0) (2025-11-08)
+
+### Features
+
+- **components:** adding a modal, fixing some file naming conventions, adding a useDisclosure hook ([1f48294](https://github.com/Oustaa/kousta-ui/commit/1f48294c68b01b135a3c476cfd5fcdbdc7a173bf))
+- **hooks:** adding useScrollLock, usePagination hooks ([d2e3f8f](https://github.com/Oustaa/kousta-ui/commit/d2e3f8f668b6fd22e165a9e50fa2570f746ecb22))
+- **project:** adding dev script ([306b3ba](https://github.com/Oustaa/kousta-ui/commit/306b3ba671e93483a5319e8d380381116fedbd78))
+- **project:** fixing the build, and start working on tests ([57ebb47](https://github.com/Oustaa/kousta-ui/commit/57ebb472047cbec19a1d5d9290f7b44bf677ec9c))
+- **project:** updating the build ([459700e](https://github.com/Oustaa/kousta-ui/commit/459700e9e2416a0374bc3c7af495bd9ecbd65d66))
+- **styles:** adding styles ([34f541f](https://github.com/Oustaa/kousta-ui/commit/34f541fbb4af094117a05110eab8c52b6a0c8762))
+- **table:** adding storybook and start build in the root of package ([8e9fac1](https://github.com/Oustaa/kousta-ui/commit/8e9fac14258752a17140eaba1defc87f6d7d3d40))
+- **table:** adding styles and docs ([1357a83](https://github.com/Oustaa/kousta-ui/commit/1357a836019ed4d70eec7cf3db11576bb826f303))
+- **table:** start working on the table, style not working tho ([6c5d0b9](https://github.com/Oustaa/kousta-ui/commit/6c5d0b9eadeec47f148e7db52cbaa9d96dc7fba7))
