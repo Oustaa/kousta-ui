@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/Oustaa/kousta-ui/compare/docs@0.2.0...docs@0.2.1) (2025-11-09)
+
+**Note:** Version bump only for package docs
+
 ## 0.2.0 (2025-11-08)
 
 ### Features
