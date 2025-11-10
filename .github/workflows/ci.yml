@@ -40,6 +40,9 @@ jobs:
       - name: Test
         run: yarn test --ci
 
+      - name: Clearing
+        run: rm -rf .yarn/install-state.gz
+
       - name: Publish all public workspaces
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}

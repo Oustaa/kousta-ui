@@ -88,3 +88,5 @@ Thumbs.db
 .github/instructions/nx.instructions.md
 
 .env
+
+.yarn/install-state.gz
