@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.0-alpha.3](https://github.com/Oustaa/kousta-ui/compare/@kousta-ui/styles@0.1.0-alpha.2...@kousta-ui/styles@0.1.0-alpha.3) (2025-11-10)
+
+### Bug Fixes
+
+- **release:** fixin the ci workflow once more ([716563b](https://github.com/Oustaa/kousta-ui/commit/716563b14c9567d37d386214a4bcb5d165f2451e))
+- **release:** fixing the ci workflow for the gazillion time ([9288530](https://github.com/Oustaa/kousta-ui/commit/9288530c50a29a615d14e898ea940a44ddd6ade4))
+
 ## [0.1.0-alpha.2](https://github.com/Oustaa/kousta-ui/compare/@kousta-ui/styles@0.1.0-alpha.1...@kousta-ui/styles@0.1.0-alpha.2) (2025-11-09)
 
 **Note:** Version bump only for package @kousta-ui/styles
