@@ -2,6 +2,7 @@
   "name": "@kousta-ui/styles",
   "version": "0.1.0-alpha.2",
   "type": "module",
+  "private": true,
   "scripts": {
     "lint": "stylelint './**/*.scss'",
     "lint:fix": "yarn lint --fix",

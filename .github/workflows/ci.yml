@@ -16,8 +16,10 @@ jobs:
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'yarn'
           registry-url: 'https://registry.npmjs.org/'
           check-latest: true
@@ -40,6 +42,5 @@ jobs:
       - name: Publish all public workspaces
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          yarn workspaces foreach -R -p --no-private npm publish --access public --tolerate-republish
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn publish

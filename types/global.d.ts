@@ -12,19 +12,16 @@ declare module "*.module.sass" {
   export default classes;
 }
 
-// Plain styles (if any package imports plain CSS/SCSS)
 declare module "*.css";
 declare module "*.scss";
 declare module "*.sass";
 
-// Images & fonts (optional but handy for a UI lib)
 declare module "*.png";
 declare module "*.jpg";
 declare module "*.jpeg";
 declare module "*.gif";
 declare module "*.webp";
 declare module "*.svg" {
-  // If you use SVGR:
   import * as React from "react";
   export const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
   const src: string;

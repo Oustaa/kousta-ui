@@ -1,4 +1,5 @@
-import { forwardRef } from "react";
+import React, { forwardRef } from "react";
+
 import { ContextMenuOption } from "../_props";
 
 import ContextMenuItem from "./ContextMenuItem";

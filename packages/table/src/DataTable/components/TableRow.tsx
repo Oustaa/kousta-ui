@@ -96,7 +96,7 @@ const TableRow = <T extends Record<string, unknown>>({
             title: action.title,
             icon: action.Icon,
             active: canPerformActionResolver(row, action.allowed),
-            onClick: action.onClick.bind(this, row),
+            onClick: action.onClick.bind(null, row),
           });
           tableActions.push(
             canPerformActionResolver(row, action.allowed) && (
