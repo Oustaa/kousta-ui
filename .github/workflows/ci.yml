@@ -10,14 +10,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           node-version: '20'
           cache: 'yarn'
@@ -41,6 +42,4 @@ jobs:
 
       - name: Publish all public workspaces
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: yarn publish

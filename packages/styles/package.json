@@ -17,7 +17,7 @@
     "./tokens.css": "./dist/tokens.css"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "restricted"
   },
   "dependencies": {
     "normalize-scss": "^8.0.0"
