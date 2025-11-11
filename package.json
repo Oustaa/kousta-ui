@@ -25,7 +25,7 @@
     "prepare": "husky",
     "build": "lerna run build",
     "clean": "lerna run clean",
-    "publish": "lerna publish from-package",
+    "publish": "lerna publish",
     "lint": "eslint '**/src/*.{js,ts,tsx}'",
     "format": "prettier --write 'packages/**/*.{ts,tsx,json,css,md}'",
     "storybook": "storybook dev -p 6006",
