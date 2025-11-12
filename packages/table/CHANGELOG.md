@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.0-alpha.5](https://github.com/Oustaa/kousta-ui/compare/@kousta-ui/table@0.1.0-alpha.1...@kousta-ui/table@0.1.0-alpha.5) (2025-11-12)
+
+### Bug Fixes
+
+- **release:** fixing the ci workflow for the gazillion time ([9288530](https://github.com/Oustaa/kousta-ui/commit/9288530c50a29a615d14e898ea940a44ddd6ade4))
+- **release:** playing around with the release ([5ff6d5d](https://github.com/Oustaa/kousta-ui/commit/5ff6d5d35d072035d7c6ddbab720cb1b15600bb5))
+
 ## [0.1.0-alpha.4](https://github.com/Oustaa/kousta-ui/compare/@kousta-ui/table@0.1.0-alpha.3...@kousta-ui/table@0.1.0-alpha.4) (2025-11-10)
 
 ### Bug Fixes

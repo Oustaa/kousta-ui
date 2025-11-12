@@ -1,6 +1,6 @@
 {
   "name": "@kousta-ui/table",
-  "version": "0.1.0-alpha.4",
+  "version": "0.1.0-alpha.5",
   "main": "./cjs/table/src/index.cjs",
   "module": "./esm/table/src/index.mjs",
   "types": "lib/index.d.ts",

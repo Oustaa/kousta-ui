@@ -1,6 +1,6 @@
 {
   "name": "@kousta-ui/components",
-  "version": "0.1.0-alpha.4",
+  "version": "0.1.0-alpha.5",
   "main": "./cjs/index.cjs",
   "module": "./esm/index.mjs",
   "types": "lib/index.d.ts",
