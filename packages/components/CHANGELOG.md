@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/Oustaa/kousta-ui/compare/@kousta-ui/components@0.1.0-alpha.5...@kousta-ui/components@0.1.1) (2025-11-14)
+
+**Note:** Version bump only for package @kousta-ui/components
+
+## [0.1.0](https://github.com/Oustaa/kousta-ui/compare/@kousta-ui/components@0.1.0-alpha.5...@kousta-ui/components@0.1.0) (2025-11-14)
+
+**Note:** Version bump only for package @kousta-ui/components
+
 ## [0.1.0-alpha.5](https://github.com/Oustaa/kousta-ui/compare/@kousta-ui/components@0.1.0-alpha.3...@kousta-ui/components@0.1.0-alpha.5) (2025-11-12)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
   "name": "@kousta-ui/components",
-  "version": "0.1.0-alpha.5",
+  "version": "0.1.1",
   "main": "./cjs/index.cjs",
   "module": "./esm/index.mjs",
   "types": "lib/index.d.ts",
@@ -42,6 +42,5 @@
   },
   "dependencies": {
     "@kousta-ui/hooks": "workspace:*"
-  },
-  "gitHead": "e16b21dcc95871dc25fa49523aca54847c7bd4d6"
+  }
 }
