@@ -17,7 +17,6 @@
     "styles"
   ],
   "devDependencies": {
-    "@kousta-ui/styles": "workspace:*",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
@@ -37,8 +36,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": ">=17",
+    "react-dom": ">=17"
   },
   "dependencies": {
     "@kousta-ui/hooks": "workspace:*"
