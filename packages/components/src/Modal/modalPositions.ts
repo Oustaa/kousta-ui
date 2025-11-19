@@ -7,15 +7,20 @@ export const modalPositionStyle = (
   center: {
     marginInline: "auto",
     top: "50%",
-    transform: "translateY(-50%)",
+    right: "50%",
+    transform: "translateY(-50%) translateX(50%)",
   },
   bottom: {
     bottom: `${offset}px`,
     top: "unset",
+    right: "50%",
+    transform: "translateX(50%)",
   },
   top: {
     bottom: "unset",
     top: `${offset}px`,
+    right: "50%",
+    transform: "translateX(50%)",
   },
   right: {
     marginInline: "unset",
@@ -23,17 +28,20 @@ export const modalPositionStyle = (
     top: "50%",
     transform: "translateY(-50%)",
     left: "unset",
+    right: `${offset}px`,
   },
   "right-top": {
     marginInlineStart: "auto",
     top: `${offset}px`,
     left: "unset",
+    right: `${offset}px`,
   },
   "right-bottom": {
     marginInlineStart: "auto",
     bottom: `${offset}px`,
     top: "unset",
     left: "unset",
+    right: `${offset}px`,
   },
   left: {
     marginInline: "unset",

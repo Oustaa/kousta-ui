@@ -117,7 +117,6 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
   }, [beforeOpen, afterOpen, isControlled]);
 
   const handleCloseModal = useCallback(() => {
-    debugger;
     if (beforeClose && beforeClose() === false) return;
 
     if (isControlled) {
@@ -206,10 +205,10 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
           style={{
             animation: `toLeft 5s toLeft`,
             width: fullWidth
-              ? `calc(100vw - ${offset || 0 * 2}px)`
+              ? `calc(100vw - ${(offset || 0) * 2}px)`
               : `clamp(200px, ${modalSize}, 100%)`,
             height: fullHeight
-              ? `calc(100vh - ${offset || 0 * 2}px)`
+              ? `calc(100vh - ${(offset || 0) * 2}px)`
               : "max-content",
             ...modalPositionStyle(offset)[position as ModalPosition],
           }}
