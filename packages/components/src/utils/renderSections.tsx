@@ -7,12 +7,22 @@ function mergeStyles(
   return { ...(existing || {}), ...overrides };
 }
 
-export function renderLeftSectionItem(item: ReactNode): ReactNode {
+export function renderLeftSectionItem(
+  item: ReactNode,
+  direction?: "row" | "column",
+): ReactNode {
   if (isValidElement(item)) {
     return cloneElement(item, {
       style: mergeStyles(item.props.style, {
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
+        ...(direction === "column"
+          ? {
+              borderBottomLeftRadius: 0,
+              borderBottomRightRadius: 0,
+            }
+          : {
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
+            }),
       }),
     });
   }
@@ -20,12 +30,22 @@ export function renderLeftSectionItem(item: ReactNode): ReactNode {
   return item;
 }
 
-export function renderRightSectionItem(item: ReactNode): ReactNode {
+export function renderRightSectionItem(
+  item: ReactNode,
+  direction?: "row" | "column",
+): ReactNode {
   if (isValidElement(item)) {
     return cloneElement(item, {
       style: mergeStyles(item.props.style, {
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
+        ...(direction === "column"
+          ? {
+              borderTopLeftRadius: 0,
+              borderTopRightRadius: 0,
+            }
+          : {
+              borderTopLeftRadius: 0,
+              borderBottomLeftRadius: 0,
+            }),
       }),
     });
   }
@@ -36,18 +56,31 @@ export function renderRightSectionItem(item: ReactNode): ReactNode {
 export function renderMiddleSectionItem(
   item: ReactNode,
   sections?: { left?: ReactNode; right?: ReactNode },
+  direction?: "row" | "column",
 ): ReactNode {
   if (isValidElement(item)) {
     return cloneElement(item, {
       style: mergeStyles(item.props.style, {
-        ...(sections?.left && {
-          borderTopLeftRadius: 0,
-          borderBottomLeftRadius: 0,
-        }),
-        ...(sections?.right && {
-          borderTopRightRadius: 0,
-          borderBottomRightRadius: 0,
-        }),
+        ...(sections?.left &&
+          (direction === "column"
+            ? {
+                borderBottomLeftRadius: 0,
+                borderBottomRightRadius: 0,
+              }
+            : {
+                borderTopLeftRadius: 0,
+                borderBottomLeftRadius: 0,
+              })),
+        ...(sections?.right &&
+          (direction === "column"
+            ? {
+                borderTopLeftRadius: 0,
+                borderTopRightRadius: 0,
+              }
+            : {
+                borderTopRightRadius: 0,
+                borderBottomRightRadius: 0,
+              })),
       }),
     });
   }

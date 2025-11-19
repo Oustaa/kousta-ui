@@ -6,6 +6,7 @@ import {
   Input,
   Modal,
   ComponentPropsProvider,
+  Group,
 } from "@kousta-ui/components";
 import {
   Bs123,
@@ -75,12 +76,12 @@ function App() {
           size: "lg",
         }}
       >
-        <Button variant="primary-link" type={"reset"}>
-          Primary Link
-        </Button>
-        <Button variant="neutral-link" type={"reset"}>
-          Success Link
-        </Button>
+        <Group direction="row">
+          <Button variant="primary">Primary Link</Button>
+          <Button variant="neutral">Neutral Link</Button>
+          <Button variant="success">Success Link</Button>
+          <Button variant="danger">Danger Link</Button>
+        </Group>
         <Modal
           opened={opened}
           onClose={close}
@@ -93,15 +94,16 @@ function App() {
               }
             />
           }
-          // closeOnClickEsc={true}
-          // closeOnClickOutside={true}
+          closeOnClickEsc={true}
+          closeOnClickOutside={true}
           withCloseBtn={true}
           // withBackdrop={true}
           // beforeClose={() => {
           //   alert("How are you??");
           //   // return false;
           // }}
-          position="left"
+
+          position="right-bottom"
           size="480"
           offset={10}
           fullHeight
@@ -337,7 +339,7 @@ function App() {
           offset={24}
           withBackdrop={true}
           closeOnClickOutside={true}
-          // closeOnClickEsc={true}
+          closeOnClickEsc={true}
           modalTriggerBtnVariant="success-outline"
           modalTrigger="Open Me"
         >
@@ -346,7 +348,7 @@ function App() {
         <br />
         <br />
 
-        <Menu.Menu offset={4} position="Left-Start" closeOnClick={true}>
+        <Menu.Menu offset={4} position="Bottom-Start" closeOnClick={true}>
           <Menu.Target>
             <Button>Menu</Button>
           </Menu.Target>

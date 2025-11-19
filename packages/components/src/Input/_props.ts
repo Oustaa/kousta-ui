@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef, ReactNode } from "react";
+import { LabelPositionBase } from "../_core/types";
 
 export type InputProps = ComponentPropsWithoutRef<"input"> & {
   label?: string;
@@ -8,4 +9,5 @@ export type InputProps = ComponentPropsWithoutRef<"input"> & {
   onMaxExited?: VoidFunction;
   leftSection?: ReactNode;
   rightSection?: ReactNode;
+  labelPosition?: LabelPositionBase;
 };

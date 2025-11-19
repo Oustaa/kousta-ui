@@ -12,7 +12,7 @@
 .label {
   font-size: var(--kui-text-base);
   color: light-dark(var(--kui-neutral-900), var(--kui-neutral-50));
-  font-weight: 600;
+  font-weight: 500;
 
   &[data-required="true"]::after {
     content: "*";
@@ -31,6 +31,13 @@
   width: 100%;
 }
 
+.input-label-container {
+  display: flex;
+  width: 100%;
+  justify-content: start;
+  gap: var(--kui-spacing-2xs);
+}
+
 .input {
   padding: var(--kui-spacing-xs) var(--kui-spacing-sm);
   border: solid 0.5px light-dark(var(--kui-neutral-600), var(--kui-neutral-700));
@@ -40,7 +47,7 @@
   border-radius: calc(var(--kui-rounded) * 1rem);
 
   &::placeholder {
-    color: var(--kui-neutral-400);
+    color: var(--kui-neutrl-400);
   }
 
   &:focus,
@@ -53,6 +60,7 @@
   &[data-error="true"] {
     background-color: var(--kui-danger-100);
     border: 0.5px solid var(--kui-danger-600);
+    color: var(--kui-danger-600);
 
     &::placeholder {
       color: var(--kui-danger-400);

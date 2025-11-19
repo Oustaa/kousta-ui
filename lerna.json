@@ -11,7 +11,8 @@
     "publish": {
       "conventionalCommits": true,
       "changelogPreset": "conventionalcommits",
-      "createRelease": false
+      "createRelease": false,
+      "registry": "https://registry.npmjs.org/"
     }
   }
 }

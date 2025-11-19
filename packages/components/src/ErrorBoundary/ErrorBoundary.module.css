@@ -1,0 +1,10 @@
+/*=============================================
+=                ErrorBoundary                =
+=============================================*/
+
+.error-text {
+  font-size: var(--kui-text-base);
+  color: var(--kui-danger-500);
+}
+
+/*=====       End of ErrorBoundary   ======*/

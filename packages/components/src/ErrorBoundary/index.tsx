@@ -1,7 +1,42 @@
-import { ReactNode } from "react";
+import { Component, isValidElement, PropsWithChildren, ReactNode } from "react";
 
-export class ErrorBoundry {
-  render(fallback: ReactNode) {
-    return fallback;
+import classes from "./ErrorBoundary.module.css";
+
+type ErrorBoundryProps = PropsWithChildren<{
+  fallback?: ReactNode;
+  onError?: (error: Error) => void;
+}>;
+
+type ErrorBoundryState = {
+  hasError: boolean;
+  error?: { message: string; stack: string };
+};
+
+class ErrorBoundry extends Component<ErrorBoundryProps, ErrorBoundryState> {
+  state = { hasError: false, error: undefined, loading: false };
+
+  static getDerivedStateFromError(error: any) {
+    console.log({ getDerivedStateFromError: error });
+    return { hasError: true, error: error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: any): void {
+    console.log({ error, errorInfo });
+    const onError = this.props.onError;
+
+    if (onError && typeof onError === "function") onError(error);
+  }
+
+  render() {
+    const fallback = this.props.fallback;
+
+    if (this.state.hasError) {
+      if (fallback && isValidElement(fallback)) return fallback;
+      return <h3 className={classes["error-text"]}>An Error Has Ocured</h3>;
+    }
+
+    return this.props.children;
   }
 }
+
+export default ErrorBoundry;

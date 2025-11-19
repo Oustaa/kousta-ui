@@ -1,12 +1,29 @@
-import { FC } from "react";
+import { CSSProperties, FC } from "react";
 import { InputProps } from "./_props";
-
-import classes from "./Input.module.css";
 import {
   renderLeftSectionItem,
   renderMiddleSectionItem,
   renderRightSectionItem,
 } from "../utils/renderSections";
+
+import classes from "./Input.module.css";
+import Label from "../Label";
+import { LabelPositionBase } from "../_core/types";
+
+function flexDirection(position: LabelPositionBase): CSSProperties {
+  switch (position) {
+    case "x":
+      return {
+        flexDirection: "row",
+        alignItems: "center",
+      };
+    case "y":
+      return {
+        flexDirection: "column",
+        alignItems: "start",
+      };
+  }
+}
 
 const Input: FC<InputProps> = ({
   label,
@@ -15,43 +32,44 @@ const Input: FC<InputProps> = ({
   leftSection,
   rightSection,
   labelProps,
+  labelPosition = "y",
   ...rest
 }) => {
   return (
     <div className={classes["formElement"]}>
-      {label && (
-        <label
-          data-required={label && String(required)}
-          data-error={
-            // this is not correct based on the type of the errors...
-            Array.isArray(errors) && errors.length > 0 ? "true" : "false"
-          }
-          className={classes["label"]}
-          htmlFor={label}
-          {...labelProps}
-        >
-          {label}
-        </label>
-      )}
-      <div className={classes["input-container"]}>
-        {leftSection && renderLeftSectionItem(leftSection)}
-        {renderMiddleSectionItem(
-          <input
-            data-error={
-              // this is not correct based on the type of the errors...
-              Array.isArray(errors) && errors.length > 0 ? "true" : "false"
-            }
-            className={classes["input"]}
-            id={label}
-            {...rest}
-          />,
-          {
-            left: leftSection,
-            right: rightSection,
-          },
+      <div
+        className={classes["input-label-container"]}
+        style={flexDirection(labelPosition)}
+      >
+        {label && (
+          <Label
+            label={label}
+            {...labelProps}
+            required={required}
+            errors={errors}
+          />
         )}
-        {rightSection && renderRightSectionItem(rightSection)}
+        <div className={classes["input-container"]}>
+          {leftSection && renderLeftSectionItem(leftSection)}
+          {renderMiddleSectionItem(
+            <input
+              data-error={
+                // this is not correct based on the type of the errors...
+                Array.isArray(errors) && errors.length > 0 ? "true" : "false"
+              }
+              className={classes["input"]}
+              id={label}
+              {...rest}
+            />,
+            {
+              left: leftSection,
+              right: rightSection,
+            },
+          )}
+          {rightSection && renderRightSectionItem(rightSection)}
+        </div>
       </div>
+
       <span className={classes["error-message"]}>
         {(errors as string[])?.[0]}
       </span>
