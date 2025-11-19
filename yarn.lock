@@ -4976,7 +4976,6 @@ __metadata:
   resolution: "@kousta-ui/components@workspace:packages/components"
   dependencies:
     "@kousta-ui/hooks": "workspace:*"
-    "@kousta-ui/styles": "workspace:*"
     "@testing-library/dom": "npm:^10.4.0"
     "@testing-library/jest-dom": "npm:^6.6.3"
     "@testing-library/react": "npm:^16.0.1"
@@ -4991,8 +4990,8 @@ __metadata:
     ts-jest: "npm:^29.2.5"
     ts-node: "npm:^10.9.2"
   peerDependencies:
-    react: ^18.0.0
-    react-dom: ^18.0.0
+    react: ">=17"
+    react-dom: ">=17"
   languageName: unknown
   linkType: soft
 
@@ -5032,8 +5031,8 @@ __metadata:
     "@kousta-ui/hooks": "workspace:*"
     sass: "npm:^1.79.3"
   peerDependencies:
-    react: ^18.0.0
-    react-dom: ^18.0.0
+    react: ">=17"
+    react-dom: ">=17"
   languageName: unknown
   linkType: soft
 
