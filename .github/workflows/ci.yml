@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: write    
+  contents: write
   packages: write
 
 jobs:
@@ -16,6 +16,7 @@ jobs:
 
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout repository
@@ -51,9 +52,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+      - name: Updating Pakcages Versions
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: npx lerna version patch --force-publish
       - name: Publish all public workspaces
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn publish --yes
+        run: npx lerna publish from-git
+
+
